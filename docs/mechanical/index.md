@@ -11,15 +11,18 @@ Current Motor Selection of the 6 DOF Arm
 |  |  | Rated Torque  | Peak Torque  |
 | --- | --- | --- | --- |
 | Shoulder (1-2) | AK10-9 V3.0 | 18Nm  | 53Nm  |
-| Elbow (3-4-5) | AK80-9 V3.0 | 8.3 |  |
-| Wrist (6)  | GL40 KV70 |  0.25 | 0.73  |
+| Elbow (3-4-5) | AK80-9 V3.0 | 9Nm | 22Nm |
+| Wrist (6)  | GL40 KV70 |  0.25Nm | 0.73Nm  |
 
 For faster progress, we will be temporarily switching to attaching a gripper instead of the 15 DOF hands for the arm
 
 Current Motor Selection of the Gripper
 |  |  | Rated Torque  | Peak Torque  |
 | --- | --- | --- | --- |
-| Gripper  | GL40 KV70 |  0.25 | 0.73  |
+| Gripper  | GL40 KV70 |  0.25Nm | 0.73Nm  |
+
+<img width="1036" height="1508" alt="image" src="https://github.com/user-attachments/assets/98e805ce-85e7-4e60-a6d6-ad80288cb3b3" />
+
 
 ---
 <img width="920" height="822" alt="image (1)" src="https://github.com/user-attachments/assets/e6431c96-b21a-4934-94b6-79166dc7ba87" />
