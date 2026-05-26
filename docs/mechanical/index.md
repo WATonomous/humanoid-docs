@@ -1,3 +1,4 @@
+<img width="515" height="752" alt="Screenshot 2026-05-25 at 11 55 59 PM" src="https://github.com/user-attachments/assets/24fddfc1-cf76-4523-b88b-f1a5518e1f09" />
 ---
 title: Mechanical
 description: Mechanical design documentation for the WATonomous Humanoid robot.
