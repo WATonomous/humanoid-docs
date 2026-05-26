@@ -1,3 +1,7 @@
+https://github.com/user-attachments/assets/4661eef0-f966-4c65-83d6-3216d7fb3177
+
+
+
 ---
 title: Software & ML
 description: Software and machine learning documentation for the WATonomous Humanoid.
@@ -27,6 +31,5 @@ description: Software and machine learning documentation for the WATonomous Huma
 
 ## Geometric Fabrics PCA
 <video width="600" controls>
-  <source src="https://github.com/user-attachments/assets/817f4e85-ec41-49f6-99a2-d49d2009c981" type="video/mp4">
+  <source src="https://github.com/user-attachments/assets/4661eef0-f966-4c65-83d6-3216d7fb3177" type="video/mp4">
 </video>
-
