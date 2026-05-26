@@ -24,3 +24,9 @@ description: Software and machine learning documentation for the WATonomous Huma
 <video width="600" controls>
   <source src="https://github.com/user-attachments/assets/80bf81cc-a531-469d-bf8f-33957ce153b9" type="video/mp4">
 </video>
+
+## Geometric Fabrics PCA
+<video width="600" controls>
+  <source src="https://github.com/user-attachments/assets/a1ee349e-756f-4ac8-86c3-dd9fea875c15" type="video/mov">
+</video>
+
