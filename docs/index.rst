@@ -3,7 +3,7 @@ WATonomous Humanoid Documentation
 
 Welcome to the documentation for the WATonomous Humanoid robot project at the University of Waterloo. 
 
-This site is currently in an early stage. Use the navigation sidebar on the left to explore the top-level sections.
+<img width="515" height="752" alt="Screenshot 2026-05-25 at 11 55 59 PM" src="https://github.com/user-attachments/assets/24fddfc1-cf76-4523-b88b-f1a5518e1f09" />
 
 .. toctree::
    :maxdepth: 2
