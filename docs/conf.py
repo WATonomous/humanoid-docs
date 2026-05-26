@@ -18,6 +18,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'index.md']
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['assets']
+html_show_sphinx = False
+html_js_files = ['javascripts/strip-footer.js']
 
 html_context = {
     "display_github": True,
