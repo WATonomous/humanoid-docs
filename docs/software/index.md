@@ -1,7 +1,3 @@
-https://github.com/user-attachments/assets/4661eef0-f966-4c65-83d6-3216d7fb3177
-
-
-
 ---
 title: Software & ML
 description: Software and machine learning documentation for the WATonomous Humanoid.
