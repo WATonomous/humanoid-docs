@@ -1,4 +1,3 @@
-<img width="924" height="1293" alt="wato_arm" src="https://github.com/user-attachments/assets/b5c993ed-b90a-4e84-bdf1-435f4a354c0a" />
 ---
 title: Mechanical
 description: Mechanical design documentation for the WATonomous Humanoid robot.
