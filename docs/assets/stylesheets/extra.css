@@ -1,6 +1,7 @@
 /* ============================================================
-   WATonomous Humanoid Docs — Custom Styles
-   Formal documentation theme, inspired by IsaacLab / Material
+   WATonomous Humanoid Docs — MkDocs Material theme (legacy)
+   This project is built with Sphinx + sphinx_rtd_theme.
+   Active overrides: stylesheets/rtd-custom.css (see docs/conf.py).
    ============================================================ */
 
 /* ── Google Fonts ────────────────────────────────────────── */

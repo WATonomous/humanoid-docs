@@ -1,0 +1,212 @@
+/* WATonomous Humanoid Docs — Sphinx Read the Docs theme tweaks */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --wato-accent: #0057b8;
+  --wato-accent-soft: rgba(0, 87, 184, 0.12);
+  --wato-radius: 4px;
+  --wato-code-bg: #f5f7fa;
+  --wato-border: #e1e4e8;
+}
+
+/* --- Typography (main article only) --- */
+.rst-content {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 52rem;
+}
+
+.rst-content h1,
+.rst-content h2,
+.rst-content h3,
+.rst-content h4,
+.rst-content h5,
+.rst-content h6 {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.rst-content h1 {
+  font-size: 1.75rem;
+  margin-top: 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--wato-border);
+}
+
+.rst-content h2 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.rst-content h3 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.rst-content h4 {
+  font-size: 1.05rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.rst-content p,
+.rst-content li,
+.rst-content td {
+  font-size: 0.98rem;
+}
+
+.rst-content p {
+  margin-bottom: 0.85em;
+}
+
+.rst-content ul,
+.rst-content ol {
+  margin: 0.75em 0 1em;
+  padding-left: 1.35em;
+}
+
+.rst-content li + li {
+  margin-top: 0.35em;
+}
+
+.rst-content li > p {
+  margin-bottom: 0.5em;
+}
+
+/* --- Links --- */
+.rst-content a.reference,
+.rst-content a {
+  color: var(--wato-accent);
+}
+
+.rst-content a.reference:hover,
+.rst-content a:hover {
+  text-decoration-thickness: 1px;
+}
+
+/* --- Inline / block code --- */
+.rst-content code,
+.rst-content tt {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--wato-code-bg);
+  border: 1px solid var(--wato-border);
+  border-radius: 3px;
+  padding: 0.12em 0.35em;
+}
+
+.rst-content pre {
+  border-radius: var(--wato-radius);
+  border: 1px solid var(--wato-border);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.rst-content pre code,
+.rst-content pre tt {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* --- Tables --- */
+.rst-content table.docutils {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0 1.25em;
+  font-size: 0.94rem;
+  box-shadow: 0 1px 0 var(--wato-border);
+}
+
+.rst-content table.docutils th {
+  background: #f0f3f7;
+  font-weight: 600;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--wato-border);
+}
+
+.rst-content table.docutils td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--wato-border);
+  vertical-align: top;
+}
+
+/* --- Media: cap width so huge GitHub asset dimensions don’t blow layout --- */
+.rst-content img,
+.rst-content video {
+  max-width: min(100%, 720px);
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  border-radius: var(--wato-radius);
+}
+
+.rst-content video {
+  background: #000;
+}
+
+.rst-content img.align-center,
+.rst-content .figure.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Math (MathJax) --- */
+.rst-content .math-wrapper,
+.rst-content div.math,
+.rst-content span.math {
+  margin: 0.85em 0;
+}
+
+.rst-content div.math {
+  overflow-x: auto;
+}
+
+/* --- Horizontal rules in MyST --- */
+.rst-content hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid var(--wato-border);
+}
+
+/* --- Sidebar local TOC readability --- */
+.wy-menu-vertical .local-toc ul {
+  margin-bottom: 0.5em;
+}
+
+/* --- Dark mode (sphinx_rtd_dark_mode) --- */
+html[data-theme="dark"] {
+  --wato-code-bg: #2d333b;
+  --wato-border: #444c56;
+}
+
+html[data-theme="dark"] .rst-content {
+  color: #e6edf3;
+}
+
+html[data-theme="dark"] .rst-content h1 {
+  border-bottom-color: var(--wato-border);
+}
+
+html[data-theme="dark"] .rst-content table.docutils th {
+  background: #2d333b;
+}
+
+html[data-theme="dark"] .rst-content code,
+html[data-theme="dark"] .rst-content tt {
+  color: #e6edf3;
+}
+
+html[data-theme="dark"] .rst-content pre {
+  background: #1c2128 !important;
+  border-color: var(--wato-border);
+}

@@ -7,6 +7,7 @@ author = 'WATonomous'
 
 extensions = [
     'myst_parser',
+    'sphinx.ext.mathjax',
     'sphinx_copybutton',
     'sphinx_rtd_dark_mode',
 ]
@@ -19,6 +20,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'index.md']
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['assets']
 html_show_sphinx = False
+html_css_files = ['stylesheets/rtd-custom.css']
 html_js_files = ['javascripts/strip-footer.js']
 
 html_context = {
@@ -31,4 +33,6 @@ html_context = {
 
 myst_enable_extensions = [
     "colon_fence",
+    "dollarmath",
+    "amsmath",
 ]
