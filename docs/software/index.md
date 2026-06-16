@@ -5,6 +5,13 @@ description: Software and machine learning documentation for the WATonomous Huma
 
 # Software & Machine Learning
 
+## Bimanual Arm Inverse Kinematics
+
+<video width="600" controls>
+  <source src="../_static/videos/ik-bimanual-arm.mp4" type="video/mp4">
+</video>
+
+Jacobian-based iterative IK for the dual-arm setup, driving both end effectors to target poses in simulation.
 
 ## 6 DOF Arm + 15 DOF Hand Jacobian Iterative Based IK Controller
 
