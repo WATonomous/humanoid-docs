@@ -28,6 +28,7 @@ Welcome to the documentation for the WATonomous Humanoid robot project at the Un
    :caption: Sections
 
    mechanical/index.md
+   electrical/index.md
    firmware/index.md
    software/index.md
    references/index.md
