@@ -7,7 +7,7 @@ description: Electrical wiring and power distribution for the WATonomous Humanoi
 
 This page documents the power distribution and CAN bus wiring for the 6 DOF arm. The system is powered by a 51.2 V battery and controlled over CAN from a laptop via a CANable USB adapter.
 
-<img alt="Arm electrical wiring diagram" src="../assets/images/arm-electrical-diagram.png" />
+![Arm electrical wiring diagram](../assets/images/arm-electrical-diagram.png)
 
 ## Overview
 
