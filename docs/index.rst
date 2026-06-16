@@ -1,7 +1,11 @@
 WATonomous Humanoid Documentation
 =================================
 
-Welcome to the documentation for the WATonomous Humanoid robot project at the University of Waterloo. 
+Welcome to the documentation for the WATonomous Humanoid robot project at the University of Waterloo.
+
+.. image:: assets/images/humanoid-hero.png
+   :width: 800px
+   :alt: WATonomous Humanoid dual-arm robot
 
 .. image:: https://github.com/user-attachments/assets/a0eb0a85-b723-4deb-8ce3-205a1087f7e9
    :width: 668px
