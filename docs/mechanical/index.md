@@ -4,8 +4,9 @@ description: Mechanical design documentation for the WATonomous Humanoid robot.
 ---
 
 # Mechanical
-
-<img alt="Arm overview" src="https://github.com/user-attachments/assets/cd06b11b-d9ba-468f-a268-d618e690c815" />
+<img alt="Arm overview 1" src="https://github.com/user-attachments/assets/5f185bd3-9063-4381-93f9-63f36d4c2768" />
+<img alt="Arm overview 2" src="https://github.com/user-attachments/assets/bcb7271e-5b23-46c4-b23b-07b461134a69" />
+<img alt="Arm overview 3" src="https://github.com/user-attachments/assets/cd06b11b-d9ba-468f-a268-d618e690c815" />
 
 ### 6 DOF arm — motor selection
 
