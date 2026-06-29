@@ -27,6 +27,17 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 ## Humanoid Leg (Work in Progress)
 
+### 6 DOF Per Leg — Motor Selection
+
+| Joint | DOF | Motor |
+| --- | --- | --- |
+| Hip | Pitch | AKH70 |
+| Hip | Yaw | RS03 |
+| Hip | Roll | RS04 |
+| Knee | Pitch | AKH70-48 |
+| Ankle | Pitch | RS03 |
+| Ankle | Roll | RS03 |
+
 ### Hip
 
 <img alt="Humanoid leg hip design" src="../_static/images/leg_hip_design.png" width="600" />
