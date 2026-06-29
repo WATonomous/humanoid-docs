@@ -9,10 +9,7 @@ extensions = [
     'myst_parser',
     'sphinx.ext.mathjax',
     'sphinx_copybutton',
-    'sphinx_rtd_dark_mode',
 ]
-
-default_dark_mode = False
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'index.md']

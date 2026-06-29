@@ -33,13 +33,19 @@ Welcome to the documentation for the WATonomous Humanoid robot project at the Un
 
    mechanical/index.md
    electrical/index.md
+   interfacing/index.md
    firmware/index.md
    software/index.md
-   references/index.md
+   gallery/index.md
    links/index.md
 
 Editing This Documentation
 --------------------------
 
-All documentation is written in plain Markdown under the ``docs/`` directory. 
+All documentation is written in plain Markdown under the ``docs/`` directory.
 You can click the **Edit on GitHub** button in the top right corner of any page to edit it directly in the GitHub editor.
+
+Contact
+-------
+
+Questions or contributions? Reach out to `hycheng@uwaterloo.ca <mailto:hycheng@uwaterloo.ca>`_.

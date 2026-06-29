@@ -210,3 +210,138 @@ html[data-theme="dark"] .rst-content pre {
   background: #1c2128 !important;
   border-color: var(--wato-border);
 }
+
+/* --- Admonitions (callout boxes) --- */
+.rst-content .admonition {
+  padding: 1rem 1rem 1rem 3rem;
+  margin: 1.5em 0;
+  border-left: 4px solid;
+  border-radius: var(--wato-radius);
+  position: relative;
+  background: var(--wato-code-bg);
+}
+
+.rst-content .admonition.note {
+  border-left-color: #0969da;
+  background: #ddf4ff;
+}
+
+.rst-content .admonition.warning {
+  border-left-color: #d93f0b;
+  background: #fff8c5;
+}
+
+.rst-content .admonition.tip {
+  border-left-color: #1a7f37;
+  background: #dafbe1;
+}
+
+.rst-content .admonition-title {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  font-size: 0.95rem;
+}
+
+html[data-theme="dark"] .rst-content .admonition {
+  background: #2d333b;
+}
+
+html[data-theme="dark"] .rst-content .admonition.note {
+  background: #1c2d41;
+}
+
+html[data-theme="dark"] .rst-content .admonition.warning {
+  background: #3d2817;
+}
+
+html[data-theme="dark"] .rst-content .admonition.tip {
+  background: #1e3a28;
+}
+
+/* --- Better blockquotes --- */
+.rst-content blockquote {
+  margin: 1.5em 0;
+  padding: 0.75em 1em 0.75em 1.5em;
+  border-left: 4px solid var(--wato-accent);
+  background: var(--wato-accent-soft);
+  font-style: italic;
+  color: #57606a;
+}
+
+html[data-theme="dark"] .rst-content blockquote {
+  color: #adbac7;
+}
+
+/* --- Hover effect on headings with anchors --- */
+.rst-content h2:hover .headerlink,
+.rst-content h3:hover .headerlink,
+.rst-content h4:hover .headerlink {
+  opacity: 1;
+}
+
+.rst-content .headerlink {
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: var(--wato-accent);
+  text-decoration: none;
+  margin-left: 0.5rem;
+  font-weight: 400;
+}
+
+/* --- Better code block styling --- */
+.rst-content div.highlight {
+  position: relative;
+  margin: 1.25em 0;
+}
+
+.rst-content div.highlight pre {
+  padding: 1rem;
+  overflow-x: auto;
+  background: #f6f8fa;
+}
+
+html[data-theme="dark"] .rst-content div.highlight pre {
+  background: #1c2128;
+}
+
+/* --- Add subtle shadow to images --- */
+.rst-content img {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rst-content img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Smooth scroll --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Better list styling --- */
+.rst-content ul li {
+  position: relative;
+  padding-left: 0.25em;
+}
+
+/* --- Copy button enhancement --- */
+button.copybtn {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+button.copybtn:hover {
+  opacity: 1;
+  background-color: var(--wato-accent) !important;
+}
+
+/* --- Table hover effect --- */
+.rst-content table.docutils tbody tr:hover {
+  background-color: var(--wato-accent-soft);
+}
+
+html[data-theme="dark"] .rst-content table.docutils tbody tr:hover {
+  background-color: rgba(0, 87, 184, 0.25);
+}

@@ -30,8 +30,10 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 <img alt="Mechanical assembly" src="https://github.com/user-attachments/assets/e6431c96-b21a-4934-94b6-79166dc7ba87" />
 
-## Hand Design
+## Humanoid Leg (Work in Progress)
 
-<img alt="Hand design screenshot" src="https://github.com/user-attachments/assets/0244aabf-43ab-4645-a253-7ea9f8eeeac2" />
-<img alt="Hand design screenshot" src="https://github.com/user-attachments/assets/d7af230b-cb50-4dde-b0be-879a626d8c35" />
-<img alt="Hand design screenshot" src="https://github.com/user-attachments/assets/e27695ca-eac1-4d21-939b-8041c9582490" />
+### Hip
+
+<img alt="Humanoid leg hip design" src="../_static/images/leg_hip_design.png" width="600" />
+
+The hip design uses the **F-A-R** (Flexion-Abduction-Rotation) configuration for a compact and biomimetic joint arrangement. This configuration allows for efficient packaging of the actuators while maintaining the necessary degrees of freedom for humanoid locomotion.
