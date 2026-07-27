@@ -14,3 +14,7 @@ Progress photos documenting the development of the WATonomous Humanoid robot.
 
 <img alt="Humanoid leg design - full view" src="/humanoid-docs/img/humanoid/leg_full_view.png" width="600" />
 <img alt="Humanoid leg design - side view" src="/humanoid-docs/img/humanoid/leg_side_view.png" width="600" />
+
+<img alt="Arm overview (outdated)" src="https://github.com/user-attachments/assets/cd06b11b-d9ba-468f-a268-d618e690c815" width="500" />
+
+<img alt="Arm joint sketch" src="https://github.com/user-attachments/assets/e6431c96-b21a-4934-94b6-79166dc7ba87" width="600" />

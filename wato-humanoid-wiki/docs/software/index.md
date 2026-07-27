@@ -165,6 +165,28 @@ The task is implemented in Isaac Lab and adapted from their in-hand manipulation
   <source src="https://github.com/user-attachments/assets/80bf81cc-a531-469d-bf8f-33957ce153b9" type="video/mp4" />
 </video>
 
+### Locomotion RL
+
+Reinforcement learning-based locomotion training.
+
+<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
+  <video width="380" controls>
+    <source src="/humanoid-docs/img/humanoid/videos/locomotion-rl-1.mp4" type="video/mp4" />
+  </video>
+  <video width="380" controls>
+    <source src="/humanoid-docs/img/humanoid/videos/locomotion-rl-2.mp4" type="video/mp4" />
+  </video>
+  <video width="380" controls>
+    <source src="/humanoid-docs/img/humanoid/videos/locomotion-rl-3.mp4" type="video/mp4" />
+  </video>
+</div>
+
+### Manipulation Task Setup
+
+Parallelized manipulation task environments for RL training.
+
+<img alt="Manipulation task setup, parallel environments" src="/humanoid-docs/img/humanoid/manipulation-task-setup.png" width="700" />
+
 ## Geometric Fabrics PCA
 
 <video width="600" controls>
