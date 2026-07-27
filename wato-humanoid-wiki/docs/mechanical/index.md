@@ -27,6 +27,13 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 <img alt="Mechanical assembly" src="https://github.com/user-attachments/assets/e6431c96-b21a-4934-94b6-79166dc7ba87" width="600" />
 
+## 22 DOF Hand
+
+22 DOF hand (16 actuated).
+
+<img alt="22 DOF hand, palm view" src="/img/humanoid/hand-22dof-1.jpg" width="500" />
+<img alt="22 DOF hand, dorsal view" src="/img/humanoid/hand-22dof-2.jpg" width="500" />
+
 ## Humanoid Leg (Work in Progress)
 
 ### 6 DOF Per Leg — Motor Selection
