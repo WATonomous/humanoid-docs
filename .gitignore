@@ -1,15 +1,3 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-.venv/
-venv/
-.env
-
-# Sphinx build output
-docs/_build/
-site/
-
 # OS
 .DS_Store
 Thumbs.db

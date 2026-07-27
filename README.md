@@ -6,34 +6,30 @@ Documentation for the WATonomous Humanoid robot project at the University of Wat
 
 ## Getting Started
 
+The site lives in [`wato-humanoid-wiki/`](wato-humanoid-wiki) and is built with [Docusaurus](https://docusaurus.io/).
+
 ### Setup
 
-1. Create and activate virtual environment:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+cd wato-humanoid-wiki
+npm install
+```
 
 ### Development (with hot reload)
 
 ```bash
-source .venv/bin/activate
-sphinx-autobuild docs docs/_build/html --open-browser
+cd wato-humanoid-wiki
+npm run start
 ```
 
-This will start a local server at http://127.0.0.1:8000 that automatically rebuilds and refreshes when you make changes.
+This will start a local server at http://localhost:3000 that automatically rebuilds and refreshes when you make changes.
 
 ### Build (one-time)
 
 ```bash
-source .venv/bin/activate
-sphinx-build -b html docs docs/_build/html
-python3 -m http.server --directory docs/_build/html 8000
+cd wato-humanoid-wiki
+npm run build
+npm run serve
 ```
 
 <img width="667.75" height="901.75" alt="IMG_0860" src="https://github.com/user-attachments/assets/a0eb0a85-b723-4deb-8ce3-205a1087f7e9" />
