@@ -33,6 +33,8 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-1.jpg" width="500" />
 <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-2.jpg" width="500" />
+<img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-3.jpg" width="500" />
+<img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-4.jpg" width="500" />
 
 ## Humanoid Leg (Work in Progress)
 
