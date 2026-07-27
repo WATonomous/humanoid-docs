@@ -31,6 +31,16 @@ Welcome to the documentation for the WATonomous Humanoid robot project at the Un
    gallery/index.md
    links/index.md
 
+Sponsors
+--------
+
+We'd like to thank `CubeMars <https://www.cubemars.com/>`_ for their generous support of the WATonomous Humanoid project.
+
+.. image:: assets/images/cubemars-logo.jpg
+   :width: 300px
+   :alt: CubeMars logo
+   :target: https://www.cubemars.com/
+
 Editing This Documentation
 --------------------------
 

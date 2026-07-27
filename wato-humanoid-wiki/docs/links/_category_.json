@@ -1,0 +1,8 @@
+{
+  "label": "Project Links",
+  "position": 8,
+  "link": {
+    "type": "doc",
+    "id": "links/index"
+  }
+}
