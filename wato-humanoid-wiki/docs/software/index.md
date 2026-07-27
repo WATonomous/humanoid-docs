@@ -9,7 +9,7 @@ description: Software and machine learning documentation for the WATonomous Huma
 ## Bimanual Arm Inverse Kinematics
 
 <video width="600" controls>
-  <source src="/img/humanoid/videos/ik-bimanual-arm.mp4" type="video/mp4" />
+  <source src="/humanoid-docs/img/humanoid/videos/ik-bimanual-arm.mp4" type="video/mp4" />
 </video>
 
 Jacobian-based iterative IK for the dual-arm setup, driving both end effectors to target poses in simulation.
@@ -100,7 +100,7 @@ Repeat up to `max_iter` times / return early if error lower than `tol` tolerance
 ### In-Hand Manipulation RL Task
 
 <video width="600" controls>
-  <source src="/img/humanoid/videos/inhand_rl.mp4" type="video/mp4" />
+  <source src="/humanoid-docs/img/humanoid/videos/inhand_rl.mp4" type="video/mp4" />
 </video>
 
 Reinforcement learning-based in-hand cube reorientation task for the 16 DOF Wato hand in Isaac Lab. The policy learns to reorient a DexCube held in the palm toward commanded goal orientations using PPO (Proximal Policy Optimization).

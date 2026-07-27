@@ -31,8 +31,8 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 22 DOF hand (16 actuated).
 
-<img alt="22 DOF hand, palm view" src="/img/humanoid/hand-22dof-1.jpg" width="500" />
-<img alt="22 DOF hand, dorsal view" src="/img/humanoid/hand-22dof-2.jpg" width="500" />
+<img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-1.jpg" width="500" />
+<img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-2.jpg" width="500" />
 
 ## Humanoid Leg (Work in Progress)
 
@@ -49,6 +49,6 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 ### Hip
 
-<img alt="Humanoid leg hip design" src="/img/humanoid/leg_hip_design.png" width="600" />
+<img alt="Humanoid leg hip design" src="/humanoid-docs/img/humanoid/leg_hip_design.png" width="600" />
 
 The hip design uses the **F-A-R** (Flexion-Abduction-Rotation) configuration for a compact and biomimetic joint arrangement. This configuration allows for efficient packaging of the actuators while maintaining the necessary degrees of freedom for humanoid locomotion.
