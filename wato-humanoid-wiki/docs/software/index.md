@@ -95,6 +95,78 @@ Repeat up to `max_iter` times / return early if error lower than `tol` tolerance
 **Defaults:** `damping=1e-4`, `step=0.5`, `max_iter=200`, `tol=1e-4`, `clip_limits=True`.
 
 
+## VR Teleoperation
+
+Meta Quest hand tracking drives both arms of the bimanual rig in real time, in either Isaac Sim or (left arm only, gated) on the physical robot. The pipeline is split across a browser-side WebXR page, a C++ ROS 2 bridge, and a Python IK driver, all running inside the `simulation_isaac` container:
+
+<video width="300" controls>
+  <source src="/humanoid-docs/img/humanoid/videos/quest-vr-teleop.mp4" type="video/mp4" />
+</video>
+
+```
+Quest 2 headset (WebXR hand tracking, Meta Browser)
+    │  HTTPS :8443 / WSS :9090  (adb reverse USB tunnels — no Wi-Fi needed)
+    ▼
+webxr_server.py  ────────────────────────────┐
+  serves static/index.html + self-signed cert │
+                                              │
+quest_teleop_node  (C++, Boost.Beast WSS)     │
+  parses JSON → common_msgs/QuestHandPose     │
+    │  publishes /quest_teleop @ ~30 Hz       │
+    ▼                                         │
+run_quest_bimanual_teleop.py                  │
+  DifferentialIKController (DLS), per arm,    │
+  targets each gripper's fingertip-tip frame  │
+    │                                         │
+    ▼                                         │
+Isaac Sim 5.1 ◄───────────────────────────────┘  (stereo POV rendered back to headset)
+```
+
+### Browser → ROS 2 bridge
+
+`static/index.html` uses the WebXR Device API to read the headset's wrist poses and per-joint hand-tracking data every frame, and sends a JSON payload over a secure WebSocket:
+
+```json
+{
+  "left_wrist":  { "position": {x,y,z}, "orientation": {x,y,z,w} },
+  "right_wrist": { "position": {x,y,z}, "orientation": {x,y,z,w} },
+  "head_pose":   { "position": {x,y,z}, "orientation": {x,y,z,w} },
+  "left_hand_joints":  [75 floats],
+  "right_hand_joints": [75 floats]
+}
+```
+
+Each hand array is 25 WebXR joints × 3 (x, y, z) = 75 floats. `quest_teleop_node` (`autonomy/teleop/quest_teleop`) runs a TLS WebSocket server on port `9090` (`WssServer`, Boost.Beast) — one thread per connection. Every inbound text frame is handed to `QuestMessageParser::parse`, which fills a `common_msgs/msg/QuestHandPose` (defaults to identity orientation / zero position for any field the payload omits) and publishes it on `/quest_teleop`. An untracked hand shows up as the sentinel zero-position + identity-orientation pose — the sim side checks for this explicitly (`_is_tracked`) rather than trusting every message.
+
+`webxr_server.py` is a plain `ThreadingHTTPServer` wrapped in TLS that serves `static/` (the WebXR page) on port `8443`. Both ports are reached from the headset via `adb reverse` USB tunnels, so no network/Wi-Fi setup is required, and the self-signed cert has to be trusted separately on each port in the Meta Browser before the socket will connect.
+
+### Sim-side IK driver
+
+`autonomy/simulation/quest_isaac_teleop/run_quest_bimanual_teleop.py` runs inside Isaac Lab and drives both arms independently:
+
+- **One `DifferentialIKController` per arm** (`ik_method="dls"`, damped least squares), each tracking its gripper's **fingertip-tip frame** (midpoint of the two finger distal tips) rather than the raw wrist link, so grasp point tracking stays accurate regardless of gripper orientation.
+- **Homing on first tracked sample** — each arm independently latches its Quest-wrist home pose the instant tracking starts, anchored to the arm's fixed rest pose (not wherever the tip currently sits, which would bake in IK lag). Pressing `R` (Isaac Sim window focused) re-homes both arms to the operator's current wrist pose, for mid-session recalibration.
+- **Coordinate remap** — WebXR is Y-up (X-right, Y-up, −Z-forward); the robot's world frame is Z-up. `_QUEST_TO_WORLD` is a fixed 3×3 rotation (must stay determinant +1, or `quat_from_matrix` silently corrupts orientation) mapping one to the other, with a separate per-arm `_AXIS_SIGN_LEFT`/`_AXIS_SIGN_RIGHT` for flipping individual axes without touching that matrix.
+- **Ramped gain + reach clamp** — displacement from the home pose is scaled by `_ramped_gain` (smoothstep from 1.0 down as displacement shrinks) and hard-clamped to `_MAX_REACH_M` (0.28 m) so small hand jitter near rest doesn't overshoot and large reaches can't exceed the arm's safe envelope.
+- **DLS damping tuned per arm** — `lambda_val = 0.2` (left) / `0.35` (right). At the DLS default (0.01) a ~0.1 m commanded displacement pushed the Jacobian condition number from ~60 to 4000+, with some axes diverging instead of converging; the tuned values keep the condition number bounded and convergence stable. The right arm needs more damping because its rest pose (measured independently, not mirrored from the left) has worse conditioning near full extension.
+- **Pinch-to-grip** — thumb-tip-to-index-tip distance from the 75-float hand array drives a hysteresis gripper state: closes below 30 mm, opens above 50 mm, holds in between.
+- **Stereo POV feed** — two RealSense D455 camera prims are mounted on the robot base (fixed pose; head tracking is wired but currently disabled) and periodically captured to `pov_left.png`/`pov_right.png`, served back to the headset as the in-VR view.
+
+### Real-hardware bridge (left arm only)
+
+Passing `--publish-real-left-arm` additionally publishes the left arm's live DLS joint solution to `/behaviour/arm_pose`, so `joint_command_node` drives the physical left arm over CAN in lockstep with the sim. It's off by default — normal sessions are sim-only. The right arm has no CAN ID mapping in `hardware_mapping.yaml` yet, so this flag cannot touch it.
+
+Because `joint_command_node` applies no rate-limiting to the very first `ArmPose` message after startup, an immediate publish could snap the real arm from its physical position straight to the sim's current IK target. A **5-second startup delay** (`_REAL_ARM_PUBLISH_START_DELAY_S`) holds off all publishing so a human can manually position the real arm near the sim's rest pose first; publishing is then throttled to 50 Hz to match `joint_command_node`'s control rate. Real-hardware sessions require the CANable adapter connected, `can_node` + `joint_command_node` already running, an e-stop armed, and a human physically present at the e-stop for the entire first test.
+
+### Controls
+
+| Action | Effect |
+| --- | --- |
+| Move right / left wrist | Corresponding arm follows |
+| Pinch thumb + index (either hand) | Corresponding gripper closes / opens |
+| `R` (Isaac Sim window focused) | Recalibrate — re-home both arms to current wrist pose |
+| `--gain VALUE` (default `1.0`) | Scales arm motion per metre of real wrist motion |
+
 ## Reinforcement Learning
 
 ### In-Hand Manipulation RL Task
