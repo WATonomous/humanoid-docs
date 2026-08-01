@@ -75,6 +75,13 @@ const config = {
 
   headTags: [
     {
+      tagName: 'meta',
+      attributes: {
+        name: 'google-site-verification',
+        content: 'ug8dh1X6_RGRTeacLz7fq6jFBaTvudsj6YVb1-V_Pgc',
+      },
+    },
+    {
       tagName: 'script',
       attributes: {
         type: 'application/ld+json',
