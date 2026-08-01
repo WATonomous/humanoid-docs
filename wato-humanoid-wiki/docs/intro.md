@@ -12,11 +12,11 @@ Welcome to the documentation for the WATonomous Humanoid robot project at the Un
 
 ![WATonomous Humanoid dual-arm robot](/img/humanoid/humanoid-hero.png)
 
-![WATonomous Humanoid robot](https://github.com/user-attachments/assets/a0eb0a85-b723-4deb-8ce3-205a1087f7e9)
+![WATonomous Humanoid robot front view](https://github.com/user-attachments/assets/a0eb0a85-b723-4deb-8ce3-205a1087f7e9)
 
-![WATonomous Humanoid robot](https://github.com/user-attachments/assets/d4561965-7219-4609-aca3-cb7a7f88d7c7)
+![WATonomous Humanoid robot side view](https://github.com/user-attachments/assets/d4561965-7219-4609-aca3-cb7a7f88d7c7)
 
-![WATonomous Humanoid robot](https://github.com/user-attachments/assets/2dedaca1-71f3-4fa5-b9f4-8eeaffa435e8)
+![WATonomous Humanoid robot close-up detail](https://github.com/user-attachments/assets/2dedaca1-71f3-4fa5-b9f4-8eeaffa435e8)
 
 ## Sections
 

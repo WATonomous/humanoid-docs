@@ -73,10 +73,40 @@ const config = {
     },
   ],
 
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'WATonomous Humanoid',
+        url: 'https://watonomous.github.io/humanoid-docs/',
+        description:
+          'Documentation for the WATonomous Humanoid robot project at the University of Waterloo.',
+        publisher: {
+          '@type': 'Organization',
+          name: 'WATonomous',
+          url: 'https://www.watonomous.ca/',
+        },
+      }),
+    },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/humanoid/humanoid-hero.png',
+      metadata: [
+        {
+          name: 'keywords',
+          content:
+            'WATonomous, humanoid robot, University of Waterloo, robotics, mechanical design, electrical, firmware, CAN bus, software, machine learning, reinforcement learning',
+        },
+        {property: 'og:type', content: 'website'},
+      ],
       colorMode: {
         respectPrefersColorScheme: true,
       },
