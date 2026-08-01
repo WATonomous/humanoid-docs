@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://watonomous.github.io/humanoid-docs/sitemap.xml
