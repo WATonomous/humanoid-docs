@@ -5,8 +5,8 @@ import rehypeKatex from 'rehype-katex';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'WATonomous Humanoid',
-  tagline: 'Documentation for the WATonomous Humanoid robot project at the University of Waterloo',
+  title: 'WATonomous Humanoid Team',
+  tagline: "University of Waterloo humanoid robotics team building UWaterloo's first humanoid robot",
   favicon: 'img/favicon.ico',
 
   future: {
@@ -89,13 +89,15 @@ const config = {
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'WATonomous Humanoid',
+        name: 'WATonomous Humanoid Team',
+        alternateName: ['Waterloo Humanoid Team', 'UWaterloo Humanoid Robotics Team'],
         url: 'https://watonomous.github.io/humanoid-docs/',
         description:
-          'Documentation for the WATonomous Humanoid robot project at the University of Waterloo.',
+          "WATonomous Humanoid is the University of Waterloo humanoid robotics team, building UWaterloo's first humanoid robot.",
         publisher: {
           '@type': 'Organization',
           name: 'WATonomous',
+          alternateName: 'WATonomous Humanoid Team',
           url: 'https://www.watonomous.ca/',
         },
       }),
@@ -110,9 +112,21 @@ const config = {
         {
           name: 'keywords',
           content:
-            'WATonomous, humanoid robot, University of Waterloo, robotics, mechanical design, electrical, firmware, CAN bus, software, machine learning, reinforcement learning',
+            'Waterloo humanoid team, WATonomous Humanoid, University of Waterloo humanoid robotics team, UWaterloo humanoid robot, WATonomous, humanoid robot, robotics, mechanical design, electrical, firmware, CAN bus, software, machine learning, reinforcement learning',
         },
         {property: 'og:type', content: 'website'},
+        {property: 'og:title', content: 'WATonomous Humanoid Team - University of Waterloo'},
+        {
+          property: 'og:description',
+          content:
+            "WATonomous Humanoid is the University of Waterloo humanoid robotics team, building UWaterloo's first humanoid robot.",
+        },
+        {name: 'twitter:title', content: 'WATonomous Humanoid Team - University of Waterloo'},
+        {
+          name: 'twitter:description',
+          content:
+            "WATonomous Humanoid is the University of Waterloo humanoid robotics team, building UWaterloo's first humanoid robot.",
+        },
       ],
       colorMode: {
         respectPrefersColorScheme: true,
