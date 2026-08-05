@@ -1,7 +1,7 @@
 ---
 id: index
 title: Project Links
-description: Project links for the WATonomous Humanoid.
+description: Links for the WATonomous Humanoid team, the University of Waterloo humanoid robotics team.
 ---
 
 # Project Links

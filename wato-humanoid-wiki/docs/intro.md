@@ -1,14 +1,14 @@
 ---
 id: intro
-title: WATonomous Humanoid Documentation
-description: Documentation for the WATonomous Humanoid robot project at the University of Waterloo.
+title: WATonomous Humanoid Team - University of Waterloo
+description: WATonomous Humanoid is the University of Waterloo humanoid robotics team, building UWaterloo's first humanoid robot — covering mechanical, electrical, firmware, and ML/software.
 slug: /
 sidebar_position: 1
 ---
 
-# WATonomous Humanoid Documentation
+# WATonomous Humanoid Team
 
-Welcome to the documentation for the WATonomous Humanoid robot project at the University of Waterloo.
+Welcome to the documentation for the WATonomous Humanoid team, the University of Waterloo humanoid robotics team building UWaterloo's first humanoid robot.
 
 ![WATonomous Humanoid dual-arm robot](/img/humanoid/humanoid-hero.png)
 
