@@ -39,8 +39,8 @@ Five motors run directly from the 51.2 V bus bars via **XT60** connectors:
 
 | Motor | Quantity | Voltage | Connector |
 | --- | --- | --- | --- |
-| AK80-9 | 4 | 51.2 V | XT60 |
-| AK10-9 | 1 | 51.2 V | XT60 |
+| AK80-9 | 3 | 51.2 V | XT60 |
+| AK10-9 | 2 | 51.2 V | XT60 |
 
 Two **GL40 II** motors operate at a lower voltage. A **buck converter** steps the 51.2 V bus down to **16 V**, which is delivered to both motors via **XT30** connectors.
 
