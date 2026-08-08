@@ -103,6 +103,8 @@ Repeat up to `max_iter` times / return early if error lower than `tol` tolerance
 
 Meta Quest hand and wrist tracking drives both arms of the bimanual rig in real time — a browser-side WebXR page streams hand poses over a secure WebSocket to a C++ ROS 2 bridge, which feeds a per-arm damped-least-squares IK controller in Isaac Sim, with a stereo POV feed rendered back to the headset so the operator sees through the robot's own cameras. The coolest part: it isn't sim-only. A gated flag streams the left arm's live IK solution straight to the physical robot over CAN, so the same pinch-to-grip, wrist-tracked teleop that drives the simulated arm can drive the real hardware in lockstep — headset in, robot arm moving, all over a USB tunnel with no Wi-Fi setup required.
 
+### Controls
+
 | Action | Effect |
 | --- | --- |
 | Move right / left wrist | Corresponding arm follows |

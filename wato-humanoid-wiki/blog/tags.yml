@@ -1,19 +1,25 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+rocketry:
+  label: Rocketry
+  permalink: /rocketry
+  description: TVC rocket spinoff project posts.
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+tvc:
+  label: TVC
+  permalink: /tvc
+  description: Thrust-vector-control posts.
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+ik:
+  label: IK
+  permalink: /ik
+  description: Inverse kinematics posts.
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+software:
+  label: Software
+  permalink: /software
+  description: Software and ML posts.
+
+progress-update:
+  label: Progress Update
+  permalink: /progress-update
+  description: Team progress and milestone updates.
+

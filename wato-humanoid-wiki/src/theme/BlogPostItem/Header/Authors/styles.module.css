@@ -1,0 +1,10 @@
+.authorsRow {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+}
+
+.authorCol {
+  max-width: inherit;
+}
