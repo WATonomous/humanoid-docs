@@ -57,6 +57,4 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 ### Hip
 
-<img alt="Humanoid leg hip design" src="/humanoid-docs/img/humanoid/leg_hip_design.png" width="600" />
-
 The hip design uses the **F-A-R** (Flexion-Abduction-Rotation) configuration for a compact and biomimetic joint arrangement. This configuration allows for efficient packaging of the actuators while maintaining the necessary degrees of freedom for humanoid locomotion.

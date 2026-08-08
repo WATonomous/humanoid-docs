@@ -12,11 +12,14 @@ Welcome to the documentation for the WATonomous Humanoid team, the University of
 
 ![WATonomous Humanoid dual-arm robot](/img/humanoid/humanoid-hero.png)
 
-![WATonomous Humanoid robot front view](https://github.com/user-attachments/assets/a0eb0a85-b723-4deb-8ce3-205a1087f7e9)
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px'}}>
+  <img alt="WATonomous Humanoid robot angled view" src="/humanoid-docs/img/humanoid/robot-photo-3.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="WATonomous Humanoid robot arm with gripper" src="/humanoid-docs/img/humanoid/robot-photo-1.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="WATonomous Humanoid robot side view" src="/humanoid-docs/img/humanoid/robot-photo-2.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="WATonomous Humanoid robot rear view" src="/humanoid-docs/img/humanoid/robot-photo-4.jpg" style={{width: '100%', borderRadius: '8px'}} />
+</div>
 
-![WATonomous Humanoid robot side view](https://github.com/user-attachments/assets/d4561965-7219-4609-aca3-cb7a7f88d7c7)
-
-![WATonomous Humanoid robot close-up detail](https://github.com/user-attachments/assets/2dedaca1-71f3-4fa5-b9f4-8eeaffa435e8)
+<img alt="WATonomous Humanoid robotic hand prototype" src="/humanoid-docs/img/humanoid/robot-photo-5.jpg" style={{marginTop: '12px', borderRadius: '8px'}} />
 
 ## Sections
 
