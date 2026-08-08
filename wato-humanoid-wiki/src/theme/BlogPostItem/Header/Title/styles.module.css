@@ -1,0 +1,17 @@
+.title {
+  font-size: 3rem;
+}
+
+.listTitle {
+  font-size: 1.6rem;
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .listTitle {
+    font-size: 1.3rem;
+  }
+}
