@@ -16,7 +16,7 @@ This page documents the power distribution and CAN bus wiring for the 6 DOF arm.
 | --- | --- |
 | Power source | 51.2 V battery |
 | Safety | E-stop on the positive rail |
-| High-voltage motors | 4× AK80-9, 1× AK10-9 at 51.2 V |
+| High-voltage motors | 3× AK80-9, 2× AK10-9 at 51.2 V |
 | Low-voltage motors | 2× GL40 II at 16 V (via buck converter) |
 | Communication | Shared CAN bus (CAN_H / CAN_L), terminated with 120 Ω |
 
