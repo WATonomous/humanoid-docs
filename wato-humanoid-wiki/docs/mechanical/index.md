@@ -24,7 +24,7 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 ## 22 DOF Hand
 
-22 DOF hand (16 actuated).
+22 DOF hand (18 actuated), including 2 DOF for the wrist.
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
   <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-3.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
