@@ -49,11 +49,11 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 | Joint | DOF | Motor |
 | --- | --- | --- |
 | Hip | Pitch | AKH70-48 |
-| Hip | Yaw | RS03 |
-| Hip | Roll | RS04 |
+| Hip | Yaw | AK60-39 V3.0 KV80 |
+| Hip | Roll | AK80-64 KV80 |
 | Knee | Pitch | AKH70-48 |
-| Ankle | Pitch | RS03 |
-| Ankle | Roll | RS03 |
+| Ankle | Pitch | AK60-39 V3.0 KV80 |
+| Ankle | Roll | AK60-39 V3.0 KV80 |
 
 ### Hip
 
