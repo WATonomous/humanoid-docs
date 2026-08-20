@@ -24,7 +24,7 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 ## 22 DOF Hand
 
-22 DOF hand (16 actuated).
+22 DOF hand (18 actuated), including 2 DOF for the wrist.
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
   <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-3.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
@@ -49,11 +49,11 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 | Joint | DOF | Motor |
 | --- | --- | --- |
 | Hip | Pitch | AKH70-48 |
-| Hip | Yaw | RS03 |
-| Hip | Roll | RS04 |
+| Hip | Yaw | AK60-39 V3.0 KV80 |
+| Hip | Roll | AK80-64 KV80 |
 | Knee | Pitch | AKH70-48 |
-| Ankle | Pitch | RS03 |
-| Ankle | Roll | RS03 |
+| Ankle | Pitch | AK60-39 V3.0 KV80 |
+| Ankle | Roll | AK60-39 V3.0 KV80 |
 
 ### Hip
 
