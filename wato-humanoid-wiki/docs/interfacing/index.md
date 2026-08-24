@@ -278,9 +278,44 @@ candump can0
 cansend can0 123#DEADBEEF
 ```
 
+## Bus Protocol Decisions
+
+### CAN-FD: not actually implemented today
+
+Despite a `data_bitrate` field in `CanConfig` (`can_core.hpp`) suggesting CAN-FD support, current bring-up runs **classic CAN only**:
+
+- `setupSlcan()` only maps arbitration-phase bitrates to SLCAN codes (`-s0`…`-s8`); it never configures an FD data-phase bitrate.
+- `params.yaml` sets a single `bitrate: 1000000` and nothing else.
+- Hardware is a CANable USB adapter over SLCAN, running classic CAN 2.0 @ 1 Mbps.
+
+The `data_bitrate` field is currently dead code. Tracked in [issue #189](https://github.com/WATonomous/humanoid/issues/189): either wire up real FD support (SLCAN FD framing, dual bitrate config, FDCAN peripheral mode) or remove the field so the config doesn't imply capability we don't have.
+
+### What happens under bus saturation (classic CAN today)
+
+CAN arbitration doesn't drop frames on contention — it delays them. Lower CAN ID always wins, so higher-ID motors get bumped and retried, not silently ignored, when there's contention.
+
+The actual drop point in this codebase is `sendMessage()` in `can_core.cpp`: it uses a non-blocking `write()`. Under saturation this hits `EAGAIN`, logs `"Failed to write CAN frame to socket"`, and drops the command with **no retry**.
+
+Symptoms in practice: intermittent stutter (worse on higher-CAN-ID joints), stale feedback, and possible motor watchdog faults if commands stop arriving for too long — not a crash.
+
+Rough headroom for the current 12-motor classic CAN bus @ 1 Mbps: sustained full-arm update rates up to roughly **~120–150 Hz** stay clear of this degraded regime. Typical teleop/control rates (30–60 Hz) are well within margin.
+
+### Why CAN-FD over EtherCAT for this arm
+
+| | EtherCAT | CAN-FD |
+| --- | --- | --- |
+| Topology | Daisy-chained ring | Multi-drop bus |
+| Bandwidth | 100 Mbps | Higher data-phase rate than classic CAN, same wiring |
+| Determinism | µs-level | Lower, but adequate at this scale |
+| Integration cost | Needs RT master + ESC chip per slave | Simpler transceivers, incremental over existing CAN stack |
+| Right-sized for | 20–30+ actuators (full-body) | 5–14 actuators (arm-scale) |
+
+For this repo's bimanual arm (12–14 motors), EtherCAT's determinism and bandwidth are more than the workload needs, at a real integration cost (RT master, per-slave ESC hardware). **CAN-FD is the appropriately-scaled upgrade path** over classic CAN — same bus topology and mostly the same transceivers, just real FD framing instead of the currently-dead `data_bitrate` field. EtherCAT is worth revisiting if the project scales into full-body locomotion with dozens of actuators.
+
 ## Future Enhancements
 
-- **CAN-FD support**: Increase bandwidth for higher-rate telemetry
+- **CAN-FD support**: Wire up real FD data-phase config end-to-end (see [issue #189](https://github.com/WATonomous/humanoid/issues/189)), or remove the misleading `data_bitrate` field
+- **Retry on `EAGAIN`**: Avoid silent command drops under bus saturation in `sendMessage()`
 - **Multi-bus architecture**: Separate buses for different limbs
 - **Hardware filtering**: Reduce CPU load by filtering messages at hardware level
 - **Time-stamping**: Precise synchronization with external sensors
