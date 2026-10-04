@@ -50,6 +50,56 @@ Two **GL40 II** motors operate at a lower voltage. A **buck converter** steps th
 
 These motors correspond to the [6 DOF arm motor selection](/mechanical): AK10-9 at the shoulder, AK80-9 at the elbow joints, and GL40 at the wrist and gripper.
 
+## Power Distribution Unit (PDU)
+
+A custom **PDU** is being designed for one arm. It replaces the bare bus bar setup with input protection, switched and protected outputs, and a microcontroller that reports over CAN.
+
+### Planned PDU layout
+
+For now, the full humanoid is planned to use **four PDUs**, one per limb, plus an **optional auxiliary power board**:
+
+| Board | Count | Powers |
+| --- | --- | --- |
+| Arm PDU | 2 | One per arm (left and right) |
+| Leg PDU | 2 | One per leg (left and right) |
+| Auxiliary power board (optional) | 1 | Extra loads such as the RealSense camera, the Jetson, and possible future waist yaw actuators |
+
+The block diagram below shows the arm PDU.
+
+![PDU block diagram for one arm](/img/humanoid/arm-pdu-block-diagram.png)
+
+### Input protection
+
+The battery input (**Vin – BMS (+)** and **Vin – BMS (−)**) passes through three protection stages before reaching any load:
+
+| Stage | Purpose |
+| --- | --- |
+| TVS diode | Clamps voltage transients and spikes on the input |
+| Overcurrent / short circuit protection | Cuts power on excessive current draw or a short |
+| Overvoltage / undervoltage protection | Disconnects the rails when the input leaves the safe voltage window |
+
+### Logic power and control
+
+| Block | Function |
+| --- | --- |
+| 48 V → 5 V buck | Steps the protected input down to 5 V |
+| 5 V → 3.3 V LDO | Provides a clean 3.3 V rail for the logic |
+| Microcontroller | Monitors the board and commands the output load switches |
+| CAN interface | Connects the microcontroller to the arm CAN bus |
+| Load switch controller | Driven by the microcontroller over I²C; drives the EN pins of both load switches |
+
+### Outputs
+
+| Output | Path | Loads |
+| --- | --- | --- |
+| 48 V (+ / −) | Load switch → hotswap protection → output | AK80-9 and AK10-9 motors |
+| 16 V (+ / −) | EMI filter → 48 V to 16 V buck → load switch → e-fuse → output | GL40 II motors (e-fuse sized for 4 motors) |
+
+- **Load switches** let the microcontroller enable or disable each rail independently.
+- **Hotswap protection** on the 48 V rail limits inrush current when motors are connected or the rail is enabled.
+- The **EMI filter** ahead of the 16 V buck keeps switching noise off the main 48 V rail.
+- The **e-fuse** on the 16 V rail provides fast overcurrent protection for the low-voltage motors.
+
 ## CAN Bus
 
 All seven motors share a single CAN network for command and feedback.
