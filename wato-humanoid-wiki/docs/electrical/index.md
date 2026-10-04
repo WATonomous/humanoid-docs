@@ -54,6 +54,18 @@ These motors correspond to the [6 DOF arm motor selection](/mechanical): AK10-9 
 
 A custom **PDU** is being designed for one arm. It replaces the bare bus bar setup with input protection, switched and protected outputs, and a microcontroller that reports over CAN.
 
+### Planned PDU layout
+
+For now, the full humanoid is planned to use **four PDUs**, one per limb, plus an **optional auxiliary power board**:
+
+| Board | Count | Powers |
+| --- | --- | --- |
+| Arm PDU | 2 | One per arm (left and right) |
+| Leg PDU | 2 | One per leg (left and right) |
+| Auxiliary power board (optional) | 1 | Extra loads such as the RealSense camera, the Jetson, and possible future waist yaw actuators |
+
+The block diagram below shows the arm PDU.
+
 ![PDU block diagram for one arm](/img/humanoid/arm-pdu-block-diagram.png)
 
 ### Input protection
