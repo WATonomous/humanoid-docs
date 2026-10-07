@@ -38,12 +38,14 @@ This interface layer bridges the high-level motion planning (ROS2) with low-leve
 
 ## CAN Bus Protocol
 
+Bring-up steps (calibrate, visualize, move) live in the repo: [`src/interfacing/README.md`](https://github.com/WATonomous/pioneer_humanoid/blob/main/src/interfacing/README.md).
+
 ### Bus Configuration
 
 | Parameter | Value |
 | --- | --- |
 | Bus type | CAN 2.0 (Classic CAN) |
-| Bitrate | 500 kbps (configurable: 10k - 1M) |
+| Bitrate | 1 Mbps (`bitrate` in `src/interfacing/can/config/params.yaml`) |
 | Frame format | Standard (11-bit ID) or Extended (29-bit ID) |
 | Max payload | 8 bytes per frame |
 | Termination | 120 Ω resistors at both ends |
@@ -62,9 +64,9 @@ The system supports two types of CAN interfaces:
    - Requires hardware CAN adapter
 
 2. **SLCAN** (Serial Line CAN)
-   - CAN-over-USB adapter (e.g., CANable via `/dev/ttyACM0`)
-   - Automatically configured via setup script
-   - Bitrate mapping to SLCAN codes (see `can_core.cpp:262-286`)
+   - CAN-over-USB adapter: the CANable, as `/dev/canable` (udev symlink from `can_udev.sh install`)
+   - `can.launch.py` starts `slcand` and brings up `can0`
+   - Bitrate maps to an SLCAN code (1 Mbps → `-s8`) in `can_core.cpp`
 
 ### Message Structure
 
@@ -81,7 +83,7 @@ struct CanMessage {
 }
 ```
 
-Reference: `humanoid/autonomy/interfacing/can/include/can_core.hpp:8-19`
+Reference: `src/interfacing/can/include/can_core.hpp`
 
 ### DBC-Based Message Encoding
 
@@ -91,7 +93,7 @@ The CAN node uses **DBC (Database CAN)** files to define message formats and sig
 - Signal scaling and offset handling
 - Multi-byte signal packing
 
-Reference: `humanoid/autonomy/interfacing/can/include/can_node.hpp:32-36`
+Reference: `src/interfacing/can/include/can_node.hpp`
 
 ## ROS2 CAN Interface
 
@@ -99,32 +101,32 @@ Reference: `humanoid/autonomy/interfacing/can/include/can_node.hpp:32-36`
 
 Low-level CAN interface abstraction that handles:
 
-**Initialization** (`can_core.cpp:21-34`)
+**Initialization** (`can_core.cpp`)
 - Interface configuration (SocketCAN vs SLCAN)
 - Socket creation and binding
 - Non-blocking I/O setup
 
-**Transmission** (`can_core.cpp:54-117`)
+**Transmission** (`can_core.cpp`)
 - CAN frame construction
 - Extended ID and RTR flag handling
 - Error checking and logging
 
-**Reception** (`can_core.cpp:119-177`)
+**Reception** (`can_core.cpp`)
 - Non-blocking frame reception
 - ID mask extraction (standard vs extended)
 - Timeout handling
 
 **Setup Methods**
-- `setupSocketCan()` - Native Linux CAN interface (`can_core.cpp:179-236`)
-- `setupSlcan()` - USB CAN adapter via external script (`can_core.cpp:238-308`)
+- `setupSocketCan()` - Native Linux CAN interface (`can_core.cpp`)
+- `setupSlcan()` - USB CAN adapter via external script (`can_core.cpp`)
 
 ### CAN Node (`CanNode` class)
 
 ROS2 node that bridges ROS topics and CAN messages:
 
 **Key Features:**
-- **Topic subscription**: `MotorCmd` messages from joint controllers
-- **Message publishing**: `MotorFeedback` for motor state
+- **Topic subscription**: `MotorCmd` on `/interfacing/motorCMD`, from `joint_command`
+- **Message publishing**: `MotorFeedback` on `/interfacing/motorFeedback`
 - **DBC integration**: Signal encoding/decoding using `dbcppp` library
 - **Periodic reception**: Timer-based polling for incoming CAN messages
 
@@ -141,10 +143,10 @@ ROS2 node that bridges ROS topics and CAN messages:
    ```
 
 :::tip
-Use `ros2 topic echo /motor_feedback` to monitor real-time motor telemetry during development.
+Use `ros2 topic echo /interfacing/motorFeedback` to monitor real-time motor telemetry during development.
 :::
 
-Reference: `humanoid/autonomy/interfacing/can/include/can_node.hpp:26-68`
+Reference: `src/interfacing/can/include/can_node.hpp`
 
 ### ROS2 Message Types
 
@@ -158,7 +160,7 @@ Reference: `humanoid/autonomy/interfacing/can/include/can_node.hpp:26-68`
 - Motor current, temperature
 - Error flags
 
-Reference: `humanoid/autonomy/interfacing/can/include/can_node.hpp:18-24`
+Reference: `src/interfacing/can/include/can_node.hpp`
 
 ## Embedded (STM32) FDCAN Driver
 
@@ -166,7 +168,7 @@ Reference: `humanoid/autonomy/interfacing/can/include/can_node.hpp:18-24`
 
 The custom FOC motor controllers use the STM32G4's FDCAN peripheral for CAN communication.
 
-**Hardware Configuration** (`FDCAN_STM32.cpp:25-58`)
+**Hardware Configuration** (`FDCAN_STM32.cpp`)
 
 | Parameter | Value |
 | --- | --- |
@@ -178,7 +180,7 @@ The custom FOC motor controllers use the STM32G4's FDCAN peripheral for CAN comm
 | Alternate function | AF9 (FDCAN2) |
 | Interrupts | FDCAN2_IT0, FDCAN2_IT1 |
 
-**Bus-Off Recovery** (`FDCAN_STM32.cpp:7-23`)
+**Bus-Off Recovery** (`FDCAN_STM32.cpp`)
 - Automatic detection of bus-off state
 - Recovery by clearing INIT bit in CCCR register
 - Error status callback handling
@@ -187,7 +189,7 @@ The custom FOC motor controllers use the STM32G4's FDCAN peripheral for CAN comm
 
 The FDCAN driver is integrated into the FOC control loop:
 
-**Setup Phase** (`foc.cpp:11-16`)
+**Setup Phase** (`foc.cpp`)
 1. Initialize PWM for motor phases
 2. Configure angle encoder (MT6835)
 3. Initialize current sensing
@@ -195,13 +197,13 @@ The FDCAN driver is integrated into the FOC control loop:
 5. Set PID parameters and call `motor.initFOC()`
 6. Initialize FDCAN and enable RX interrupts
 
-**Loop Phase** (`foc.cpp:25-29`)
+**Loop Phase** (`foc.cpp`)
 1. Call `motor.loopFOC()` and `motor.move()`
 2. Check ring buffer for CAN messages
 3. Process motor commands
 4. Send telemetry data back over CAN
 
-Reference: `humanoid/embedded/STM32/app/src/foc.cpp`
+Reference: `src/embedded/STM32/app/src/foc.cpp`
 
 ## Hardware Setup
 
@@ -228,7 +230,7 @@ See [Electrical Documentation](/electrical) for detailed wiring diagrams.
 CanConfig config;
 config.interface_name = "can0";
 config.bustype = "socketcan";
-config.bitrate = 500000;
+config.bitrate = 1000000;
 config.receive_timeout_ms = 100;
 ```
 
@@ -236,12 +238,12 @@ config.receive_timeout_ms = 100;
 ```cpp
 CanConfig config;
 config.interface_name = "can0";
-config.device_path = "/dev/ttyACM0";
+config.device_path = "/dev/canable";
 config.bustype = "slcan";
-config.bitrate = 500000;  // Maps to "-s6" for slcand
+config.bitrate = 1000000;  // Maps to "-s8" for slcand
 ```
 
-Reference: `humanoid/autonomy/interfacing/can/include/can_core.hpp:21-28`
+Reference: `src/interfacing/can/include/can_core.hpp`
 
 ## Development & Testing
 
@@ -252,21 +254,17 @@ Start the CAN interface node:
 ros2 launch can can.launch.py
 ```
 
-Reference: `humanoid/autonomy/interfacing/can/launch/can.launch.py`
+Reference: `src/interfacing/can/launch/can.launch.py`
 
 ### Testing Tools
 
-**Controller test** (`test_controller.cpp`)
-- Automated testing of CAN message encoding/decoding
-- Validation of DBC signal mapping
-- Performance benchmarking
-
-Reference: `humanoid/autonomy/interfacing/can/test/test_controller.cpp`
+**MIT protocol test** (`src/interfacing/can/test/test_mit_protocol.cpp`)
+- MIT frame packing and feedback decoding for the GL II and AK drives
 
 ### Debugging
 
 **Enable verbose logging** in `can_core.cpp`:
-- Uncomment lines 62-75 for transmitted message logging
+- Uncomment the debug logs in `CanCore::sendMessage()` for transmitted message logging
 - Use `RCLCPP_DEBUG` level for received messages
 
 **Monitor CAN traffic** (Linux):
