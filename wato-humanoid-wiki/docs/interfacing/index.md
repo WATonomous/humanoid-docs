@@ -97,7 +97,7 @@ Reference: `src/interfacing/can/include/can_node.hpp`
 
 ### MIT Control (arm motors)
 
-The arm's CubeMars motors run in MIT mode (position + velocity + kp/kd + feed-forward torque in one frame). `can_node` packs and decodes these itself (`src/interfacing/can/src/mit_protocol.cpp`), not through the DBC. Each motor's dialect is set in `src/interfacing/can/config/mit_profiles.yaml`:
+The arm's CubeMars motors run in MIT mode (position + velocity + kp/kd + feed-forward torque in one frame). `can_node` scales them to raw MIT codes in `src/interfacing/can/src/mit_protocol.cpp`; only the GL II command (`MITControlCmd`) and the AK's feedback (its servo status frame) go through the DBC. Each motor's dialect is set in `src/interfacing/can/config/mit_profiles.yaml`:
 
 | Family | Motors | Command frame | Feedback |
 | --- | --- | --- | --- |
