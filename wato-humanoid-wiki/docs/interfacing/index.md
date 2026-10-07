@@ -95,6 +95,17 @@ The CAN node uses **DBC (Database CAN)** files to define message formats and sig
 
 Reference: `src/interfacing/can/include/can_node.hpp`
 
+### MIT Control (arm motors)
+
+The arm's CubeMars motors run in MIT mode (position + velocity + kp/kd + feed-forward torque in one frame). `can_node` packs and decodes these itself (`src/interfacing/can/src/mit_protocol.cpp`), not through the DBC. Each motor's dialect is set in `src/interfacing/can/config/mit_profiles.yaml`:
+
+| Family | Motors | Command frame | Feedback |
+| --- | --- | --- | --- |
+| `gl2` | GL40 wrist (22), gripper (21) on a GL II drive | Standard frame on the motor id; `MIT_ENTER` first | On the master id (default `0x000`) |
+| `ak` | AK10-9, AK80-9 (V3 firmware) | Extended frame `0x800 \| id`, KP-first payload | Servo status frame, decoded via the DBC |
+
+Gains, torque caps and the watchdog live in `joint_command` (`src/interfacing/joint_command/config/arm_actuators.yaml`). Details: [`can/README.md`](https://github.com/WATonomous/pioneer_humanoid/blob/main/src/interfacing/can/README.md#mit-mode).
+
 ## ROS2 CAN Interface
 
 ### CAN Core (`CanCore` class)
