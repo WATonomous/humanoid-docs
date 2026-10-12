@@ -19,8 +19,8 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 | --- | --- | --- | --- |
 | Shoulder (1-2) | AK10-9 V3.0 | 18Nm  | 53Nm  |
 | Elbow (3-4-5) | AK80-9 V3.0 | 9Nm | 22Nm |
-| Wrist (6)  | GL40 II KV70 |  0.25Nm | 0.73Nm  |
-| Gripper (7) | GL40 II KV70 |  0.25Nm | 0.73Nm  |
+| Wrist (6)  | GL40 II KV82.5 |  0.25Nm | 0.73Nm  |
+| Gripper (7) | GL40 II KV82.5 |  0.25Nm | 0.73Nm  |
 
 ## 22 DOF Hand
 
@@ -31,8 +31,15 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
   <img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-4.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
   <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-1.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
   <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-2.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand CAD render, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-5.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand CAD render, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-6.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+</div>
+
+<video width="600" controls style={{display: 'block', maxWidth: '100%', margin: '16px 0'}}>
+  <source src="/humanoid-docs/img/humanoid/videos/tendon-hand-showcase.mp4" type="video/mp4" />
+</video>
+
+<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
+  <img alt="22 DOF hand render with forearm actuator stack" src="/humanoid-docs/img/humanoid/hand-22dof-render-1.png" style={{width: '614px', maxWidth: '100%', minWidth: '280px', alignSelf: 'flex-start', height: 'auto'}} />
+  <img alt="22 DOF hand render, close-up of fingers and forearm actuators" src="/humanoid-docs/img/humanoid/hand-22dof-render-2.png" style={{width: '607px', maxWidth: '100%', minWidth: '280px', alignSelf: 'flex-start', height: 'auto'}} />
 </div>
 
 ## Humanoid Leg

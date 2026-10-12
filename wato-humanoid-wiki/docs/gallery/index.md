@@ -17,8 +17,6 @@ Progress photos documenting the development of the WATonomous Humanoid robot.
   <img alt="Hand design screenshot" src="/humanoid-docs/img/humanoid/gallery-hand-design-1.png" style={{width: '70%', borderRadius: '8px', justifySelf: 'center'}} />
   <img alt="Hand design screenshot" src="/humanoid-docs/img/humanoid/gallery-hand-design-2.png" style={{width: '100%', borderRadius: '8px'}} />
   <img alt="Hand design screenshot" src="/humanoid-docs/img/humanoid/gallery-hand-design-3.png" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="Humanoid leg design - full view" src="/humanoid-docs/img/humanoid/leg_full_view.png" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="Humanoid leg design - side view" src="/humanoid-docs/img/humanoid/leg_side_view.png" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="Arm overview (outdated)" src="/humanoid-docs/img/humanoid/gallery-arm-overview.png" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="Arm joint sketch" src="/humanoid-docs/img/humanoid/gallery-arm-joint-sketch.png" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="22 DOF hand CAD render, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-5.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="22 DOF hand CAD render, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-6.jpg" style={{width: '100%', borderRadius: '8px'}} />
 </div>

@@ -1,14 +1,21 @@
 ---
 id: intro
 title: WATonomous Humanoid Team - University of Waterloo
+sidebar_label: "Pioneer - UWaterloo's First Humanoid Robot"
 description: WATonomous Humanoid is the University of Waterloo humanoid robotics team, building UWaterloo's first humanoid robot — covering mechanical, electrical, firmware, and ML/software.
 slug: /
 sidebar_position: 1
 ---
 
-# WATonomous Humanoid Team
+# Pioneer - UWaterloo's First Humanoid Robot
 
-Welcome to the documentation for the WATonomous Humanoid team, the University of Waterloo humanoid robotics team building UWaterloo's first humanoid robot.
+We are a team of undergraduate student from UWaterloo building a 160 cm humanoid robot. We are the first engineering design team in Canada building a humanoid!
+
+Our humanoid robot will feature 2 arms + 2 legs and we are also developing a 22 DOF humanoid hand that can be modularly switchable with the arm gripper.
+
+![Pioneer robot arm on its stand outside Waterloo Engineering](/img/humanoid/pioneer-arm-outdoor.jpg)
+
+![Pioneer full-body humanoid robot render](/img/humanoid/pioneer-full-body-render.png)
 
 ![WATonomous Humanoid dual-arm robot](/img/humanoid/humanoid-hero.png)
 
