@@ -7,10 +7,6 @@ tags: [hand, controls]
 
 Each finger holds a target angle and stays soft: it pushes with a force you set and gives way when pushed. It needs only the motor encoders and the wrist angle. All results are from simulation in MuJoCo.
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.mp4" type="video/mp4" />
-</video>
-
 {/* truncate */}
 
 ## The hand
@@ -30,7 +26,7 @@ Four motors per finger, one cable each, named by job: **f1** spread, **f2** MCP,
 
 ![The hand, palm side](/img/humanoid/tendon-hand/hand-palm.png)
 
-*The hand, palm side. Each cable shows in its own colour at the knuckles. The forearm motors are off the top.*
+*The hand, palm side. Skin, skeleton and palm casing from the hand's CAD; each cable shows in its own colour at the knuckles. The forearm motors are off the top.*
 
 ## How it's simulated
 
@@ -41,10 +37,10 @@ MuJoCo physics, built from the CAD's own geometry: change a cable route in the C
 | Shape and cables | The CAD's joint axes and every cable route, point by point; the CAD parts as the shapes. Cables are elastic (60 N/mm) and go slack below their rest length. |
 | Motors | Each GL30 + gear + spool is a 1.33 kg slider on its cable, pushed by a force capped at 176 N. Commands arrive 1 ms late. |
 | Friction | 1.5 N + 0.1 × tension on each spool, with a model that lets a slow spool stick. |
-| Spring, cross-cable, wrist | Spring: 1.5 N/mm, 18 N at the straight finger. Cross-cable: strand by strand on one finger, a DIP = PIP tie in the hand. Wrist and thumb root: position-controlled. |
+| Spring, cross-cable, wrist | Spring: 1.5 N/mm, 18 N at the straight finger. Cross-cable: modelled strand by strand on one finger, as a DIP = PIP tie in the hand. Wrist and thumb root: position-controlled. |
 | Timing | Physics every 0.2 ms. The controller runs every 1 ms and sees only spool encoders, wrist angles and its own commands. |
 
-Two models: **one finger** to design and stress-test the controller, and **the whole hand** (20 cables) to check it works with a shared wrist and real objects.
+Two models: **one finger** to design and stress-test the controller, and **the whole hand** (20 cables) to check it works with shared wrist and objects.
 
 ## How the controller works
 
@@ -59,7 +55,7 @@ The firmware version uses fitted polynomials for the cable model (0.02 mm) and r
 
 ## The method in pseudocode
 
-**Four parts:** build the finger, run the physics, run the controller, add the grasp. Python-like; logging and plotting left out.
+**Four parts:** build the finger, run the physics, run the controller, add the grasp.
 
 ### 1. Build the finger
 
@@ -107,8 +103,8 @@ for step in range(duration / 0.2e-3):                  # physics every 0.2 ms
     physics_step()                                      # motors, cables, spring, gravity, contact
 ```
 
-- **Late commands:** the queue delays each command 1–3 periods, as on a real driver.
-- **Imperfect motors:** `scale_error`, `zero_error`, `torque_error` and noise make the encoders and motors slightly wrong for the robustness test. Normally 1, 0, 1 and 0.
+- **Late commands:** the queue delays each command 1–3 periods, as on a real driver (E4, E11).
+- **Imperfect motors:** `scale_error`, `zero_error`, `torque_error` and noise make the encoders and motors slightly wrong for the robustness test (E11). Normally 1, 0, 1 and 0.
 - **Sticky friction:** a slow spool sticks, which is what costs accuracy. MuJoCo's own friction creeps instead, so it isn't used.
 - **Every experiment** is this loop with a different setup: target, block, probe, wrist swing or a flawed finger.
 
@@ -172,14 +168,14 @@ if state == HOLDING:
 
 f1 pulls one lever of the spread yoke, the spring the other. One motor steers the spread both ways, at any curl.
 
-1. **Measure the spring before fitting it.** The controller subtracts the spring's modelled torque (158–188 N·mm). A spring off its spec leaves a fixed spread offset: up to 6.4°.
+1. **Measure the spring before fitting it.** The controller subtracts the spring's modelled torque (158–188 N·mm). A spring off its spec leaves a fixed spread offset: up to 6.4° (E11).
 2. **It never goes slack.** 14–22 N over the ±15° range.
 
 Spec to buy: extension spring, OD ~3 mm, 1.5 N/mm, 18 N at 29.4 mm hook to hook.
 
 ## One finger
 
-The middle finger on its own, running the joint impedance. Where a comparison helps, it is set against a **stiff servo**: the usual tendon-hand control, which drives each motor to a set cable position as hard as it can. No impedance, no give.
+The middle finger on its own, running the joint impedance. Some tests compare it with a **stiff servo**: the usual tendon-hand control, which drives each motor to a set cable position as hard as it can. No impedance, no give.
 
 ### Why the PIP and DIP are tied together
 
@@ -233,7 +229,7 @@ The cross-cable is required, for three reasons:
   <source src="/humanoid-docs/img/humanoid/tendon-hand/blog/wrist_swing.mp4" type="video/mp4" />
 </video>
 
-*The same test as a video. Left: the controller ignores the wrist. The finger drifts smoothly, because the controller thinks it is still on target. Then at the far backward swing the cable lengths fit no real pose, its estimate jumps to a joint limit, and it fights that with up to 280 N: the sudden jerk. Right: it reads the wrist, and the finger holds still.*
+*The wrist swing, on video. Left: the controller ignores the wrist. The finger drifts smoothly, because the controller thinks it is still on target. Then at the far backward swing the cable lengths fit no real pose, its estimate jumps to a joint limit, and it fights that with up to 280 N: the sudden jerk. Right: it reads the wrist, and the finger holds still.*
 
 ### E9 · a torque cap
 
@@ -271,9 +267,7 @@ The cross-cable is required, for three reasons:
 **See:** on the dotted line the grip felt equals the grip asked. MCP lands **within −6 / +16 %**. Curl on the block is **up to 53 % high**, because the block rests on the curl's stop.  
 **Why:** every finger in the hand runs this.
 
-### Other results
-
-Results that fit in one line, so no plot.
+### More one-finger results
 
 | What we did | What happened | Why it matters |
 |---|---|---|
@@ -314,31 +308,37 @@ Watch for: a finger that loses a light bar is flung by a fast wrist reversal; it
 
 *A push from behind: the impedance gives way (left), a stiff servo fights (right). A probe pushes the index, then a rod presses all four fingers.*
 
+<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.png">
+  <source src="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.mp4" type="video/mp4" />
+</video>
+
+*Power grasp. Close on a 100 g bar, support drops, wrist swings, a 5 N tug, release.*
+
 <video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/pinch.png">
   <source src="/humanoid-docs/img/humanoid/tendon-hand/pinch.mp4" type="video/mp4" />
 </video>
 
-*Pinch: a 50 g cube holds (100 g drops). Thumb and index hold the cube; the stand drops; the wrist tilts ±30° and 20° sideways.*
+*Pinch: a 50 g cube holds (100 g drops). Thumb and index hold the cube; the stand drops; the wrist tilts ±30° and 20° sideways. Corner plot: pad force (blue) and slip (orange).*
 
 <video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/tracing.png">
   <source src="/humanoid-docs/img/humanoid/tendon-hand/tracing.mp4" type="video/mp4" />
 </video>
 
-*The fingertip traces a 12 mm circle to 1.1 mm RMS, from motor encoders alone.*
+*The fingertip traces a 12 mm circle to 1.1 mm RMS, from motor encoders alone. Inverse kinematics turns the circle into MCP and PIP targets offline; the controller tracks them.*
 
 <video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/gestures.png">
   <source src="/humanoid-docs/img/humanoid/tendon-hand/gestures.mp4" type="video/mp4" />
 </video>
 
-*Gestures: fist, one to five, rock, two pinches, hook and grip.*
+*Gestures. Fist, one to five, rock, two pinches, hook and grip.*
 
 ## Known limits
 
-1. **Loop timing: ≥ 1 kHz, ≤ 2 periods of latency.** With 3 periods, the first fast move spikes a cable past 170 N. Keep the torque cap on: uncapped, a large step can oscillate.
+1. **Loop timing: ≥ 1 kHz, ≤ 2 periods of latency.** With 3 periods, the first fast move spikes a cable past 170 N (E4, E11). Keep the torque cap on: uncapped, a large step can oscillate.
 2. **f1's cable must stay stiff.** The spread is read through f1 alone: 1 mm of stretch reads as 8° of spread, and a 10 N/mm cable makes the spread shake.
 3. **f1 holds 20–33 N all the time** against the spring: 40–65 % of the GL30's continuous rating, as heat.
 4. **Fingertip force, straight finger: 4.8 N peak, 1.3 N continuous.**
-5. **Spread accuracy is ~1.9°.** MCP and curl: ~0.5°.
+5. **Spread accuracy is ~1.9°.** MCP and curl: ~0.5° (E1).
 
 ## Alternatives considered
 
@@ -357,7 +357,7 @@ Watch for: a finger that loses a light bar is flung by a fast wrist reversal; it
 
 ## Bench and bring-up
 
-**Do this on one finger first.** System ID: measure the five numbers the simulation guessed, put them in, then run the controller at a quarter stiffness. *Pass* means the measured number is close enough to what the simulation assumed that its results still hold; outside the range, fix the part (or re-run the simulation with the measured value) before going on. The firmware always uses the measured numbers. Follow the arm's hardware-safety process for every powered step.
+**Do this on one finger first.** System ID: measure the five numbers the simulation assumed, put them in, then run the controller at a quarter stiffness. *Pass* means the measured number is close enough to what the simulation assumed that its results still hold; outside the range, fix the part (or re-run the simulation with the measured value) before going on. The firmware always uses the measured numbers. Follow the arm's hardware-safety process for every powered step.
 
 ### Next steps
 
