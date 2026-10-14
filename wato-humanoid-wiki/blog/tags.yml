@@ -23,3 +23,13 @@ progress-update:
   permalink: /progress-update
   description: Team progress and milestone updates.
 
+
+hand:
+  label: Hand
+  permalink: /hand
+  description: Tendon hand posts.
+
+controls:
+  label: Controls
+  permalink: /controls
+  description: Control and simulation posts.
