@@ -5,6 +5,8 @@ authors: [wilson]
 tags: [hand, controls]
 ---
 
+**Goal:** try the impedance controller out in simulation before it touches hardware. Check it actually works, add what it turns out to need (friction feedforward, a torque cap, the wrist angle), and catch problems like the wrist early, so the bench work is just system ID: measuring a few numbers, not debugging the controller.
+
 Each finger holds a target angle and stays soft: it pushes with a force you set and gives way when pushed. It needs only the motor encoders and the wrist angle. All results are from simulation in MuJoCo.
 
 {/* truncate */}
@@ -229,7 +231,15 @@ The cross-cable is required, for three reasons:
   <source src="/humanoid-docs/img/humanoid/tendon-hand/blog/wrist_swing.mp4" type="video/mp4" />
 </video>
 
-*The wrist swing, on video. Left: the controller ignores the wrist. The finger drifts smoothly, because the controller thinks it is still on target. Then at the far backward swing the cable lengths fit no real pose, its estimate jumps to a joint limit, and it fights that with up to 280 N: the sudden jerk. Right: it reads the wrist, and the finger holds still.*
+*The wrist swing, on video. Left: the controller ignores the wrist. Right: it reads the wrist, and the finger holds still.*
+
+**Why it drifts, then jerks:**
+
+1. **Smooth drift first.** Bending the wrist changes every cable's length. The controller reads that as the finger moving and "corrects" it, so the finger slides to MCP 44° while the controller still thinks it is on target at 30°.
+2. **Then the estimate breaks.** At the far backward swing (−60°, at 1.5 s and 3.5 s) the cable lengths fit no pose the finger can reach, and the estimate jumps to a joint limit (spread −26°, MCP −16°).
+3. **That is the jerk.** It fights a pose that doesn't exist with huge forces: cables spike to 170–280 N, others go slack, and the finger slams between its stops.
+4. **Then it recovers.** As the wrist swings back toward straight, the cable lengths fit a real pose again.
+
 
 ### E9 · a torque cap
 
