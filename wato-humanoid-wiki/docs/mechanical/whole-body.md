@@ -6,7 +6,7 @@ description: The finalized Pioneer whole-body design, its 67 joints and the leg 
 
 # Whole-Body Humanoid
 
-The finalized Pioneer whole-body design: a graphite SpaceX-style helmet on a white torso, the 5 DOF arms, the 22 DOF tendon
+The finalized Pioneer whole-body design: a white helmet with a graphite visor frame on a white torso, the 5 DOF arms, the 22 DOF tendon
 hands and the 6 DOF legs. Left and right are mirror images, part for part.
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
@@ -16,7 +16,7 @@ hands and the 6 DOF legs. Left and right are mirror images, part for part.
 
 ### Head
 
-The helmet follows SpaceX's EVA suit helmet: a raked wedge visor in gloss black, recessed in a dark graphite frame with a
+The helmet has a raked wedge visor in gloss black, recessed in a dark graphite frame with a
 light bar round it, a fanned rib over the crown, cheek pads and temple vents. The neck dam flares into the torso's collar.
 
 <img alt="Pioneer head, three-quarter view" src="/humanoid-docs/img/humanoid/pioneer-head-34.png" style={{width: '60%', minWidth: '280px', display: 'block', margin: '16px 0'}} />
