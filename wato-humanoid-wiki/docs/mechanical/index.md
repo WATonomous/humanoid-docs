@@ -53,14 +53,16 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 ### 6 DOF Per Leg — Motor Selection
 
-| Joint | DOF | Motor |
-| --- | --- | --- |
-| Hip | Pitch | AKH70-48 |
-| Hip | Yaw | AK60-39 V3.0 KV80 |
-| Hip | Roll | AK80-64 KV80 |
-| Knee | Pitch | AKH70-48 |
-| Ankle | Pitch | AK60-39 V3.0 KV80 |
-| Ankle | Roll | AK60-39 V3.0 KV80 |
+| Joint | DOF | Motor | Range (deg) |
+| --- | --- | --- | --- |
+| Hip | Pitch (Hip_F) | AKH70-48 | −20 to +90 |
+| Hip | Yaw (Hip_R) | AK60-39 V3.0 KV80 | −30 to +90 |
+| Hip | Roll (Hip_A) | AK80-64 KV80 | −10 to +60 |
+| Knee | Pitch | AKH70-48 | −65 to 0 |
+| Ankle | Pitch (Ankle_P) | AK60-39 V3.0 KV80 | −30 to +50 |
+| Ankle | Roll (Ankle_R) | AK60-39 V3.0 KV80 | −15 to +15 |
+
+The ranges are the same on both legs. The whole robot: [Whole-Body Humanoid](./whole-body.md).
 
 ### Hip
 
