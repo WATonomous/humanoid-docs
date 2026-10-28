@@ -33,3 +33,8 @@ controls:
   label: Controls
   permalink: /controls
   description: Control and simulation posts.
+
+rl:
+  label: RL
+  permalink: /rl
+  description: Reinforcement learning posts.
