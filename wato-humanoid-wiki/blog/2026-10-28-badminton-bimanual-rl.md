@@ -1,6 +1,6 @@
 ---
 slug: badminton-bimanual-rl
-title: "Two Arms, One Policy: Returning Badminton Serves in Simulation"
+title: "One Policy, Both Arms: A Bimanual Badminton Receive in Simulation"
 authors: [sean]
 tags: [software, controls, rl]
 ---
