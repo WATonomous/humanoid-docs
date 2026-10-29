@@ -5,7 +5,7 @@ authors: [sean]
 tags: [software, controls, rl]
 ---
 
-**Goal:** get a stationary bimanual arm to return a badminton serve with either hand, in simulation. The result is one single-arm network that drives both arms, and a small critic model to pick either the left or right arm. On 8192 serves it has never seen, it hits 98.2%, splits the work 50/50 between the arms, and sends 88% of returns over the net.
+**Goal:** get a stationary bimanual arm to return a badminton serve with either hand, in simulation. The result is one single-arm network that drives both arms, and a small critic model to pick either the left or right arm. On 8192 serves it has never seen, it hits 97.9%, splits the work 49/51 between the arms, and sends 94% of returns over the net.
 
 <video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/badminton/blog/demo_poster.png">
   <source src="/humanoid-docs/img/humanoid/badminton/blog/demo.mp4" type="video/mp4" />
@@ -26,12 +26,12 @@ Serves come from a bank of 4096 shots sampled from that distribution. Training d
 
 | | training bank | evaluation bank |
 |---|---|---|
-| serves hit | 98.3% | 98.2% |
-| right / left arm | 49 / 51 | 50 / 50 |
-| returns clear the net | 88.5% | 88.5% |
-| median landing error | 1.07 m | 1.05 m |
+| serves hit | 98.2% | 97.9% |
+| right / left arm | 50 / 50 | 49 / 51 |
+| returns clear the net | 94.3% | 94.3% |
+| median landing error | 1.04 m | 1.00 m |
 
-The training bank itself moves by 0.1 points between reruns (the filter noise and the arm draw differ each time), so the gap is inside that noise.
+The same bank moves by up to 0.3 points between reruns (the filter noise and the arm draw differ each time, and the GPU model changes the numerics), so the gap is inside that noise.
 
 MuJoCo was selected as the simulation environment over Isaac Lab for two main reasons: CPU MuJoCo allows for rapid local iteration without a GPU and Isaac Lab's advantages (rendering, sensor simulation) are not advantageous in this use-case. Training runs on MuJoCo Warp through mjlab, 1024 environments at a time, with rsl_rl's PPO.
 
@@ -88,7 +88,7 @@ The chooser critic is not the one the policy was trained with. The policy's own 
 ![Arm selection by the critic](/img/humanoid/badminton/blog/fig_arm_pick.png)
 *Figure 2: Arm selection on the evaluation bank. Every intercept coloured by the arm that took it, the share taken by the right arm with the 50/50 line, and the hit rate for same-side and cross-body picks.*
 
-The picks are not what a naive rule would produce. The obvious rule is the same-side arm: serves left of centre go to the left arm. The learned model takes the same-side arm on 88% of serves outside the centre band and on only 30% inside it ($|x| < 0.4$ m), where it prefers the cross-body arm. Over the whole bank, cross-body picks hit 98.6% and same-side picks 97.7%. Whatever the critic is reading in the joint state and the approach angle, it is a better rule than the naive solution.
+The picks are not what a naive rule would produce. The obvious rule is the same-side arm: serves left of centre go to the left arm. The learned model takes the same-side arm on 89% of serves outside the centre band and on only 28% inside it ($|x| < 0.4$ m), where it prefers the cross-body arm. Over the whole bank, cross-body picks hit 98.8% and same-side picks 97.0%. Whatever the critic is reading in the joint state and the approach angle, it is a better rule than the naive solution.
 
 Most locks happen at the cap. With $m = 0.5$ the median lock is 0.04 s at the same hit rate, and a cap of 0.3 s, outside the training window, drops the hit rate to 85%.
 
@@ -135,6 +135,8 @@ There are two approach terms because one width cannot do both jobs. At $\sigma =
 
 The landing term is paid at the hit, not at the landing. On the tick of contact the shuttle's velocity is run forward through the drag model to predict where it will come down, and the reward for that prediction is given immediately, so the swing is credited on the tick it happens rather than two seconds later.
 
+One correction to that, made after this policy was trained. The face contact (12 ms time constant) often outlasts the 20 ms control tick it starts in, so the shuttle state at the end of the first-contact tick is sometimes mid-contact, and a return that goes on to clear the net could be predicted short. The return numbers and figures in this post take the state on the first tick after the face lets go of the cork instead. The reward is now paid on that tick too; the policy shown here was trained with the contact-tick version, so some of its landing rewards were noisy.
+
 Episodes are terminated when the shuttle touches the floor or the net, when the two arms touch, or at 3 s.
 
 ## Evaluation results
@@ -145,12 +147,12 @@ Episodes are terminated when the shuttle touches the floor or the net, when the 
 ![Hit rate by intercept position](/img/humanoid/badminton/blog/fig_hit_rate.png)
 *Figure 4: Hit rate by intercept position, seen from the net, with the rate per lateral and height band.*
 
-151 misses out of 8192. They cluster where you would expect: wide serves beyond $|x| = 1$ m (93% hit), low serves below 0.9 m (96%), and the top of the reach above 1.7 m (95%). Everything within 1 m of centre and between 0.9 and 1.7 m high is hit at 98 to 99%.
+173 misses out of 8192. They cluster where you would expect: wide serves beyond $|x| = 1$ m (94% hit), low serves below 0.9 m (94%), and the top of the reach above 1.7 m (95%). Everything within 1 m of centre and between 0.9 and 1.7 m high is hit at 99%.
 
 ![Return quality](/img/humanoid/badminton/blog/fig_returns.png)
 *Figure 5: Return quality. Where the returns cross the net line, and where they land relative to the serve's origin.*
 
-The return is the weaker half. 88% of hits clear the net by the 0.5 m margin, 2% go into the net, and 9% come down on the robot's side. Of the returns that clear, 48% land within 1 m of where the serve was launched from, with a median error of 1.05 m. Aim is the next lever on the reward side.
+The return is the weaker half. 94% of hits clear the net (91% by the 0.5 m margin), 1% go into the net, and 4% come down on the robot's side. Of the returns that clear, 50% land within 1 m of where the serve was launched from, with a median error of 1.00 m. Aim is the next lever on the reward side.
 
 ## Open problems
 
