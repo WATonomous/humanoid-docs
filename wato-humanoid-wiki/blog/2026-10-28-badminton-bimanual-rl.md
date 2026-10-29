@@ -135,8 +135,6 @@ There are two approach terms because one width cannot do both jobs. At $\sigma =
 
 The landing term is paid at the hit, not at the landing. On the tick of contact the shuttle's velocity is run forward through the drag model to predict where it will come down, and the reward for that prediction is given immediately, so the swing is credited on the tick it happens rather than two seconds later.
 
-One correction to that, made after this policy was trained. The face contact (12 ms time constant) often outlasts the 20 ms control tick it starts in, so the shuttle state at the end of the first-contact tick is sometimes mid-contact, and a return that goes on to clear the net could be predicted short. The return numbers and figures in this post take the state on the first tick after the face lets go of the cork instead. The reward is now paid on that tick too; the policy shown here was trained with the contact-tick version, so some of its landing rewards were noisy.
-
 Episodes are terminated when the shuttle touches the floor or the net, when the two arms touch, or at 3 s.
 
 ## Evaluation results
