@@ -7,8 +7,7 @@ description: Mechanical design documentation for the WATonomous Humanoid robot.
 # Mechanical
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="Arm overview 1" src="https://github.com/user-attachments/assets/5f185bd3-9063-4381-93f9-63f36d4c2768" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Arm overview 2" src="https://github.com/user-attachments/assets/bcb7271e-5b23-46c4-b23b-07b461134a69" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="Dual-arm render on test stand" src="/humanoid-docs/img/humanoid/dual-arm-stand-render.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
 </div>
 
 ### 6 DOF Arm + 1 DOF Gripper — Motor Selection
@@ -27,10 +26,10 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 22 DOF hand (18 actuated), including 2 DOF for the wrist.
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-3.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-4.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-1.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-2.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-dorsal-mounted.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-palm-mounted.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-palm.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-forearm.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
 </div>
 
 <video width="600" controls style={{display: 'block', maxWidth: '100%', margin: '16px 0'}}>
@@ -45,10 +44,10 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 ## Humanoid Leg
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="Humanoid leg CAD render 1" src="/humanoid-docs/img/humanoid/leg-cad-1.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Humanoid leg CAD render 2" src="/humanoid-docs/img/humanoid/leg-cad-2.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Humanoid leg CAD render 3" src="/humanoid-docs/img/humanoid/leg-cad-3.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Humanoid leg CAD render 4" src="/humanoid-docs/img/humanoid/leg-cad-4.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="Humanoid leg render, light background" src="/humanoid-docs/img/humanoid/leg-render-light.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="Humanoid leg render, dark background" src="/humanoid-docs/img/humanoid/leg-render-dark.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="Assembled humanoid leg prototype" src="/humanoid-docs/img/humanoid/leg-prototype-1.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="Assembled humanoid leg prototype with soccer ball" src="/humanoid-docs/img/humanoid/leg-prototype-ball.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
 </div>
 
 ### 6 DOF Per Leg — Motor Selection

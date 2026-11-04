@@ -15,18 +15,20 @@ Our humanoid robot will feature 2 arms + 2 legs and we are also developing a 22 
 
 ![Pioneer robot arm on its stand outside Waterloo Engineering](/img/humanoid/pioneer-arm-outdoor.jpg)
 
-![Pioneer full-body humanoid robot render](/img/humanoid/pioneer-full-body-render.png)
+![Pioneer whole-body humanoid render, side view](/img/humanoid/pioneer-whole-body-side.png)
 
-![WATonomous Humanoid dual-arm robot](/img/humanoid/humanoid-hero.png)
+![Pioneer whole-body humanoid render, front three-quarter view](/img/humanoid/pioneer-whole-body-front.png)
+
+![WATonomous Humanoid dual-arm robot](/img/humanoid/dual-arm-sim-render.png)
 
 <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px'}}>
-  <img alt="WATonomous Humanoid robot angled view" src="/humanoid-docs/img/humanoid/robot-photo-3.jpg" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="WATonomous Humanoid robot arm with gripper" src="/humanoid-docs/img/humanoid/robot-photo-1.jpg" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="WATonomous Humanoid robot side view" src="/humanoid-docs/img/humanoid/robot-photo-2.jpg" style={{width: '100%', borderRadius: '8px'}} />
-  <img alt="WATonomous Humanoid robot rear view" src="/humanoid-docs/img/humanoid/robot-photo-4.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="Arm prototype extended, angled view" src="/humanoid-docs/img/humanoid/arm-prototype-extended-2.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="Arm prototype with gripper raised" src="/humanoid-docs/img/humanoid/arm-prototype-gripper-raised.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="Arm prototype extended on its rail mount" src="/humanoid-docs/img/humanoid/arm-prototype-extended-1.jpg" style={{width: '100%', borderRadius: '8px'}} />
+  <img alt="Arm prototype extended, rear view" src="/humanoid-docs/img/humanoid/arm-prototype-extended-3.jpg" style={{width: '100%', borderRadius: '8px'}} />
 </div>
 
-<img alt="WATonomous Humanoid robotic hand prototype" src="/humanoid-docs/img/humanoid/robot-photo-5.jpg" style={{marginTop: '12px', borderRadius: '8px'}} />
+<img alt="First hand prototype making a gesture" src="/humanoid-docs/img/humanoid/hand-v1-prototype-gesture.jpg" style={{marginTop: '12px', borderRadius: '8px'}} />
 
 ## Sections
 
