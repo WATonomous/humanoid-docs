@@ -10,7 +10,7 @@ sidebar_position: 3
 ## In-Hand Manipulation RL Task
 
 <video width="600" controls>
-  <source src="/humanoid-docs/img/humanoid/videos/inhand_rl.mp4" type="video/mp4" />
+  <source src="/humanoid-docs/img/humanoid/videos/inhand-rl-cube.mp4" type="video/mp4" />
 </video>
 
 Reinforcement learning-based in-hand cube reorientation task for the 16 DOF Wato hand in Isaac Lab. The policy learns to reorient a DexCube held in the palm toward commanded goal orientations using PPO (Proximal Policy Optimization).

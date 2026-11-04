@@ -26,10 +26,10 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 22 DOF hand (18 actuated), including 2 DOF for the wrist.
 
 <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-3.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-4.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-1.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-2.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-dorsal-mounted.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-palm-mounted.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-palm.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
+  <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-forearm.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
 </div>
 
 <video width="600" controls style={{display: 'block', maxWidth: '100%', margin: '16px 0'}}>
