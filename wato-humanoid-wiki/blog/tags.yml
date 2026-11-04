@@ -38,3 +38,8 @@ rl:
   label: RL
   permalink: /rl
   description: Reinforcement learning posts.
+
+imitation-learning:
+  label: Imitation Learning
+  permalink: /imitation-learning
+  description: Imitation learning and VLA posts.
