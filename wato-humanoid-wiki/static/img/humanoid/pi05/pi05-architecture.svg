@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 872 362" width="872" height="362"><rect x="-16" y="-16" width="872" height="362" rx="10" fill="#EEF6FC" stroke="#E2E6E6"/>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#566F82"></path>
+            </marker>
+            <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#2B6FA3"></path>
+            </marker>
+          </defs>
+          <g font-family="DM Sans, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+
+            
+            <g>
+              <rect x="4" y="14" width="176" height="56" rx="10" fill="#FBF8F1" stroke="#A9C2D6" stroke-width="1.5"></rect>
+              <text x="92" y="38" text-anchor="middle" font-size="14.5" font-weight="600" fill="#12324A">3 camera images</text>
+              <text x="92" y="57" text-anchor="middle" font-size="12.5" fill="#566F82">base and both wrists</text>
+            </g>
+            <g>
+              <rect x="4" y="84" width="176" height="56" rx="10" fill="#FBF8F1" stroke="#A9C2D6" stroke-width="1.5"></rect>
+              <text x="92" y="108" text-anchor="middle" font-size="14.5" font-weight="600" fill="#12324A">Task prompt</text>
+              <text x="92" y="127" text-anchor="middle" font-size="12.5" fill="#566F82">"pick up the cube …"</text>
+            </g>
+            <g>
+              <rect x="4" y="154" width="176" height="56" rx="10" fill="#FBF8F1" stroke="#A9C2D6" stroke-width="1.5"></rect>
+              <text x="92" y="178" text-anchor="middle" font-size="14.5" font-weight="600" fill="#12324A">Joint state</text>
+              <text x="92" y="197" text-anchor="middle" font-size="12.5" fill="#566F82">8 values, as text tokens</text>
+            </g>
+            <line x1="180" y1="42" x2="214" y2="84" stroke="#8FA6B7" stroke-width="1.6" marker-end="url(#ah)"></line>
+            <line x1="180" y1="112" x2="214" y2="112" stroke="#8FA6B7" stroke-width="1.6" marker-end="url(#ah)"></line>
+            <line x1="180" y1="182" x2="214" y2="140" stroke="#8FA6B7" stroke-width="1.6" marker-end="url(#ah)"></line>
+
+            
+            <g>
+              <rect x="220" y="30" width="204" height="164" rx="14" fill="#FBF8F1" stroke="#A9C2D6" stroke-width="1.5" stroke-dasharray="6 4"></rect>
+              <text x="322" y="92" text-anchor="middle" font-size="17" font-weight="600" fill="#12324A">PaliGemma VLM</text>
+              <text x="322" y="115" text-anchor="middle" font-size="13" fill="#566F82">SigLIP encoder + Gemma 2B</text>
+              <text x="322" y="148" text-anchor="middle" font-size="13" font-weight="600" fill="#566F82">frozen</text>
+            </g>
+
+            
+            <line x1="424" y1="112" x2="504" y2="112" stroke="#4A9AD8" stroke-width="1.8" marker-end="url(#ahb)"></line>
+
+            
+            <g>
+              <rect x="510" y="30" width="192" height="164" rx="14" fill="#D3E7F7" stroke="#4A9AD8" stroke-width="1.5"></rect>
+              <text x="606" y="92" text-anchor="middle" font-size="17" font-weight="600" fill="#12324A">Action expert</text>
+              <text x="606" y="115" text-anchor="middle" font-size="13" fill="#566F82">Gemma-style transformer</text>
+              <text x="606" y="148" text-anchor="middle" font-size="13" font-weight="600" fill="#2B6FA3">trained · about 300M params</text>
+            </g>
+
+            
+            <g>
+              <rect x="510" y="232" width="192" height="54" rx="10" fill="#FBF8F1" stroke="#A9C2D6" stroke-width="1.5"></rect>
+              <text x="606" y="255" text-anchor="middle" font-size="14" font-weight="600" fill="#12324A">Noisy action chunk</text>
+              <text x="606" y="273" text-anchor="middle" font-size="12.5" fill="#566F82">refined in 10 steps</text>
+            </g>
+            <line x1="606" y1="232" x2="606" y2="200" stroke="#8FA6B7" stroke-width="1.6" marker-end="url(#ah)"></line>
+
+            
+            <line x1="702" y1="112" x2="728" y2="112" stroke="#4A9AD8" stroke-width="1.8" marker-end="url(#ahb)"></line>
+            <g>
+              <rect x="734" y="74" width="102" height="76" rx="10" fill="#D3E7F7" stroke="#4A9AD8" stroke-width="1.5"></rect>
+              <text x="785" y="100" text-anchor="middle" font-size="14" font-weight="600" fill="#12324A">Action chunk</text>
+              <text x="785" y="119" text-anchor="middle" font-size="12.5" fill="#566F82">50 steps</text>
+              <text x="785" y="136" text-anchor="middle" font-size="12.5" fill="#566F82">2 s at 25 Hz</text>
+            </g>
+          </g>
+        <g font-family="system-ui, sans-serif" font-size="13" fill="#566F82"><rect x="4" y="314" width="12" height="12" rx="3" fill="#FBF8F1" stroke="#A9C2D6"/><text x="24" y="325">frozen or fixed input</text><rect x="300" y="314" width="12" height="12" rx="3" fill="#D3E7F7" stroke="#4A9AD8"/><text x="320" y="325">trained in this project</text></g></svg>
