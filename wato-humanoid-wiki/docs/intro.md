@@ -15,8 +15,6 @@ Our humanoid robot will feature 2 arms + 2 legs and we are also developing a 22 
 
 ![Pioneer robot arm on its stand outside Waterloo Engineering](/img/humanoid/pioneer-arm-outdoor.jpg)
 
-![Pioneer full-body humanoid robot render](/img/humanoid/pioneer-full-body-render.png)
-
 ![WATonomous Humanoid dual-arm robot](/img/humanoid/humanoid-hero.png)
 
 <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px'}}>
