@@ -1,8 +1,8 @@
 {
   "label": "TVC Rocket",
-  "position": 9,
+  "position": 1,
   "link": {
     "type": "doc",
-    "id": "rocketry/index"
+    "id": "other-projects/rocketry/index"
   }
 }
