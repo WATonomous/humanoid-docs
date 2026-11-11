@@ -36,6 +36,10 @@ The interfacing layer consists of three main components:
 This interface layer bridges the high-level motion planning (ROS2) with low-level motor control, providing real-time command and feedback over CAN bus.
 :::
 
+:::tip Arm codebase walkthrough
+For detailed block diagrams of `joint_command` and `can_node`, and pseudo-code for the control tick, safety moderation, MIT watchdog, MIT packing and feedback decoding, see [Arm Interfacing Codebase](./arm-codebase.md).
+:::
+
 ## CAN Bus Protocol
 
 Bring-up steps (calibrate, visualize, move) live in the repo: [`src/interfacing/README.md`](https://github.com/WATonomous/pioneer_humanoid/blob/main/src/interfacing/README.md).
