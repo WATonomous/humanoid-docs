@@ -5,6 +5,8 @@ description: Block diagrams and pseudo-code for the real-arm interfacing stack (
 sidebar_position: 1
 ---
 
+import ArmJointNaming from '@site/src/components/ArmJointNaming';
+
 # Arm Interfacing Codebase
 
 This page shows how the real-arm interfacing code in [`src/interfacing/`](https://github.com/WATonomous/pioneer_humanoid/tree/main/src/interfacing) fits together. It has block diagrams for the structure and pseudo-code for the main logic. The pseudo-code follows the real C++ closely but leaves out logging and boilerplate. When you need exact behaviour, read the source file named above each block.
@@ -125,22 +127,45 @@ Most bugs on this stack come from mixing up frames or units. There are exactly t
 | Frame | Where it appears | Units | Definition |
 | --- | --- | --- | --- |
 | **Command frame** (= URDF frame) | `ArmPose`, joint limits in `arm_calibration.yaml`, gravity model | degrees | Zero is the arm hanging straight down. Positive follows the URDF |
-| **Motor frame** | `MotorCmd.position`, `MotorFeedback.position`, the drive itself | degrees, except **radians** for `MIT_CONTROL` commands | $q_\text{motor} = \text{direction}\cdot(q_\text{cmd} - \text{zero\_offset})$ |
+| **Motor frame** | `MotorCmd.position`, `MotorFeedback.position`, the drive itself | degrees, except **radians** for `MIT_CONTROL` commands | $q_\text{motor} = \text{direction}\cdot(q_\text{cmd} - \mathtt{zero\_offset})$ |
 
-The inverse, used for seeding and by every read-only tool, is $q_\text{cmd} = \text{zero\_offset} + q_\text{motor} / \text{direction}$.
+The inverse, used for seeding and by every read-only tool, is $q_\text{cmd} = \mathtt{zero\_offset} + q_\text{motor} / \text{direction}$.
 
 | Message | Topic | Producer → Consumer | Key fields |
 | --- | --- | --- | --- |
-| `ArmPose` | `/arm/<side>/joint_targets` | teleop / policy → `joint_command_node` | `is_left`, `shoulder[3]`, `elbow[2]`, `wrist[1]`, `include_gripper`, `gripper_position` (0 open .. 1 closed) |
+| `ArmPose` | `/arm/<side>/joint_targets` | teleop / policy → `joint_command_node` | `is_left`, `shoulder[3]`, `elbow[2]`, `wrist[2]` (pitch, yaw), `include_gripper`, `gripper_position` (0 open .. 1 closed) |
 | `MotorCmd` | `/interfacing/motorCMD` | `joint_command_node` → `can_node` | `motor_id`, `control_type` (`MIT_CONTROL=0`, `POSITION_LOOP=4`, `MIT_ENTER=9`, `MIT_EXIT=10`, …), `position`, `velocity`, `torque`, `kp`, `kd` |
 | `MotorFeedback` | `/interfacing/motorFeedback` | `can_node` → `joint_command_node`, viewers, recorders | `motor_id`, `position` (deg), `velocity`, `current`, `torque` (N·m), `temperature`, `error_code` |
+
+### 3.1 Joint naming
+
+Every arm joint is named `<group>.<axis>`. The same names are the keys in both YAML files (`<side>: <group>: <axis>:`), so `shoulder.pitch` on the right arm is `right → shoulder → pitch` in `arm_calibration.yaml`. The ArmPose index is the joint's position in that order. Each arm uses its own CAN ids, so look those up in `arm_calibration.yaml`.
+
+<ArmJointNaming />
+
+| Index | Name (YAML / ArmPose) | 8-DoF URDF joint | URDF axis | Motion |
+| --- | --- | --- | --- | --- |
+| 0 | `shoulder.pitch` | `<side>_shoulder_pitch` | Y | Swings the arm forward / back |
+| 1 | `shoulder.roll` | `<side>_shoulder_roll` | X | Lifts the arm out to the side |
+| 2 | `shoulder.yaw` | `<side>_shoulder_yaw` | Z | Twists the upper arm along its length |
+| 3 | `elbow.pitch` | `<side>_elbow` | Y | Bends the elbow |
+| 4 | `elbow.yaw` | `<side>_forearm_roll` | Z | Twists the forearm along its length |
+| 5 | `wrist.pitch` | `<side>_wrist_pitch` | Y | Tilts the hand forward / back |
+| 6 | `wrist.yaw` | `<side>_wrist_yaw` | X | Swings the hand side to side |
+| 7 (optional) | `gripper.open_close` | `<side>_gripper` (prismatic) | Y | 0 = open .. 1 = closed |
+
+Axes are given for the arm hanging straight down. Signs differ between the left and right arms, so check the URDF (`assets/pioneer_bimanual_arm_8dof`). The URDF names two joints differently from the YAML: `elbow.pitch` is `<side>_elbow` and `elbow.yaw` is `<side>_forearm_roll`.
 
 ArmPose joint order, shared by both YAML files, `joint_command_core.cpp` and `joint_config.py`:
 
 ```text
-index : 0               1               2              3            4           5            6 (optional)
-joint : shoulder.pitch  shoulder.roll   shoulder.yaw   elbow.pitch  elbow.yaw   wrist.pitch  gripper.open_close
+index : 0               1               2              3            4           5            6            7 (optional)
+joint : shoulder.pitch  shoulder.roll   shoulder.yaw   elbow.pitch  elbow.yaw   wrist.pitch  wrist.yaw    gripper.open_close
 ```
+
+:::note `wrist.yaw` comes with the dual-axis wrist motor
+`wrist.yaw` is added for the dual-axis wrist motor we're about to install. Until that change lands in `joint_command`, the code still uses the 6-joint layout (no `wrist.yaw`, gripper at index 6). The pseudo-code below shows that current 6-joint code.
+:::
 
 ## 4. `joint_command` package
 
@@ -208,7 +233,7 @@ procedure JointCommandNode.startup():
 Config validation (`validateMitGains`) enforces the **startup rule**. It bounds the torque a stalled joint can produce before the tracking watchdog trips:
 
 $$
-\underbrace{\text{quantise}(k_p)\cdot \text{mit\_max\_track\_err}_\text{rad}}_\text{PD torque at the fault threshold} + \text{gravity\_ff\_max\_torque} \le \text{mit\_peak\_torque}\ (\text{or } \text{mit\_max\_torque})
+\underbrace{\text{quantise}(k_p)\cdot \mathtt{mit\_max\_track\_err}_\text{rad}}_{\text{PD torque at the fault threshold}} + \mathtt{gravity\_ff\_max\_torque} \le \mathtt{mit\_peak\_torque}\ (\text{or } \mathtt{mit\_max\_torque})
 $$
 
 ```text
@@ -380,7 +405,7 @@ procedure JointCommandCore.armPoseToMotorCmds(pose, default_type) → list[Motor
 Source: `gravity_model.cpp`, `JointCommandCore::gravityTorqueMotor`.
 
 $$
-\tau_\text{ff} = \operatorname{clip}\!\big(\text{gravity\_ff\_scale}\cdot r \cdot \tau_\text{model}(q_\text{URDF}),\ \pm\text{gravity\_ff\_max\_torque}\big),\qquad r: 0 \to 1 \text{ over } 1\,\text{s after each seed}
+\tau_\text{ff} = \operatorname{clip}\!\big(\mathtt{gravity\_ff\_scale}\cdot r \cdot \tau_\text{model}(q_\text{URDF}),\ \pm\mathtt{gravity\_ff\_max\_torque}\big),\qquad r: 0 \to 1 \text{ over } 1\,\text{s after each seed}
 $$
 
 ```text
