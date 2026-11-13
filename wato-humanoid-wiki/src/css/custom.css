@@ -29,3 +29,12 @@
   --ifm-color-primary-lightest: #abc8e9;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Wide display math scrolls inside the content column instead of spilling
+   over the table-of-contents sidebar. */
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}

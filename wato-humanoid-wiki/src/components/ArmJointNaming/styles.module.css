@@ -1,0 +1,109 @@
+.figure {
+  margin: 1.5rem 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  --arm-new: #b45309;
+}
+
+[data-theme='dark'] .svg {
+  --arm-new: #f59e0b;
+}
+
+.band {
+  fill: var(--ifm-color-emphasis-100);
+}
+
+.groupLabel {
+  fill: var(--ifm-color-emphasis-600);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.torso {
+  fill: var(--ifm-color-emphasis-200);
+  stroke: var(--ifm-color-emphasis-500);
+  stroke-width: 1.5;
+}
+
+.link {
+  fill: none;
+  stroke: var(--ifm-color-emphasis-500);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.linkLabel {
+  fill: var(--ifm-color-emphasis-700);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.leader,
+.leaderNew {
+  stroke: var(--ifm-color-emphasis-400);
+  stroke-width: 1;
+}
+
+.leaderNew {
+  stroke: var(--arm-new);
+}
+
+.joint,
+.jointNew {
+  fill: var(--ifm-background-color);
+  stroke: var(--ifm-color-primary);
+  stroke-width: 2.5;
+}
+
+.jointNew {
+  stroke: var(--arm-new);
+  stroke-dasharray: 4 3;
+}
+
+.index,
+.indexNew {
+  fill: var(--ifm-color-primary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.indexNew {
+  fill: var(--arm-new);
+}
+
+.name,
+.nameNew {
+  fill: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.nameNew {
+  fill: var(--arm-new);
+}
+
+.desc {
+  fill: var(--ifm-color-emphasis-800);
+  font-size: 13px;
+}
+
+.newTag {
+  fill: var(--arm-new);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.note {
+  fill: var(--ifm-color-emphasis-700);
+  font-size: 12px;
+}
