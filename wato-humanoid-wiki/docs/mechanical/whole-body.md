@@ -1,7 +1,7 @@
 ---
 id: whole-body
 title: Whole-Body Humanoid
-description: The finalized Pioneer whole-body design, its 67 joints and the leg joint limits.
+description: The finalized Pioneer whole-body design, its 67 joints and the arm and leg joint limits.
 ---
 
 # Whole-Body Humanoid
@@ -47,3 +47,17 @@ a positive Hip_A spreads the leg outward, a positive Ankle_P points the toes dow
 | Knee | Knee pitch | −65 to 0 |
 | Ankle_P | Ankle pitch | −30 to +50 |
 | Ankle_R | Ankle roll | −15 to +15 |
+
+## Arm Joint Limits
+
+The range of motion the arm is designed for, the same on both arms. It covers the five arm joints and the two-axis wrist.
+
+| Joint | Range (deg) |
+| --- | --- |
+| Shoulder pitch | −90 to +180 |
+| Shoulder roll | −20 to +160 |
+| Upper arm yaw | −120 to +120 |
+| Elbow | 0 to 130 (bend) |
+| Forearm roll | −110 to +110 |
+| Wrist pitch | −60 to +60 |
+| Wrist yaw | −90 to +90 |
