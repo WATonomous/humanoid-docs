@@ -18,12 +18,11 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 | --- | --- | --- | --- |
 | Shoulder | AK10-9 V3.0 | 18Nm  | 53Nm  |
 | Elbow | AK80-9 V3.0 | 9Nm | 22Nm |
-| Wrist pitch | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
 | Wrist yaw | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
-| Wrist / forearm roll | AK40-10 KV170 | 1.3 Nm | 4.1 Nm |
-| Gripper | GL40 II KV82.5 | 0.25Nm | 0.73Nm |
+| Wrist roll | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+| Gripper (claw) | AK40-10 KV170 | 1.3 Nm | 4.1 Nm |
 
-Wrist torque ratings are per actuator, from CubeMars: [AK45-10 V3.0](https://www.cubemars.com/product/ak45-10-v3-0-kv75-robotic-actuator.html) and [AK40-10 KV170](https://www.cubemars.com/product/ak40-10-robotic-actuator.html). The AK40-10 is the standard, non-V3.0 model.
+Wrist and gripper torque ratings are per actuator, from CubeMars: [AK45-10 V3.0](https://www.cubemars.com/product/ak45-10-v3-0-kv75-robotic-actuator.html) and [AK40-10 KV170](https://www.cubemars.com/product/ak40-10-robotic-actuator.html). The AK40-10 is the standard, non-V3.0 model.
 
 ## 22 DOF Hand
 
