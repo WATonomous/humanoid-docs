@@ -10,20 +10,18 @@ description: Mechanical design documentation for the WATonomous Humanoid robot.
   <img alt="Dual-arm render on test stand" src="/humanoid-docs/img/humanoid/dual-arm-stand-render.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
 </div>
 
-### 8 DOF Arm + 1 DOF Gripper — Motor Selection
+### 7 DOF Arm + 1 DOF Gripper — Motor Selection
 
 For faster progress, we will be temporarily switching to attaching a gripper instead of the 15 DOF hands for the arm.
 
 | Joint / Assembly | Motor | Rated Torque | Peak Torque |
 | --- | --- | --- | --- |
-| Shoulder (1-2) | AK10-9 V3.0 | 18Nm  | 53Nm  |
-| Elbow (3-4-5) | AK80-9 V3.0 | 9Nm | 22Nm |
-| Wrist pitch (6) | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
-| Wrist yaw (7) | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
-| Wrist / forearm roll (8) | AK40-10 KV170 | 1.3 Nm | 4.1 Nm |
+| Shoulder | AK10-9 V3.0 | 18Nm  | 53Nm  |
+| Elbow | AK80-9 V3.0 | 9Nm | 22Nm |
+| Wrist pitch | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+| Wrist yaw | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+| Wrist / forearm roll | AK40-10 KV170 | 1.3 Nm | 4.1 Nm |
 | Gripper | GL40 II KV82.5 | 0.25Nm | 0.73Nm |
-
-The arm has eight DOF: two shoulder joints, three joints in the elbow group, and wrist pitch, yaw, and roll. The gripper adds one DOF.
 
 Wrist torque ratings are per actuator, from CubeMars: [AK45-10 V3.0](https://www.cubemars.com/product/ak45-10-v3-0-kv75-robotic-actuator.html) and [AK40-10 KV170](https://www.cubemars.com/product/ak40-10-robotic-actuator.html). The AK40-10 is the standard, non-V3.0 model.
 
