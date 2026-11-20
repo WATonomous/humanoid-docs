@@ -18,7 +18,7 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 | --- | --- | --- | --- |
 | Shoulder | AK10-9 V3.0 | 18Nm  | 53Nm  |
 | Elbow | AK80-9 V3.0 | 9Nm | 22Nm |
-| Wrist roll | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+| Wrist pitch | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
 | Wrist pitch | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
 | Gripper (claw) | AK40-10 KV170 | 1.3 Nm | 4.1 Nm |
 
