@@ -10,16 +10,19 @@ description: Mechanical design documentation for the WATonomous Humanoid robot.
   <img alt="Dual-arm render on test stand" src="/humanoid-docs/img/humanoid/dual-arm-stand-render.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
 </div>
 
-### 6 DOF Arm + 1 DOF Gripper — Motor Selection
+### 7 DOF Arm + 1 DOF Gripper — Motor Selection
 
 For faster progress, we will be temporarily switching to attaching a gripper instead of the 15 DOF hands for the arm.
 
-|  |  | Rated Torque  | Peak Torque  |
+| Joint / Assembly | Motor | Rated Torque | Peak Torque |
 | --- | --- | --- | --- |
 | Shoulder (1-2) | AK10-9 V3.0 | 18Nm  | 53Nm  |
 | Elbow (3-4-5) | AK80-9 V3.0 | 9Nm | 22Nm |
-| Wrist (6)  | GL40 II KV82.5 |  0.25Nm | 0.73Nm  |
-| Gripper (7) | GL40 II KV82.5 |  0.25Nm | 0.73Nm  |
+| Wrist yaw | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+| Wrist pitch | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+| Parallel Gripper | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
+
+Wrist and gripper torque ratings are per actuator, from CubeMars: [AK45-10 V3.0](https://www.cubemars.com/product/ak45-10-v3-0-kv75-robotic-actuator.html) and [AK40-10 KV170](https://www.cubemars.com/product/ak40-10-robotic-actuator.html). The AK40-10 is the standard, non-V3.0 model.
 
 ## 22 DOF Hand
 
@@ -55,7 +58,7 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 | Joint | DOF | Motor | Range (deg) |
 | --- | --- | --- | --- |
 | Hip | Pitch (Hip_F) | AKH70-48 | −20 to +90 |
-| Hip | Yaw (Hip_R) | AK60-39 V3.0 KV80 | −30 to +90 |
+| Hip | Yaw (Hip_R) | AK80-64 KV80 | −30 to +90 |
 | Hip | Roll (Hip_A) | AK80-64 KV80 | −10 to +60 |
 | Knee | Pitch | AKH70-48 | −65 to 0 |
 | Ankle | Pitch (Ankle_P) | AK60-39 V3.0 KV80 | −30 to +50 |
