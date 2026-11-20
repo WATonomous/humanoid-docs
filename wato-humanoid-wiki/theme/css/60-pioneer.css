@@ -27,7 +27,12 @@
   padding: 0.5rem 0.75rem;
 }
 .has-pioneer-bg .footer { position: relative; z-index: 1; }
-@media (max-width: 996px) { .pioneer-bg { display: none; } }
+@media (max-width: 996px) {
+  .pioneer-bg { display: none; }
+  /* No background on phones, so no stacking layer either: otherwise the slide-out menu is
+     trapped inside it, under the dark overlay. */
+  .has-pioneer-bg .layout { position: static; z-index: auto; }
+}
 
 /* Boxes sit on a solid page background so the figure never shows through behind their text. */
 .has-pioneer-bg .pager-link,
