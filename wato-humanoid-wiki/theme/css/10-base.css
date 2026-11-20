@@ -1,0 +1,49 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--navbar-h) + 0.75rem); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font: 16px/1.65 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--c-primary); text-decoration: none; }
+a:hover { color: var(--c-primary-hover); text-decoration: underline; }
+img, video { max-width: 100%; }
+kbd {
+  font: 600 0.72rem var(--font-mono);
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--c-border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  color: var(--c-text-muted);
+  background: var(--c-bg);
+}
+button { font: inherit; color: inherit; }
+.muted { color: var(--c-text-muted); }
+.skip-link { position: absolute; left: -999px; top: 0; z-index: 100; padding: 0.5rem 1rem; background: var(--c-surface); }
+.skip-link:focus { left: 0.5rem; }
+:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
+.link-button { background: none; border: 0; padding: 0; color: var(--c-primary); cursor: pointer; }
+.link-button:hover { text-decoration: underline; }
+
+/* Buttons (also usable from Markdown: <a class="button button--primary button--lg">) */
+.button {
+  display: inline-block;
+  padding: 0.375rem 1.25rem;
+  border: 2px solid var(--c-primary);
+  border-radius: var(--radius);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--c-primary);
+  transition: background 0.15s, color 0.15s;
+}
+.button:hover { text-decoration: none; background: var(--c-primary-soft); }
+.button--primary { background: var(--c-primary); color: #fff; }
+.button--primary:hover { background: var(--c-primary-hover); border-color: var(--c-primary-hover); color: #fff; }
+[data-theme='dark'] .button--primary, [data-theme='dark'] .button--primary:hover { color: #11161c; }
+.button--lg { padding: 0.5rem 2rem; font-size: 1.1rem; }

@@ -1,0 +1,68 @@
+/* Design tokens. Change colours, fonts and sizes here. */
+:root {
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-mono: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+
+  /* WATonomous brand blue (#1F5D96), matching watonomous.ca */
+  --c-primary: #1f5d96;
+  --c-primary-hover: #1a4f7f;
+  --c-primary-soft: rgba(31, 93, 150, 0.08);
+  --c-accent: #1f5d96;
+
+  --c-bg: #ffffff;
+  --c-surface: #ffffff;
+  --c-text: #1c1e21;
+  --c-text-muted: #525860;
+  --c-border: #dadde1;
+  --c-code-bg: #f6f7f8;
+  --c-inline-code-bg: rgba(0, 0, 0, 0.05);
+  --c-inline-code-border: rgba(0, 0, 0, 0.1);
+  --c-hover: rgba(0, 0, 0, 0.05);
+  --c-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  --c-emph-100: #f5f6f7;
+  --c-emph-200: #ebedf0;
+  --c-emph-300: #dadde1;
+  --c-emph-400: #ccd0d5;
+  --c-emph-500: #bec3c9;
+  --c-emph-600: #8d949e;
+  --c-emph-700: #606770;
+  --c-emph-800: #444950;
+  --c-emph-900: #1c1e21;
+
+  --navbar-h: 3.75rem;
+  --sidebar-w: 300px;
+  --toc-w: 260px;
+  --content-max: 860px;
+  --radius: 0.4rem;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --c-primary: #5b9bd5;
+  --c-primary-hover: #82afde;
+  --c-primary-soft: rgba(91, 155, 213, 0.12);
+  --c-accent: #5b9bd5;
+
+  --c-bg: #1b1b1d;
+  --c-surface: #242526;
+  --c-text: #e3e3e3;
+  --c-text-muted: #a9adb3;
+  --c-border: #3a3b3e;
+  --c-code-bg: #282a36;
+  --c-inline-code-bg: rgba(255, 255, 255, 0.07);
+  --c-inline-code-border: rgba(255, 255, 255, 0.1);
+  --c-hover: rgba(255, 255, 255, 0.05);
+  --c-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  --c-emph-100: #242526;
+  --c-emph-200: #2f3033;
+  --c-emph-300: #444950;
+  --c-emph-400: #606770;
+  --c-emph-500: #8d949e;
+  --c-emph-600: #bec3c9;
+  --c-emph-700: #ccd0d5;
+  --c-emph-800: #dadde1;
+  --c-emph-900: #f5f6f7;
+}

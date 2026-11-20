@@ -5,8 +5,6 @@ description: Block diagrams and pseudo-code for the real-arm interfacing stack (
 sidebar_position: 1
 ---
 
-import ArmJointNaming from '@site/src/components/ArmJointNaming';
-
 # Arm Interfacing Codebase
 
 This page shows how the real-arm interfacing code in [`src/interfacing/`](https://github.com/WATonomous/pioneer_humanoid/tree/main/src/interfacing) fits together. It has block diagrams for the structure and pseudo-code for the main logic. The pseudo-code follows the real C++ closely but leaves out logging and boilerplate. When you need exact behaviour, read the source file named above each block.
