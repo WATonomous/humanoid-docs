@@ -44,7 +44,7 @@ function navbar(ctx, section) {
     <div class="nav-spacer"></div>
     <nav class="nav-right">${nav.right.map((i) => navLink(ctx, i)).join('')}</nav>
     <button class="search-button" type="button" data-search-open aria-label="Search">${icon.search}<span>Search</span><kbd>/</kbd></button>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour mode" title="Switch colour mode">${icon.sun}${icon.moon}${icon.system}</button>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour mode" title="Switch colour mode">${icon.sun}${icon.moon}</button>
   </div>
 </header>`;
 }
@@ -68,7 +68,8 @@ function footer(ctx) {
 </footer>`;
 }
 
-const themeScript = `(function(){try{var c=localStorage.getItem('theme');var d=c==='dark'||(c!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);var e=document.documentElement;e.setAttribute('data-theme',d?'dark':'light');e.setAttribute('data-theme-choice',c||'system')}catch(_){}})();`;
+// Light by default; dark only if the visitor picked it (saved in localStorage).
+const themeScript = `(function(){try{var d=localStorage.getItem('theme')==='dark';document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(_){}})();`;
 
 export function page(ctx, {route, title, description, section, body, ogType = 'website', extraHead = '', needs = {}}) {
   const c = ctx.config;
