@@ -31,10 +31,9 @@
 }
 .theme-toggle:hover, .navbar-toggle:hover, .drawer-close:hover { background: var(--c-hover); }
 .theme-toggle svg { display: none; }
-[data-theme-choice='light'] .theme-toggle .i-light,
-[data-theme-choice='dark'] .theme-toggle .i-dark,
-[data-theme-choice='system'] .theme-toggle .i-system,
-html:not([data-theme-choice]) .theme-toggle .i-system { display: block; }
+/* the icon shows the mode a click switches to */
+[data-theme='light'] .theme-toggle .i-dark,
+[data-theme='dark'] .theme-toggle .i-light { display: block; }
 .navbar-toggle { display: none; margin-right: 0.25rem; }
 
 /* ---- Page columns -------------------------------------------------------- */

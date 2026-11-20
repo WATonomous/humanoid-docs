@@ -7,26 +7,17 @@
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
 
-  // ---- Colour mode: system -> light -> dark ----------------------------------
-  const media = matchMedia('(prefers-color-scheme: dark)');
-  function applyTheme(choice) {
-    const dark = choice === 'dark' || (choice === 'system' && media.matches);
-    root.setAttribute('data-theme', dark ? 'dark' : 'light');
-    root.setAttribute('data-theme-choice', choice);
-    document.dispatchEvent(new CustomEvent('themechange'));
-  }
-  const currentChoice = () => root.getAttribute('data-theme-choice') || 'system';
+  // ---- Colour mode: light (default) <-> dark ------------------------------------
   $$('[data-theme-toggle]').forEach((btn) =>
     btn.addEventListener('click', () => {
-      const next = {system: 'light', light: 'dark', dark: 'system'}[currentChoice()];
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       try {
-        if (next === 'system') localStorage.removeItem('theme');
-        else localStorage.setItem('theme', next);
+        localStorage.setItem('theme', next);
       } catch {}
-      applyTheme(next);
+      root.setAttribute('data-theme', next);
+      document.dispatchEvent(new CustomEvent('themechange'));
     }),
   );
-  media.addEventListener('change', () => currentChoice() === 'system' && applyTheme('system'));
 
   // ---- Mobile drawer ------------------------------------------------------
   const setDrawer = (open) => document.body.classList.toggle('drawer-open', open);
