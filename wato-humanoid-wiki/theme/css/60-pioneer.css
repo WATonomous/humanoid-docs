@@ -58,10 +58,11 @@
 /* ASCII art past the footer (site.config.js footerArt): a screen of it, fading in on scroll */
 .footer-art { --footer-bg: #303846; height: 100vh; background: var(--footer-bg); position: relative; z-index: 1; overflow: hidden; }
 [data-theme='dark'] .footer-art { --footer-bg: #242526; }
-.footer-art-img { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0; }
+.footer-art-img { position: absolute; inset: 0; background: center / cover no-repeat; opacity: var(--k, 0); filter: brightness(calc(0.8 + 0.45 * var(--k, 0))) saturate(1.15); }
 /* no hard edge under the footer: the art starts in the footer's colour and blends into the picture */
 .footer-art::after {
   content: ''; position: absolute; left: 0; right: 0; top: 0; height: 45%; pointer-events: none;
+  opacity: calc(1 - var(--k, 0)); /* blends the seam on the way in, gone once the art is in full view */
   background: linear-gradient(to bottom, var(--footer-bg) 0%, color-mix(in srgb, var(--footer-bg) 70%, transparent) 30%, transparent 100%);
 }
-@media (prefers-reduced-motion: reduce) { .footer-art-img { opacity: 1 !important; } }
+@media (prefers-reduced-motion: reduce) { .footer-art { --k: 1 !important; } }
