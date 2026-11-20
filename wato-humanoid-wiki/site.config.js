@@ -83,8 +83,10 @@ export default {
     wordsPerMinute: 200,
   },
 
-  // ASCII Pioneer (theme/js/ascii-pioneer.js): a faint, slowly turning Pioneer behind every page.
-  pioneer: {background: true},
+  // Full-page ASCII art behind every page (except pages with their own `ascii:` scene, e.g. the
+  // rocket pages). Scroll past the footer to see it uncovered. Set to null to turn it off.
+  // How it's made: scripts/ascii-art.py.
+  sceneBackground: 'img/ascii/pioneer-earthrise.webp',
 
   code: {
     // Shiki theme names: https://shiki.style/themes
