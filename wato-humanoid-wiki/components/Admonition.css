@@ -21,10 +21,8 @@
   gap: 0.5rem;
   margin-bottom: 0.4rem;
   color: var(--adm);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 .admonition-content > :last-child { margin-bottom: 0; }

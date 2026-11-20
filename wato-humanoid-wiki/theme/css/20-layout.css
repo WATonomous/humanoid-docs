@@ -9,9 +9,8 @@
   box-shadow: var(--c-shadow);
 }
 .navbar-inner { display: flex; align-items: center; gap: 0.25rem; height: 100%; padding: 0 1rem; }
-.brand { display: flex; align-items: center; gap: 0.55rem; margin-right: 1rem; color: var(--c-text); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
+.brand { display: flex; align-items: center; margin-right: 1rem; color: var(--c-text); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
 .brand:hover { color: var(--c-text); text-decoration: none; }
-.brand-mark { font-family: var(--font-mono); font-size: 0.8rem; color: var(--c-primary); letter-spacing: -0.02em; }
 .nav-link { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.75rem; color: var(--c-text); font-weight: 500; border-radius: var(--radius); }
 .nav-link:hover, .nav-link.active { color: var(--c-primary); text-decoration: none; }
 .nav-left, .nav-right { display: flex; align-items: center; }
@@ -83,7 +82,6 @@ html:not([data-theme-choice]) .theme-toggle .i-system { display: block; }
   padding-left: 0.75rem; border-left: 1px solid var(--c-border);
   scrollbar-width: thin;
 }
-.toc-title { font: 600 0.7rem var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-text-muted); margin: 0.25rem 0 0.5rem; }
 .toc-list { list-style: none; margin: 0; padding: 0; font-size: 0.8rem; line-height: 1.4; }
 .toc-list li { margin: 0.45rem 0; }
 .toc-list .toc-d3 { padding-left: 1rem; }
@@ -96,11 +94,11 @@ html:not([data-theme-choice]) .theme-toggle .i-system { display: block; }
 .toc-mobile .toc-list { padding: 0 1rem 0.75rem; }
 
 /* ---- Breadcrumbs, doc footer, pager --------------------------------------- */
-.breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.25rem 0 1rem; font-size: 0.8rem; font-family: var(--font-mono); }
+.breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.25rem 0 1rem; font-size: 0.8rem; }
 .breadcrumbs a { color: var(--c-text-muted); }
 .breadcrumbs a:hover { color: var(--c-primary); }
 .crumb-home { display: inline-flex; }
-.crumb-sep { color: var(--c-emph-500); }
+.crumb-sep { display: inline-flex; color: var(--c-emph-600); }
 .crumb-current { color: var(--c-primary); background: var(--c-primary-soft); padding: 0.1rem 0.55rem; border-radius: 999px; }
 .doc-footer { margin-top: 3rem; }
 .edit-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
@@ -108,7 +106,7 @@ html:not([data-theme-choice]) .theme-toggle .i-system { display: block; }
 .pager-link { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.9rem 1rem; border: 1px solid var(--c-border); border-radius: var(--radius); transition: border-color 0.15s; }
 .pager-link:hover { border-color: var(--c-primary); text-decoration: none; }
 .pager-link.next { text-align: right; }
-.pager-sub { font-size: 0.8rem; color: var(--c-text-muted); font-family: var(--font-mono); }
+.pager-sub { font-size: 0.875rem; color: var(--c-text-muted); font-weight: 500; }
 .pager-title { font-weight: 700; word-break: break-word; }
 
 /* ---- Footer ------------------------------------------------------------------ */
@@ -150,6 +148,5 @@ html:not([data-theme-choice]) .theme-toggle .i-system { display: block; }
   .doc-row { padding: 1rem 1rem 3rem; }
 }
 @media (max-width: 576px) {
-  .brand-mark { display: none; }
   .pager { grid-template-columns: 1fr; }
 }

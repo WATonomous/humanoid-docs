@@ -39,7 +39,7 @@
 .list-header { margin-bottom: 2rem; }
 .list-header h1 { font-size: 2.25rem; margin: 0 0 0.5rem; }
 .archive-list { list-style: none; padding: 0; }
-.archive-list time { display: inline-block; min-width: 11rem; color: var(--c-text-muted); font-family: var(--font-mono); font-size: 0.85rem; }
+.archive-list time { display: inline-block; min-width: 11rem; color: var(--c-text-muted); font-size: 0.9rem; }
 
 @media (max-width: 576px) {
   .post-card { padding: 1rem 1.1rem; }
