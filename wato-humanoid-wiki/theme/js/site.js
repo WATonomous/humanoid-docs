@@ -19,6 +19,20 @@
     }),
   );
 
+  // ---- ASCII art past the footer: fades in as it scrolls into view ----------------------
+  const art = $('.footer-art');
+  if (art) {
+    const img = $('.footer-art-img', art);
+    const update = () => {
+      const top = art.getBoundingClientRect().top;
+      const k = Math.min(1, Math.max(0, (innerHeight - top) / (innerHeight * 0.85)));
+      img.style.opacity = k.toFixed(3);
+    };
+    addEventListener('scroll', () => requestAnimationFrame(update), {passive: true});
+    addEventListener('resize', update);
+    update();
+  }
+
   // ---- Mobile drawer ------------------------------------------------------
   const setDrawer = (open) => document.body.classList.toggle('drawer-open', open);
   $$('[data-drawer-open]').forEach((b) => b.addEventListener('click', () => setDrawer(true)));

@@ -73,10 +73,12 @@ const themeScript = `(function(){try{var d=localStorage.getItem('theme')==='dark
 
 export function page(ctx, {route, title, description, section, body, ogType = 'website', extraHead = '', needs = {}}) {
   const c = ctx.config;
-  // Background: the site's ASCII art (site.config.js sceneBackground), or a page's own scene
+  // ASCII background: Pioneer behind every page (site.config.js), or a page's own scene
   // chosen in its front matter (`ascii: rocket`).
   const rocketBg = needs.ascii === 'rocket';
-  const sceneBg = !!c.sceneBackground && !rocketBg;
+  const pioneerBg = !!c.pioneer?.background && !rocketBg;
+  const pioneerJs = pioneerBg;
+  const footerArt = c.footerArt && (c.footerArt[needs.ascii] || c.footerArt.default);
   const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
   const canonical = ctx.absUrl(route);
@@ -109,17 +111,19 @@ ${needs.math ? `<link rel="stylesheet" href="${ctx.asset('assets/katex/katex.min
 <script>${themeScript}</script>
 <script type="application/ld+json">${JSON.stringify(c.jsonLd).replace(/</g, '\\u003c')}</script>
 ${extraHead}
+${pioneerJs ? `<script type="importmap">${JSON.stringify({imports: {three: ctx.asset('assets/vendor/three/build/three.module.js'), 'three/addons/': ctx.asset('assets/vendor/three/examples/jsm/')}})}</script>
+<script type="module" src="${ctx.asset(ctx.assets.pioneer)}"></script>` : ''}
 <script defer src="${ctx.asset(ctx.assets.js)}" data-base="${c.baseUrl}" data-mermaid="${ctx.asset(ctx.assets.mermaid)}"></script>
 ${ctx.dev ? `<script>new EventSource('/__reload').onmessage=()=>location.reload()</script>` : ''}
 </head>
-<body class="section-${section || 'page'}${rocketBg ? ' has-pioneer-bg' : ''}${sceneBg ? ' has-scene-bg' : ''}">
+<body class="section-${section || 'page'}${pioneerBg || rocketBg ? ' has-pioneer-bg' : ''}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${navbar(ctx, section)}
-${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden="true"></canvas><script defer src="${ctx.asset(ctx.assets.rocket)}"></script>` : ''}${sceneBg ? `<div class="scene-bg" aria-hidden="true" style="background-image:url('${ctx.asset(c.sceneBackground)}')"></div>` : ''}
+${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden="true"></canvas><script defer src="${ctx.asset(ctx.assets.rocket)}"></script>` : ''}${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
 ${body}
 ${footer(ctx)}
-${sceneBg ? '<div class="scene-reveal" aria-hidden="true"></div>' : ''}
+${footerArt ? `<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div></div>` : ''}
 <div class="search-modal" data-search-modal hidden>
   <div class="search-backdrop" data-search-close></div>
   <div class="search-panel" role="dialog" aria-label="Search">

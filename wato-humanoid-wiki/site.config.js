@@ -83,10 +83,12 @@ export default {
     wordsPerMinute: 200,
   },
 
-  // Full-page ASCII art behind every page (except pages with their own `ascii:` scene, e.g. the
-  // rocket pages). Scroll past the footer to see it uncovered. Set to null to turn it off.
-  // How it's made: scripts/ascii-art.py.
-  sceneBackground: 'img/ascii/pioneer-earthrise.webp',
+  // ASCII Pioneer (theme/js/ascii-pioneer.js): a faint, slowly turning Pioneer behind every page.
+  pioneer: {background: true},
+
+  // ASCII art that fades in when you scroll past the footer. Pages with `ascii: rocket` in their
+  // front matter get the rocket one. Made with scripts/ascii-art.py. Set to null to turn off.
+  footerArt: {default: 'img/ascii/pioneer-earthrise.webp', rocket: 'img/ascii/pioneer-launch.webp'},
 
   code: {
     // Shiki theme names: https://shiki.style/themes
