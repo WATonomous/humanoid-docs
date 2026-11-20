@@ -85,6 +85,7 @@ theme/layout.js    HTML templates for every page type
 theme/css/         stylesheets (00-tokens.css has the colours and fonts)
 theme/js/site.js   browser JS: dark mode, search, TOC highlight, copy buttons, image zoom, Mermaid
 theme/js/ascii-pioneer.js   the ASCII Pioneer background (3D model in static/models/, turned off in site.config.js)
+theme/js/ascii-rocket.js    colour ASCII rocket background, used by pages with `ascii: rocket` in their front matter
 scripts/           the build: content discovery, Markdown pipeline, feeds, dev server
 ```
 

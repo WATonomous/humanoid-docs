@@ -28,3 +28,24 @@
 }
 .has-pioneer-bg .footer { position: relative; z-index: 1; }
 @media (max-width: 996px) { .pioneer-bg { display: none; } }
+
+/* Boxes sit on a solid page background so the figure never shows through behind their text. */
+.has-pioneer-bg .pager-link,
+.has-pioneer-bg .card,
+.has-pioneer-bg .post-card,
+.has-pioneer-bg .toc-mobile,
+.has-pioneer-bg .markdown table,
+.has-pioneer-bg .markdown img,
+.has-pioneer-bg .markdown svg,
+.has-pioneer-bg .ajn-figure,
+.has-pioneer-bg .markdown pre.mermaid,
+.has-pioneer-bg .tag {
+  background-color: var(--c-bg);
+}
+.has-pioneer-bg .post-card { background-color: var(--c-surface); }
+/* Tinted callouts: keep the tint, but over solid page colour */
+.has-pioneer-bg .admonition { background: linear-gradient(var(--adm-bg), var(--adm-bg)), var(--c-bg); }
+
+/* Rocket pages (`ascii: rocket` in front matter): colour ASCII rocket instead of Pioneer */
+.rocket-bg { --ascii-opacity: 0.75; }
+[data-theme='dark'] .rocket-bg { --ascii-opacity: 0.9; }

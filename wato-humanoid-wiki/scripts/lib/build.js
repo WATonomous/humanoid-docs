@@ -141,6 +141,9 @@ export async function build({dev = false, outDir = r('build'), log = console.log
   const pioneerJs = fs.readFileSync(r('theme/js/ascii-pioneer.js'), 'utf8');
   assets.pioneer = `assets/ascii-pioneer.${hashOf(pioneerJs)}.js`;
   write(path.join(outDir, assets.pioneer), pioneerJs);
+  const rocketJs = fs.readFileSync(r('theme/js/ascii-rocket.js'), 'utf8');
+  assets.rocket = `assets/ascii-rocket.${hashOf(rocketJs)}.js`;
+  write(path.join(outDir, assets.rocket), rocketJs);
   // In dev the server falls back to static/ directly; copying ~100 MB each rebuild is slow.
   if (!dev) copyDir(staticDir, outDir);
 

@@ -3,6 +3,7 @@ slug: tvc-rocket-deep-dive
 title: "TVC Rocket: A Technical Deep Dive"
 authors: [wilson, senna]
 tags: [rocketry, tvc]
+ascii: rocket
 ---
 
 A spinoff from the WATonomous Humanoid team: a thrust-vector-controlled (TVC) rocket. Here's how it works.
