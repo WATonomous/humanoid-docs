@@ -56,7 +56,7 @@
     // rocket pose: climbs slowly up the canvas and loops; the TVC gimbal makes it wobble
     const cycle = (t * 0.035) % 1;
     const cx = W * 0.6 + Math.sin(t * 0.7) * W * 0.012;
-    const top = H * (0.2 - cycle * 0.12);
+    const top = H * (0.47 - cycle * 0.06); // below the "On this page" box so the nose cone shows
     const len = H * 0.34;
     const bw = Math.max(8, W * 0.1);
     const tilt = Math.sin(t * 1.3) * 0.05;
@@ -89,7 +89,7 @@
 
     // flame plume: layered teardrops, white-hot core to red edge, flickering
     const flick = 0.85 + 0.15 * Math.sin(t * 31) * Math.sin(t * 17);
-    const plume = H * 0.5 * flick;
+    const plume = H * 0.4 * flick;
     const layers = [
       [1.0, 2.6, '255,40,90'],
       [0.9, 2.1, '255,70,20'],
@@ -187,6 +187,10 @@
         if (!dark && sat < 40) {
           const k = lum < 0.15 ? 0.25 : 0.55;
           R *= k; G *= k; B *= k;
+        }
+        // on a dark page, the black nose cone, bands and fins would vanish: lift them to mid grey
+        if (dark && sat < 40 && lum < 0.3) {
+          R = G = B = 150;
         }
         gctx.globalAlpha = Math.min(1, 0.35 + cover * 0.8);
         gctx.fillStyle = `rgb(${R | 0},${G | 0},${B | 0})`;
