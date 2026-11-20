@@ -10,7 +10,7 @@ Each finger of the Pioneer hand is driven by **four motors in the forearm, one c
 **f1–f4**, the same on every finger. **f1 is the spread cable**: it pulls the finger's spread yoke toward the thumb, and a spring
 pulls it back. A closed cross-cable between the PIP and DIP knuckles makes the last two joints bend together.
 
-<img alt="One finger's cables: four motor cables, the spread spring and the PIP-DIP cross-cable, in side view and seen from the palm" src="/humanoid-docs/img/humanoid/tendon-hand/finger-cables.svg" style={{width: '100%', maxWidth: '1000px', display: 'block', margin: '16px 0'}} />
+![One finger's cables: four motor cables, the spread spring and the PIP-DIP cross-cable, in side view and seen from the palm](/img/humanoid/tendon-hand/finger-cables.svg)
 
 *Top: one finger from the side, palm side down. Bottom: the spread drive seen from the palm, beside the alternative that was
 considered and not chosen (a differential pair, whose spread weakens as the finger curls). Not to scale.*
@@ -27,7 +27,7 @@ considered and not chosen (a differential pair, whose spread weakens as the fing
 Per finger: 4 motor cables, the cross-cable loop and the spread spring. On the CAD the cables are named per finger (T1–T4 middle,
 I1–I4 index, R1–R4 ring, L1–L4 little).
 
-<img alt="The whole hand from the palm side, cables visible at the knuckles" src="/humanoid-docs/img/humanoid/tendon-hand/hand-palm.png" style={{width: '100%', maxWidth: '900px', display: 'block', margin: '16px 0'}} />
+![The whole hand from the palm side, cables visible at the knuckles](/img/humanoid/tendon-hand/hand-palm.png)
 
 *The hand from the palm side: skin, skeleton and the dark palm casing, with each cable in its own colour where it passes the
 knuckles. The forearm motors and the wrist are off the top of the picture; the thumb's root joints have their own motors.*
@@ -40,9 +40,7 @@ spring, so it pushes on what it touches with a force you choose and gives way wh
 
 ### A push from behind
 
-<video controls muted playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/tendon-hand/push-from-behind.png" style={{display: 'block', width: '100%', maxWidth: '900px', margin: '12px 0'}}>
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/push-from-behind.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/push-from-behind.mp4 "poster=/img/humanoid/tendon-hand/push-from-behind.png")
 
 A probe pushes the index finger from the back, then a rod presses all four fingers. **Left:** the joint impedance with its torque caps
 and 50 N cable tension budget; the fingers give way and spring back. **Right:** stiff spool position servos, as on a conventional tendon
@@ -51,9 +49,7 @@ yield, not push back hard.
 
 ### Power grasp
 
-<video controls muted playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.png" style={{display: 'block', width: '100%', maxWidth: '900px', margin: '12px 0'}}>
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/power-grasp.mp4 "poster=/img/humanoid/tendon-hand/power-grasp.png")
 
 The fingers close softly on a 36 mm, 100 g bar and each stops at its own contact; the support drops away, the wrist swings, a 5 N
 pull tugs the bar, then the hand lets go. *Why it matters:* one "close" command holds the object without a force sensor or a planned
@@ -61,9 +57,7 @@ pose per finger.
 
 ### Pinch
 
-<video controls muted playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/tendon-hand/pinch.png" style={{display: 'block', width: '100%', maxWidth: '900px', margin: '12px 0'}}>
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/pinch.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/pinch.mp4 "poster=/img/humanoid/tendon-hand/pinch.png")
 
 Thumb and index in pinch mode (three times their normal stiffness) hold a 16 mm, 50 g cube; the stand drops away, then the wrist
 tilts ±30° and 20° sideways. The plot in the corner draws the pad force (blue) and the cube's slip against the index tip (orange) as it
@@ -71,9 +65,7 @@ happens. *Why it matters:* precise grasps of small objects are where tendon hand
 
 ### Tracing
 
-<video controls muted playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/tendon-hand/tracing.png" style={{display: 'block', width: '100%', maxWidth: '900px', margin: '12px 0'}}>
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/tracing.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/tracing.mp4 "poster=/img/humanoid/tendon-hand/tracing.png")
 
 The index fingertip follows a 12 mm circle. Each point of the circle is turned into MCP and PIP targets by inverse kinematics (DIP =
 PIP, spread 0); the controller then tracks those joint targets from the motor encoders alone, with no fingertip feedback. The trail is
@@ -82,9 +74,7 @@ joint sensors.
 
 ### Gestures
 
-<video controls muted playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/tendon-hand/gestures.png" style={{display: 'block', width: '100%', maxWidth: '900px', margin: '12px 0'}}>
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/gestures.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/gestures.mp4 "poster=/img/humanoid/tendon-hand/gestures.png")
 
 The hand moving through poses under the same controller: fist, counting one to five, rock, a pinch with the index and with the little
 finger, hook and grip.

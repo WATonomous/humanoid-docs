@@ -1,0 +1,109 @@
+.ajn-figure {
+  margin: 1.5rem 0;
+}
+
+.ajn-svg {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  --arm-new: #b45309;
+}
+
+[data-theme='dark'] .ajn-svg {
+  --arm-new: #f59e0b;
+}
+
+.ajn-band {
+  fill: var(--c-emph-100);
+}
+
+.ajn-group-label {
+  fill: var(--c-emph-600);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ajn-torso {
+  fill: var(--c-emph-200);
+  stroke: var(--c-emph-500);
+  stroke-width: 1.5;
+}
+
+.ajn-link {
+  fill: none;
+  stroke: var(--c-emph-500);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.ajn-link-label {
+  fill: var(--c-emph-700);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.ajn-leader,
+.ajn-leader-new {
+  stroke: var(--c-emph-400);
+  stroke-width: 1;
+}
+
+.ajn-leader-new {
+  stroke: var(--arm-new);
+}
+
+.ajn-joint,
+.ajn-joint-new {
+  fill: var(--c-bg);
+  stroke: var(--c-primary);
+  stroke-width: 2.5;
+}
+
+.ajn-joint-new {
+  stroke: var(--arm-new);
+  stroke-dasharray: 4 3;
+}
+
+.ajn-index,
+.ajn-index-new {
+  fill: var(--c-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ajn-index-new {
+  fill: var(--arm-new);
+}
+
+.ajn-name,
+.ajn-name-new {
+  fill: var(--c-text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ajn-name-new {
+  fill: var(--arm-new);
+}
+
+.ajn-desc {
+  fill: var(--c-emph-800);
+  font-size: 13px;
+}
+
+.ajn-new-tag {
+  fill: var(--arm-new);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ajn-note {
+  fill: var(--c-emph-700);
+  font-size: 12px;
+}

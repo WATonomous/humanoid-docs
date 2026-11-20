@@ -7,9 +7,7 @@ tags: [software, ik]
 
 How do you tell a robot arm "put your hand right here," or a robot hand "put your fingertip right here," and have it actually figure out the joint angles to make that happen? That's inverse kinematics, and it's what drives both the bimanual arm setup and the individual hand.
 
-<video width="600" controls>
-  <source src="/humanoid-docs/img/humanoid/videos/ik-bimanual-arm.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/videos/ik-bimanual-arm.mp4)
 
 {/* truncate */}
 
@@ -29,9 +27,7 @@ That works cleanly here because each arm only ever has one target: its own gripp
 
 ## Five fingertips, one shared chain
 
-<video width="600" controls>
-  <source src="https://github.com/user-attachments/assets/02b19410-c39e-403a-9bea-164c5141f61f" type="video/mp4" />
-</video>
+![](https://github.com/user-attachments/assets/02b19410-c39e-403a-9bea-164c5141f61f "video")
 
 The hand can't get away with the same trick. It's a 6 DOF arm plus a 15 DOF hand — 21 degrees of freedom total — driving 5 fingertips at once, and all 5 of those fingertips share the same upstream arm joints. A target for one fingertip and a target for another aren't independent: moving the arm to help one finger reach its target shifts where every other finger ends up too.
 
@@ -59,4 +55,4 @@ $$
 
 That loop runs until the error drops below a tolerance or it hits a max iteration count — at which point you've got a joint configuration that puts every fingertip where it needs to be, or as close as the hand's geometry allows. The Jacobians and forward kinematics come from MuJoCo, with Isaac Sim handling visualization. Only fingertip position is constrained — orientation is left free — which keeps the problem smaller and the solver faster per iteration.
 
-For the exact algorithm, defaults, and code-level detail, see the [Software & ML docs](/humanoid-docs/software).
+For the exact algorithm, defaults, and code-level detail, see the [Software & ML docs](/software).

@@ -7,9 +7,7 @@ tags: [software, controls, rl]
 
 **Goal:** get a stationary bimanual arm to return a badminton serve with either hand, in simulation. The result is one single-arm network that drives both arms, and a small critic model to pick either the left or right arm. On 8192 serves it has never seen, it hits 97.9%, splits the work 49/51 between the arms, and sends 94% of returns over the net.
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/badminton/blog/demo_poster.png">
-  <source src="/humanoid-docs/img/humanoid/badminton/blog/demo.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/badminton/blog/demo.mp4 "poster=/img/humanoid/badminton/blog/demo_poster.png")
 
 {/* truncate */}
 

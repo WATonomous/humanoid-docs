@@ -9,7 +9,7 @@ sidebar_position: 2.5
 
 The light-box workspace used to collect manipulation data for learning.
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="Manipulation data collection light box" src="/humanoid-docs/img/humanoid/lightbox-workspace-1.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Manipulation data collection light box, alternate angle" src="/humanoid-docs/img/humanoid/lightbox-workspace-2.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-</div>
+:::gallery
+![Manipulation data collection light box](/img/humanoid/lightbox-workspace-1.jpg)
+![Manipulation data collection light box, alternate angle](/img/humanoid/lightbox-workspace-2.jpg)
+:::

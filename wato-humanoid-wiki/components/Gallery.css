@@ -1,0 +1,12 @@
+.gallery {
+  display: grid;
+  grid-template-columns: var(--gallery-cols, repeat(auto-fill, minmax(280px, 1fr)));
+  gap: 12px;
+  align-items: start;
+  margin: 0 0 1.25rem;
+}
+.gallery > p { display: contents; }
+.gallery img, .gallery video { display: block; width: 100%; margin: 0; border-radius: 8px; }
+@media (max-width: 576px) {
+  .gallery { grid-template-columns: 1fr; }
+}

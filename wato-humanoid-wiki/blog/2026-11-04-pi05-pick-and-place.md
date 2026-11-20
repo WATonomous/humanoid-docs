@@ -7,9 +7,7 @@ tags: [software, imitation-learning]
 
 **Goal:** get Pioneer's left arm to pick up a cube and place it in a tray in Isaac Sim, from camera images and a text prompt. The approach: fine-tune the π₀.5 vision-language-action (VLA) model on demonstrations recorded with a leader arm, training only the action expert on top of a frozen vision-language backbone.
 
-<video width="100%" controls muted playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/pi05/demo-poster.jpg">
-  <source src="/humanoid-docs/img/humanoid/videos/pi05-pick-place-demo.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/videos/pi05-pick-place-demo.mp4 "poster=/img/humanoid/pi05/demo-poster.jpg")
 
 *The policy after 6,000 weight updates, running in Isaac Sim over several attempts in a row. The two smaller windows are what the policy sees: the left wrist camera and the base camera.*
 
@@ -54,12 +52,10 @@ There was no dataset for this arm, so one was recorded in simulation:
 - It is driven by a 3D-printed leader arm: seven Feetech STS3215 servos used only as encoders, one per joint and one for the gripper.
 - Each leader joint maps directly to the matching simulated joint, so moving the leader by hand moves the robot the same way, with no inverse kinematics.
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'flex-start'}}>
-  <img alt="A white 3D-printed leader arm with a servo at each joint, clamped to a desk, with the Pioneer arm simulation on the monitor behind it" src="/humanoid-docs/img/humanoid/pi05/leader-arm.jpg" style={{width: 'calc(35% - 6px)', minWidth: '220px'}} />
-  <video controls autoPlay muted loop playsInline preload="metadata" poster="/humanoid-docs/img/humanoid/pi05/teleop-poster.jpg" style={{width: 'calc(65% - 6px)', minWidth: '280px'}}>
-    <source src="/humanoid-docs/img/humanoid/videos/pi05-leader-arm-teleop.mp4" type="video/mp4" />
-  </video>
-</div>
+:::gallery 1fr 2fr
+![A white 3D-printed leader arm with a servo at each joint, clamped to a desk, with the Pioneer arm simulation on the monitor behind it](/img/humanoid/pi05/leader-arm.jpg)
+![](/img/humanoid/videos/pi05-leader-arm-teleop.mp4 "poster=/img/humanoid/pi05/teleop-poster.jpg autoplay")
+:::
 
 *Left: the leader arm — seven servos used as joint encoders, with the scene it drives on the monitor behind it. Right: recording a demonstration; the simulated arm follows the leader joint for joint.*
 

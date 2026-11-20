@@ -1,0 +1,28 @@
+.admonition {
+  --adm: var(--c-primary);
+  --adm-bg: var(--c-primary-soft);
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 4px solid var(--adm);
+  border-radius: var(--radius);
+  background: var(--adm-bg);
+}
+.admonition-tip { --adm: #2e8555; --adm-bg: rgba(46, 133, 85, 0.1); }
+.admonition-warning, .admonition-caution { --adm: #c77c00; --adm-bg: rgba(230, 167, 0, 0.12); }
+.admonition-danger { --adm: #d03a3a; --adm-bg: rgba(225, 50, 56, 0.1); }
+.admonition-info { --adm: #3578a8; --adm-bg: rgba(84, 199, 236, 0.1); }
+[data-theme='dark'] .admonition-tip { --adm: #4cc28a; }
+[data-theme='dark'] .admonition-warning, [data-theme='dark'] .admonition-caution { --adm: #f0b429; }
+[data-theme='dark'] .admonition-danger { --adm: #f06a6a; }
+[data-theme='dark'] .admonition-info { --adm: #6cc4ee; }
+.admonition-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  color: var(--adm);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.admonition-content > :last-child { margin-bottom: 0; }

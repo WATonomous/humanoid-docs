@@ -7,9 +7,7 @@ tags: [rocketry, tvc]
 
 A spinoff from the WATonomous Humanoid team: a thrust-vector-controlled (TVC) rocket. Here's how it works.
 
-<video width="600" controls>
-  <source src="/humanoid-docs/img/humanoid/videos/tvc-rocket.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/videos/tvc-rocket.mp4)
 
 {/* truncate */}
 
@@ -19,7 +17,7 @@ Have you ever wondered how NASA or SpaceX control their rocket during flight? Fo
 
 So instead, big rockets use **thrust vector control (TVC)**. The idea is simple: you control where the thrust points, and use the horizontal component of that thrust to generate a torque that controls the rocket's orientation. Tilt the engine a few degrees off-center, and now part of that thrust is pushing sideways instead of straight down — and since it's acting away from the rocket's center of mass, it rotates the rocket. Doesn't matter how fast (or slow) you're going, it still works, which is why it's the go-to for landings too, not just ascent.
 
-<img src="/humanoid-docs/img/humanoid/rocketry/tvc-diagram.png" alt="TVC gimbal angle and torque diagram" width="500" />
+![TVC gimbal angle and torque diagram](/img/humanoid/rocketry/tvc-diagram.png "width=500")
 
 ## Meet Pioneer
 
@@ -78,7 +76,7 @@ The body's a foil-wrapped tube with a 3D-printed nose cone, but the part that ac
 
 Flying the electronics is a custom PCB — Arduino Nano as the flight computer, an MPU6050 for rate/angle data (that's what feeds the PID loop) and a BMP180 barometer. All of it sits in a bay cut into the body tube, wired straight to the servos.
 
-<img src="/humanoid-docs/img/humanoid/rocketry/pioneer-assembled.jpg" alt="Pioneer fully assembled with avionics bay open" width="400" />
+![Pioneer fully assembled with avionics bay open](/img/humanoid/rocketry/pioneer-assembled.jpg "width=400")
 
 ## Testing, one milestone at a time
 
@@ -86,25 +84,25 @@ Since a real launch is a one-shot, motor-consuming event, we can't just wing it 
 
 1. **MATLAB/Simulink simulation** — check the control loop and gains actually work against a simulated rocket, before touching hardware.
 
-<img src="/humanoid-docs/img/humanoid/rocketry/simulink-model.png" alt="Simulink rocket motor control loop model" width="700" />
+![Simulink rocket motor control loop model](/img/humanoid/rocketry/simulink-model.png "width=700")
 
-<img src="/humanoid-docs/img/humanoid/rocketry/simulink-results.png" alt="Simulink simulation results showing PID response" width="700" />
+![Simulink simulation results showing PID response](/img/humanoid/rocketry/simulink-results.png "width=700")
 
 2. **BLDC test bench** — get the gimbal actuator and control loop timing working on the bench, driven by a BLDC motor instead of a real rocket motor.
 
-<img src="/humanoid-docs/img/humanoid/rocketry/gimbal-bench-1.jpg" alt="Gimbal and motor mounted on the bench" width="500" />
+![Gimbal and motor mounted on the bench](/img/humanoid/rocketry/gimbal-bench-1.jpg "width=500")
 
-<img src="/humanoid-docs/img/humanoid/rocketry/gimbal-bench-2.jpg" alt="Rocket clamped in the BLDC test bench" width="500" />
+![Rocket clamped in the BLDC test bench](/img/humanoid/rocketry/gimbal-bench-2.jpg "width=500")
 
 3. **Motor test bench static fire** — full control loop, real motor, but static-fired on a stand so we can measure thrust and gimbal response without an actual flight.
 
-<img src="/humanoid-docs/img/humanoid/rocketry/static-fire.jpg" alt="Pioneer static fire ignition" width="500" />
+![Pioneer static fire ignition](/img/humanoid/rocketry/static-fire.jpg "width=500")
 
 4. **Actual flight test** — Pioneer leaves the pad.
 
-<img src="/humanoid-docs/img/humanoid/rocketry/pioneer-on-pad.jpg" alt="Pioneer on the launch pad before flight" width="500" />
+![Pioneer on the launch pad before flight](/img/humanoid/rocketry/pioneer-on-pad.jpg "width=500")
 
-<img src="/humanoid-docs/img/humanoid/rocketry/pioneer-liftoff.jpg" alt="Pioneer liftoff" width="500" />
+![Pioneer liftoff](/img/humanoid/rocketry/pioneer-liftoff.jpg "width=500")
 
 ## Results
 

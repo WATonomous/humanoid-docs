@@ -9,9 +9,7 @@ sidebar_position: 3
 
 ## In-Hand Manipulation RL Task
 
-<video width="600" controls>
-  <source src="/humanoid-docs/img/humanoid/videos/inhand-rl-cube.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/videos/inhand-rl-cube.mp4)
 
 Reinforcement learning-based in-hand cube reorientation task for the 16 DOF Wato hand in Isaac Lab. The policy learns to reorient a DexCube held in the palm toward commanded goal orientations using PPO (Proximal Policy Optimization).
 
@@ -67,16 +65,12 @@ The task is implemented in Isaac Lab and adapted from their in-hand manipulation
 
 ## Additional RL Demonstrations
 
-<video width="600" controls>
-  <source src="https://github.com/user-attachments/assets/1d998015-7e5d-4d95-a16e-5a038e604794" type="video/mp4" />
-</video>
+![](https://github.com/user-attachments/assets/1d998015-7e5d-4d95-a16e-5a038e604794 "video")
 
-<video width="600" controls>
-  <source src="https://github.com/user-attachments/assets/80bf81cc-a531-469d-bf8f-33957ce153b9" type="video/mp4" />
-</video>
+![](https://github.com/user-attachments/assets/80bf81cc-a531-469d-bf8f-33957ce153b9 "video")
 
 ## Manipulation Task Setup
 
 Parallelized manipulation task environments for RL training.
 
-<img alt="Manipulation task setup, parallel environments" src="/humanoid-docs/img/humanoid/manipulation-task-setup.png" width="700" />
+![Manipulation task setup, parallel environments](/img/humanoid/manipulation-task-setup.png "width=700")

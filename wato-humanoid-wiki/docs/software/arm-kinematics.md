@@ -9,17 +9,13 @@ sidebar_position: 1
 
 ## Bimanual Arm Inverse Kinematics
 
-<video width="600" controls>
-  <source src="/humanoid-docs/img/humanoid/videos/ik-bimanual-arm.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/videos/ik-bimanual-arm.mp4)
 
 Jacobian-based iterative IK for the dual-arm setup, driving both end effectors to target poses in simulation.
 
 ## 6 DOF Arm + 15 DOF Hand Jacobian Iterative Based IK Controller
 
-<video width="600" controls>
-  <source src="https://github.com/user-attachments/assets/02b19410-c39e-403a-9bea-164c5141f61f" type="video/mp4" />
-</video>
+![](https://github.com/user-attachments/assets/02b19410-c39e-403a-9bea-164c5141f61f "video")
 
 ### Inverse kinematics: `fingertip_ik.py`
 

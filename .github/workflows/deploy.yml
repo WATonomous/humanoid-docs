@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main          # trigger on every push to main
+  pull_request:       # build (but don't deploy) every PR, so broken pages are caught before merge
   workflow_dispatch:  # also allow manual trigger from GitHub UI
 
 permissions:
@@ -13,12 +14,12 @@ permissions:
 
 # Only one deploy at a time
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
-    name: Build Docusaurus Site
+    name: Build Site
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,7 +31,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
           cache-dependency-path: wato-humanoid-wiki/package-lock.json
 
@@ -41,12 +42,14 @@ jobs:
         run: npm run build
 
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: wato-humanoid-wiki/build
 
   deploy:
     name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
