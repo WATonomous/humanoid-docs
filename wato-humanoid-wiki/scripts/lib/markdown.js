@@ -7,6 +7,9 @@
 //   - Admonitions: :::note / :::tip / :::info / :::warning / :::danger, with an optional title
 //   - Inline HTML/JSX, including style={{...}} objects (it's MDX)
 //   - Components from components/ (no import needed, e.g. <ArmJointNaming />)
+//   - Videos with image syntax: ![alt](/img/clip.mp4 "poster=/img/clip.png")
+//   - Media options in the image title: width=500, width=60%, poster=..., autoplay, video
+//   - Image/video grids: :::gallery (or :::gallery 2, :::gallery 1fr 2fr) ... :::
 
 import {compile, run} from '@mdx-js/mdx';
 import * as jsxRuntime from 'react/jsx-runtime';
@@ -36,6 +39,7 @@ function preprocess(source) {
   const out = [];
   let fence = null;
   const stack = [];
+  const closers = [];
   for (const line of lines) {
     const fenceMatch = line.match(/^\s*(`{3,}|~{3,})/);
     if (fence) {
@@ -49,15 +53,23 @@ function preprocess(source) {
       continue;
     }
     const open = line.match(/^(\s*):::(\w+)(?:\[(.*)\]|\s+(.*))?\s*$/);
+    if (open && open[2].toLowerCase() === 'gallery') {
+      const cols = (open[3] ?? open[4] ?? '').trim();
+      stack.push(open[1]);
+      closers.push('Gallery');
+      out.push(`${open[1]}<Gallery${cols ? ` cols={${JSON.stringify(cols)}}` : ''}>`, '');
+      continue;
+    }
     if (open && ADMONITION_TYPES.includes(open[2].toLowerCase())) {
       const title = (open[3] ?? open[4] ?? '').trim();
       stack.push(open[1]);
+      closers.push('Admonition');
       out.push(`${open[1]}<Admonition type="${open[2].toLowerCase()}"${title ? ` title={${JSON.stringify(title)}}` : ''}>`, '');
       continue;
     }
     if (/^\s*:::\s*$/.test(line) && stack.length) {
       const indent = stack.pop();
-      out.push('', `${indent}</Admonition>`);
+      out.push('', `${indent}</${closers.pop()}>`);
       continue;
     }
     // Components are global; drop `import X from '@site/...components/X'` lines.
@@ -94,6 +106,54 @@ function remarkMermaid() {
         },
       };
       return SKIP;
+    });
+  };
+}
+
+// Image syntax with options in the title:
+//   ![alt](/img/a.jpg "width=500")               sized image (px or %)
+//   ![alt](/img/clip.mp4 "poster=/img/clip.png")  video (by extension, or the "video" flag)
+//   ![alt](/img/clip.mp4 "autoplay")              looping, muted autoplay (like a GIF)
+// A title that isn't made only of these options is kept as a normal title.
+const VIDEO_EXT = /\.(mp4|webm|mov|m4v)(\?.*)?$/i;
+function parseMediaOptions(title) {
+  if (!title) return {};
+  const opts = {};
+  for (const token of title.trim().split(/\s+/)) {
+    const m = token.match(/^(width|poster)=(.+)$/);
+    if (m) opts[m[1]] = m[2];
+    else if (token === 'autoplay' || token === 'video') opts[token] = true;
+    else return null;
+  }
+  return opts;
+}
+function remarkMedia() {
+  return (tree) => {
+    visit(tree, 'image', (node, index, parent) => {
+      const opts = parseMediaOptions(node.title);
+      if (!opts) return;
+      const width = opts.width && (/^\d+$/.test(opts.width) ? {width: opts.width} : {style: `width: ${opts.width}`});
+      if (opts.video || VIDEO_EXT.test(node.url)) {
+        parent.children[index] = {
+          type: 'video',
+          data: {
+            hName: 'video',
+            hProperties: {
+              src: node.url,
+              poster: opts.poster,
+              controls: true,
+              playsInline: true,
+              preload: 'metadata',
+              ariaLabel: node.alt || undefined,
+              ...(opts.autoplay ? {autoPlay: true, muted: true, loop: true} : {}),
+              ...width,
+            },
+          },
+        };
+        return;
+      }
+      node.title = null;
+      if (width) node.data = {hProperties: width};
     });
   };
 }
@@ -201,7 +261,7 @@ export function createRenderer({components, resolveUrl, codeThemes}) {
     outputFormat: 'function-body',
     format: 'mdx', // treat .md like .mdx (as Docusaurus does)
     development: false,
-    remarkPlugins: [remarkGfm, remarkMath, remarkMermaid],
+    remarkPlugins: [remarkGfm, remarkMath, remarkMermaid, remarkMedia],
     rehypePlugins: [
       [rehypeKatex, {strict: false}],
       [

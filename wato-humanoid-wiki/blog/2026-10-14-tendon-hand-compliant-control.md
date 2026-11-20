@@ -181,9 +181,7 @@ The middle finger on its own, running the joint impedance. Some tests compare it
 
 ### Why the PIP and DIP are tied together
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/blog/dip_coupling_45.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/blog/dip_coupling.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/blog/dip_coupling.mp4 "poster=/img/humanoid/tendon-hand/blog/dip_coupling_45.png")
 
 **Without the cross-cable the DIP collapses (left); with it, the DIP follows the PIP (right).**  
 **Test:** the same moves twice, with the DIP free and with it tied to the PIP.
@@ -227,9 +225,7 @@ The cross-cable is required, for three reasons:
 **See:** without it (orange), the error **repeats every swing**: it **drifts** to ~25° as the wrist bends and back when it is straight. At the far backward swing (1.5 s) it **loses track and flails** (the noisy patch). With the wrist angle (blue): **under 1.5°**.  
 **Why:** every finger cable crosses the wrist, so bending the wrist pulls on them.
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/blog/wrist_swing_poster.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/blog/wrist_swing.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/blog/wrist_swing.mp4 "poster=/img/humanoid/tendon-hand/blog/wrist_swing_poster.png")
 
 *The wrist swing, on video. Left: the controller ignores the wrist. Right: it reads the wrist, and the finger holds still.*
 
@@ -312,33 +308,23 @@ Watch for: a finger that loses a light bar is flung by a fast wrist reversal; it
 
 ### Videos
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/push-from-behind.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/push-from-behind.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/push-from-behind.mp4 "poster=/img/humanoid/tendon-hand/push-from-behind.png")
 
 *A push from behind: the impedance gives way (left), a stiff servo fights (right). A probe pushes the index, then a rod presses all four fingers.*
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/power-grasp.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/power-grasp.mp4 "poster=/img/humanoid/tendon-hand/power-grasp.png")
 
 *Power grasp. Close on a 100 g bar, support drops, wrist swings, a 5 N tug, release.*
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/pinch.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/pinch.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/pinch.mp4 "poster=/img/humanoid/tendon-hand/pinch.png")
 
 *Pinch: a 50 g cube holds (100 g drops). Thumb and index hold the cube; the stand drops; the wrist tilts ±30° and 20° sideways. Corner plot: pad force (blue) and slip (orange).*
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/tracing.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/tracing.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/tracing.mp4 "poster=/img/humanoid/tendon-hand/tracing.png")
 
 *The fingertip traces a 12 mm circle to 1.1 mm RMS, from motor encoders alone. Inverse kinematics turns the circle into MCP and PIP targets offline; the controller tracks them.*
 
-<video width="100%" controls muted playsInline poster="/humanoid-docs/img/humanoid/tendon-hand/gestures.png">
-  <source src="/humanoid-docs/img/humanoid/tendon-hand/gestures.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/tendon-hand/gestures.mp4 "poster=/img/humanoid/tendon-hand/gestures.png")
 
 *Gestures. Fist, one to five, rock, two pinches, hook and grip.*
 

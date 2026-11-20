@@ -7,9 +7,7 @@ sidebar_position: 5
 
 # Geometric Fabrics PCA
 
-<video width="600" controls>
-  <source src="https://github.com/user-attachments/assets/4661eef0-f966-4c65-83d6-3216d7fb3177" type="video/mp4" />
-</video>
+![](https://github.com/user-attachments/assets/4661eef0-f966-4c65-83d6-3216d7fb3177 "video")
 
 ## Goal
 

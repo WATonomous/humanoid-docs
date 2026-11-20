@@ -23,14 +23,21 @@ sidebar_label: Hand                # optional, overrides the sidebar label
 
 # Tendon Hand
 
-Text, **bold**, [links to other pages](./whole-body.md), images:
+Text, **bold**, [links to other pages](./whole-body.md), images and videos:
 
-![alt text](/img/humanoid/hand-palm.png)
+![The hand from the palm side](/img/humanoid/hand-palm.png)
+
+![](/img/humanoid/tendon-hand/pinch.mp4 "poster=/img/humanoid/tendon-hand/pinch.png")
+
+:::gallery
+![Leg render](/img/humanoid/leg-render-light.jpg)
+![Leg prototype](/img/humanoid/leg-prototype-1.jpg)
+:::
 ```
 
 - `docs/foo/index.md` is the page for the `foo` section (`/foo`). Other files in the folder are its sub-pages (`/foo/bar`).
 - `docs/foo/_category_.json` sets the section's sidebar label and position.
-- Images and videos go in `static/img/...` and are referenced as `/img/...`.
+- Images and videos go in `static/img/...` and are referenced as `/img/...` (no `/humanoid-docs/` prefix needed).
 
 **Blog posts**: add `blog/YYYY-MM-DD-some-name.md`:
 
@@ -58,7 +65,11 @@ The first paragraph shows on the blog index…
 | Diagrams | a ` ```mermaid ` code block |
 | Code highlighting | ` ```python `, ` ```cpp `, ` ```bash `… |
 | Callouts | `:::note`, `:::tip Optional title`, `:::info`, `:::warning`, `:::danger`, closed with `:::` |
-| Raw HTML / video | `<video controls src="/humanoid-docs/img/…mp4" />`, inline styles as `style={{maxWidth: '600px'}}` |
+| Video | `![what it shows](/img/humanoid/videos/clip.mp4)` — just image syntax with a video file |
+| Video options | `![](/img/clip.mp4 "poster=/img/clip.png")`, `"autoplay"` (muted loop, like a GIF), `"video"` for links without a `.mp4` ending |
+| Image size | `![alt](/img/photo.jpg "width=500")` or `"width=60%"` |
+| Image/video grid | `:::gallery` … `:::` with one image per line; `:::gallery 2` for two columns, `:::gallery 1fr 2fr` for custom widths |
+| Raw HTML | still allowed when you really need it, e.g. `<a class="button button--primary">` |
 | Components | any component in `components/`, e.g. `<ArmJointNaming />` (no import needed) |
 
 Files are parsed as [MDX](https://mdxjs.com/), so `{`, `}` and `<` in plain text need escaping (`\{`, `&lt;`), and comments are written `{/* like this */}`.

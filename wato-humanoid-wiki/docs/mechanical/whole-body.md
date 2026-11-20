@@ -9,17 +9,17 @@ description: The finalized Pioneer whole-body design, its 67 joints and the arm 
 The finalized Pioneer whole-body design: a white helmet with a graphite visor frame on a white torso, the 5 DOF arms, the 22 DOF tendon
 hands and the 6 DOF legs. Left and right are mirror images, part for part.
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="Pioneer whole body, three-quarter view" src="/humanoid-docs/img/humanoid/pioneer-whole-body-34.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Pioneer whole body, side view" src="/humanoid-docs/img/humanoid/pioneer-whole-body-side.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-</div>
+:::gallery
+![Pioneer whole body, three-quarter view](/img/humanoid/pioneer-whole-body-34.png)
+![Pioneer whole body, side view](/img/humanoid/pioneer-whole-body-side.png)
+:::
 
 ### Head
 
 The helmet has a raked wedge visor in gloss black, recessed in a dark graphite frame with a
 light bar round it, a fanned rib over the crown, cheek pads and temple vents. The neck dam flares into the torso's collar.
 
-<img alt="Pioneer head, three-quarter view" src="/humanoid-docs/img/humanoid/pioneer-head-34.png" style={{width: '60%', minWidth: '280px', display: 'block', margin: '16px 0'}} />
+![Pioneer head, three-quarter view](/img/humanoid/pioneer-head-34.png "width=60%")
 
 ## 67 Joints
 

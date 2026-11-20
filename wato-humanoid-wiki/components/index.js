@@ -5,5 +5,6 @@
 
 import Admonition from './Admonition.js';
 import ArmJointNaming from './ArmJointNaming.js';
+import Gallery from './Gallery.js';
 
-export default {Admonition, ArmJointNaming};
+export default {Admonition, ArmJointNaming, Gallery};

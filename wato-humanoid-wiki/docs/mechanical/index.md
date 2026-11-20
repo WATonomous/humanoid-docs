@@ -6,9 +6,9 @@ description: Mechanical design documentation for the WATonomous Humanoid robot.
 
 # Mechanical
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="Dual-arm render on test stand" src="/humanoid-docs/img/humanoid/dual-arm-stand-render.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-</div>
+:::gallery
+![Dual-arm render on test stand](/img/humanoid/dual-arm-stand-render.png)
+:::
 
 ### 7 DOF Arm + 1 DOF Gripper — Motor Selection
 
@@ -28,30 +28,28 @@ Wrist and gripper torque ratings are per actuator, from CubeMars: [AK45-10 V3.0]
 
 22 DOF hand (18 actuated), including 2 DOF for the wrist.
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="22 DOF hand, palm view 2" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-dorsal-mounted.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, dorsal view 2" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-palm-mounted.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, palm view" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-palm.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="22 DOF hand, dorsal view" src="/humanoid-docs/img/humanoid/hand-22dof-prototype-forearm.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-</div>
+:::gallery
+![22 DOF hand, palm view 2](/img/humanoid/hand-22dof-prototype-dorsal-mounted.jpg)
+![22 DOF hand, dorsal view 2](/img/humanoid/hand-22dof-prototype-palm-mounted.jpg)
+![22 DOF hand, palm view](/img/humanoid/hand-22dof-prototype-palm.jpg)
+![22 DOF hand, dorsal view](/img/humanoid/hand-22dof-prototype-forearm.jpg)
+:::
 
-<video width="600" controls style={{display: 'block', maxWidth: '100%', margin: '16px 0'}}>
-  <source src="/humanoid-docs/img/humanoid/videos/tendon-hand-showcase.mp4" type="video/mp4" />
-</video>
+![](/img/humanoid/videos/tendon-hand-showcase.mp4)
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="22 DOF hand render with forearm actuator stack" src="/humanoid-docs/img/humanoid/hand-22dof-render-1.png" style={{width: '614px', maxWidth: '100%', minWidth: '280px', alignSelf: 'flex-start', height: 'auto'}} />
-  <img alt="22 DOF hand render, close-up of fingers and forearm actuators" src="/humanoid-docs/img/humanoid/hand-22dof-render-2.png" style={{width: '607px', maxWidth: '100%', minWidth: '280px', alignSelf: 'flex-start', height: 'auto'}} />
-</div>
+:::gallery
+![22 DOF hand render with forearm actuator stack](/img/humanoid/hand-22dof-render-1.png)
+![22 DOF hand render, close-up of fingers and forearm actuators](/img/humanoid/hand-22dof-render-2.png)
+:::
 
 ## Humanoid Leg
 
-<div style={{display: 'flex', flexWrap: 'wrap', gap: '12px'}}>
-  <img alt="Humanoid leg render, light background" src="/humanoid-docs/img/humanoid/leg-render-light.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Humanoid leg render, dark background" src="/humanoid-docs/img/humanoid/leg-render-dark.png" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Assembled humanoid leg prototype" src="/humanoid-docs/img/humanoid/leg-prototype-1.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-  <img alt="Assembled humanoid leg prototype with soccer ball" src="/humanoid-docs/img/humanoid/leg-prototype-ball.jpg" style={{width: 'calc(50% - 6px)', minWidth: '280px'}} />
-</div>
+:::gallery
+![Humanoid leg render, light background](/img/humanoid/leg-render-light.jpg)
+![Humanoid leg render, dark background](/img/humanoid/leg-render-dark.png)
+![Assembled humanoid leg prototype](/img/humanoid/leg-prototype-1.jpg)
+![Assembled humanoid leg prototype with soccer ball](/img/humanoid/leg-prototype-ball.jpg)
+:::
 
 ### 6 DOF Per Leg — Motor Selection
 
