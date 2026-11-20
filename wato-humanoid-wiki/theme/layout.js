@@ -72,8 +72,10 @@ const themeScript = `(function(){try{var c=localStorage.getItem('theme');var d=c
 
 export function page(ctx, {route, title, description, section, body, ogType = 'website', extraHead = '', needs = {}}) {
   const c = ctx.config;
-  // ASCII Pioneer: a faint copy behind every page (site.config.js).
-  const pioneerBg = !!c.pioneer?.background;
+  // ASCII background: Pioneer behind every page (site.config.js), or a page's own scene
+  // chosen in its front matter (`ascii: rocket`).
+  const rocketBg = needs.ascii === 'rocket';
+  const pioneerBg = !!c.pioneer?.background && !rocketBg;
   const pioneerJs = pioneerBg;
   const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
@@ -112,10 +114,10 @@ ${pioneerJs ? `<script type="importmap">${JSON.stringify({imports: {three: ctx.a
 <script defer src="${ctx.asset(ctx.assets.js)}" data-base="${c.baseUrl}" data-mermaid="${ctx.asset(ctx.assets.mermaid)}"></script>
 ${ctx.dev ? `<script>new EventSource('/__reload').onmessage=()=>location.reload()</script>` : ''}
 </head>
-<body class="section-${section || 'page'}${pioneerBg ? ' has-pioneer-bg' : ''}">
+<body class="section-${section || 'page'}${pioneerBg || rocketBg ? ' has-pioneer-bg' : ''}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${navbar(ctx, section)}
-${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
+${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden="true"></canvas><script defer src="${ctx.asset(ctx.assets.rocket)}"></script>` : ''}${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
 ${body}
 ${footer(ctx)}
@@ -229,7 +231,7 @@ export function docPage(ctx, {doc, sidebar: sidebarTree, rendered}) {
     description: doc.description || rendered.firstParagraph,
     section: 'docs',
     body,
-    needs: rendered.needs,
+    needs: {...rendered.needs, ascii: doc.frontMatter.ascii},
   });
 }
 
@@ -361,7 +363,7 @@ export function blogPostPage(ctx, {post}) {
       .map((t) => `<meta property="article:tag" content="${esc(t.label)}">`)
       .join('')}`,
     body: blogShell(ctx, {posts: ctx.blog.posts, route: post.route, main, toc: post.rendered.toc, edit: editLink(ctx, 'blog/' + post.relFile)}),
-    needs: post.needs,
+    needs: {...post.needs, ascii: post.frontMatter.ascii},
   });
 }
 

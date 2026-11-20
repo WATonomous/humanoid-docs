@@ -2,6 +2,7 @@
 id: index
 title: TVC Rocket
 description: TVC rocketry spinoff project from the WATonomous Humanoid team.
+ascii: rocket
 ---
 
 # TVC Rocket
