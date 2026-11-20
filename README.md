@@ -1,6 +1,9 @@
 # WATonomous Humanoid Documentation
 
-<img width="1148" height="601" alt="image 6" src="https://github.com/user-attachments/assets/b2f1b12b-a0de-4d2c-ba46-6a6f863a65ba" />
+<img width="1035" height="1541" alt="image" src="https://github.com/user-attachments/assets/727cf60a-85ee-4edc-86ea-1e8b765d5fc1" />
+<img width="1100" height="1375" alt="image" src="https://github.com/user-attachments/assets/d256e771-6ca9-400a-9c0a-a433f5290872" />
+
+
 
 Documentation for the WATonomous Humanoid robot project at the University of Waterloo.
 
