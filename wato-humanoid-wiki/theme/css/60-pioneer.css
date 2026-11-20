@@ -1,9 +1,5 @@
-/* ASCII Pioneer (theme/js/ascii-pioneer.js) */
-/* Faint Pioneer behind every page */
+/* Rocket pages: canvas background (theme/js/ascii-rocket.js) */
 .pioneer-bg {
-  --ascii-color: #111111;
-  --ascii-glow: rgba(0, 0, 0, 0.25);
-  --ascii-opacity: 0.22;
   position: fixed;
   right: 0;
   top: var(--navbar-h);
@@ -15,7 +11,6 @@
   transition: opacity 1.2s ease;
 }
 .pioneer-bg.ready { opacity: 1; }
-[data-theme='dark'] .pioneer-bg { --ascii-color: #f2f2f2; --ascii-glow: rgba(255, 255, 255, 0.5); --ascii-opacity: 0.22; }
 .has-pioneer-bg .layout { position: relative; z-index: 1; }
 
 
@@ -34,22 +29,13 @@
   .has-pioneer-bg .layout { position: static; z-index: auto; }
 }
 
-/* Boxes sit on a solid page background so the figure never shows through behind their text. */
-.has-pioneer-bg .pager-link,
-.has-pioneer-bg .card,
-.has-pioneer-bg .post-card,
-.has-pioneer-bg .toc-mobile,
-.has-pioneer-bg .markdown table,
-.has-pioneer-bg .markdown img,
-.has-pioneer-bg .markdown svg,
-.has-pioneer-bg .ajn-figure,
-.has-pioneer-bg .markdown pre.mermaid,
-.has-pioneer-bg .tag {
+/* Boxes sit on a solid page background so the art never shows through behind their text. */
+:is(.has-pioneer-bg, .has-scene-bg) :is(.pager-link, .card, .toc-mobile, .markdown table, .markdown img, .markdown svg, .ajn-figure, .markdown pre.mermaid, .tag) {
   background-color: var(--c-bg);
 }
-.has-pioneer-bg .post-card { background-color: var(--c-surface); }
+:is(.has-pioneer-bg, .has-scene-bg) .post-card { background-color: var(--c-surface); }
 /* Tinted callouts: keep the tint, but over solid page colour */
-.has-pioneer-bg .admonition { background: linear-gradient(var(--adm-bg), var(--adm-bg)), var(--c-bg); }
+:is(.has-pioneer-bg, .has-scene-bg) .admonition { background: linear-gradient(var(--adm-bg), var(--adm-bg)), var(--c-bg); }
 
 /* Rocket pages (`ascii: rocket` in front matter): colour ASCII rocket instead of Pioneer */
 .rocket-bg { --ascii-opacity: 0.75; }
