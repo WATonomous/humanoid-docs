@@ -131,6 +131,16 @@ export async function build({dev = false, outDir = r('build'), log = console.log
   copyDir(path.join(mermaidSrc, 'chunks/mermaid.esm.min'), path.join(mermaidOut, 'chunks/mermaid.esm.min'), (src) =>
     fs.statSync(src).isDirectory() || src.endsWith('.mjs'),
   );
+  const threeSrc = path.join(nm, 'three');
+  for (const f of ['build/three.module.js', 'build/three.core.js', 'examples/jsm/loaders/GLTFLoader.js',
+    'examples/jsm/utils/BufferGeometryUtils.js', 'examples/jsm/utils/SkeletonUtils.js', 'examples/jsm/libs/meshopt_decoder.module.js']) {
+    const to = path.join(outDir, 'assets/vendor/three', f);
+    fs.mkdirSync(path.dirname(to), {recursive: true});
+    fs.copyFileSync(path.join(threeSrc, f), to);
+  }
+  const pioneerJs = fs.readFileSync(r('theme/js/ascii-pioneer.js'), 'utf8');
+  assets.pioneer = `assets/ascii-pioneer.${hashOf(pioneerJs)}.js`;
+  write(path.join(outDir, assets.pioneer), pioneerJs);
   // In dev the server falls back to static/ directly; copying ~100 MB each rebuild is slow.
   if (!dev) copyDir(staticDir, outDir);
 

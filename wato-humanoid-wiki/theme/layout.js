@@ -72,12 +72,15 @@ const themeScript = `(function(){try{var c=localStorage.getItem('theme');var d=c
 
 export function page(ctx, {route, title, description, section, body, ogType = 'website', extraHead = '', needs = {}}) {
   const c = ctx.config;
+  // ASCII Pioneer: a faint copy behind every page (site.config.js).
+  const pioneerBg = !!c.pioneer?.background;
+  const pioneerJs = pioneerBg;
   const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
   const canonical = ctx.absUrl(route);
   const image = ctx.absUrl('/' + c.socialImage, {file: true});
   return `<!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-base="${c.baseUrl}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -104,12 +107,15 @@ ${needs.math ? `<link rel="stylesheet" href="${ctx.asset('assets/katex/katex.min
 <script>${themeScript}</script>
 <script type="application/ld+json">${JSON.stringify(c.jsonLd).replace(/</g, '\\u003c')}</script>
 ${extraHead}
+${pioneerJs ? `<script type="importmap">${JSON.stringify({imports: {three: ctx.asset('assets/vendor/three/build/three.module.js'), 'three/addons/': ctx.asset('assets/vendor/three/examples/jsm/')}})}</script>
+<script type="module" src="${ctx.asset(ctx.assets.pioneer)}"></script>` : ''}
 <script defer src="${ctx.asset(ctx.assets.js)}" data-base="${c.baseUrl}" data-mermaid="${ctx.asset(ctx.assets.mermaid)}"></script>
 ${ctx.dev ? `<script>new EventSource('/__reload').onmessage=()=>location.reload()</script>` : ''}
 </head>
-<body class="section-${section || 'page'}">
+<body class="section-${section || 'page'}${pioneerBg ? ' has-pioneer-bg' : ''}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${navbar(ctx, section)}
+${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
 ${body}
 ${footer(ctx)}
@@ -161,11 +167,14 @@ function sidebar(ctx, items, route) {
   return `<aside class="sidebar" data-drawer><div class="drawer-head"><span class="brand-text">Docs</span><button type="button" class="drawer-close" data-drawer-close aria-label="Close navigation">${icon.close}</button></div><nav class="menu" aria-label="Docs">${sidebarItems(ctx, items, route)}</nav><div class="drawer-extra">${ctx.config.navbar.left.concat(ctx.config.navbar.right).map((i) => navLink(ctx, i, 'menu-link')).join('')}</div></aside>`;
 }
 
-function tocHtml(toc, {mobile = false} = {}) {
-  if (!toc?.length) return '';
-  const list = `<ul class="toc-list">${toc.map((t) => `<li class="toc-d${t.depth}"><a href="#${esc(t.id)}">${t.html}</a></li>`).join('')}</ul>`;
-  if (mobile) return `<details class="toc-mobile"><summary>On this page</summary>${list}</details>`;
-  return `<aside class="toc" aria-label="On this page"><div class="toc-inner">${list}</div></aside>`;
+// Right-hand column: the page's headings, then an "Edit this page" link to its file on GitHub.
+function tocHtml(toc, {mobile = false, edit = ''} = {}) {
+  const list = toc?.length
+    ? `<ul class="toc-list">${toc.map((t) => `<li class="toc-d${t.depth}"><a href="#${esc(t.id)}">${t.html}</a></li>`).join('')}</ul>`
+    : '';
+  if (mobile) return list ? `<details class="toc-mobile"><summary>On this page</summary>${list}</details>` : '';
+  if (!list && !edit) return '';
+  return `<aside class="toc" aria-label="On this page"><div class="toc-inner">${list}${edit ? `<div class="toc-edit">${edit}</div>` : ''}</div></aside>`;
 }
 
 function breadcrumbs(ctx, page) {
@@ -210,7 +219,7 @@ export function docPage(ctx, {doc, sidebar: sidebarTree, rendered}) {
         <footer class="doc-footer">${editLink(ctx, 'docs/' + doc.relFile)}</footer>
         ${pager(ctx, doc.prev, doc.next)}
       </article>
-      ${tocHtml(rendered.toc)}
+      ${tocHtml(rendered.toc, {edit: editLink(ctx, 'docs/' + doc.relFile)})}
     </div>
   </main>
 </div>`;
@@ -296,14 +305,14 @@ function tagList(ctx, tags) {
   return `<div class="post-tags"><b>Tags:</b>${tags.map((t) => `<a class="tag" href="${ctx.url(t.route)}">${esc(t.label)}</a>`).join('')}</div>`;
 }
 
-function blogShell(ctx, {posts, route, main, toc}) {
+function blogShell(ctx, {posts, route, main, toc, edit}) {
   return `
 <div class="layout layout-blog">
   ${blogSidebar(ctx, posts, route)}
   <main class="main" id="main">
     <div class="doc-row">
       <div class="blog-main">${main}</div>
-      ${toc ? tocHtml(toc) : ''}
+      ${toc || edit ? tocHtml(toc, {edit}) : ''}
     </div>
   </main>
 </div>`;
@@ -351,7 +360,7 @@ export function blogPostPage(ctx, {post}) {
     extraHead: `<meta property="article:published_time" content="${post.date.toISOString()}">${post.tags
       .map((t) => `<meta property="article:tag" content="${esc(t.label)}">`)
       .join('')}`,
-    body: blogShell(ctx, {posts: ctx.blog.posts, route: post.route, main, toc: post.rendered.toc}),
+    body: blogShell(ctx, {posts: ctx.blog.posts, route: post.route, main, toc: post.rendered.toc, edit: editLink(ctx, 'blog/' + post.relFile)}),
     needs: post.needs,
   });
 }

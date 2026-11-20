@@ -39,7 +39,12 @@
       if (e.target.closest('a')) e.preventDefault(), (location.href = e.target.closest('a').href);
     }),
   );
-  $('.menu-link.active')?.scrollIntoView({block: 'center'});
+  // Bring the current page's sidebar link into view by scrolling the sidebar only, never the page.
+  const activeLink = $('.sidebar .menu-link.active');
+  const sidebarEl = $('.sidebar');
+  if (activeLink && sidebarEl && sidebarEl.scrollHeight > sidebarEl.clientHeight) {
+    sidebarEl.scrollTop = activeLink.offsetTop - sidebarEl.clientHeight / 2;
+  }
 
   // ---- TOC scroll-spy -----------------------------------------------------------
   const tocLinks = $$('.toc .toc-list a');

@@ -83,6 +83,9 @@ export default {
     wordsPerMinute: 200,
   },
 
+  // ASCII Pioneer (theme/js/ascii-pioneer.js): a faint, slowly turning Pioneer behind every page.
+  pioneer: {background: true},
+
   code: {
     // Shiki theme names: https://shiki.style/themes
     lightTheme: 'github-light',
