@@ -29,6 +29,7 @@
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
     "shiki": "^4.6.0",
+    "three": "^0.187.0",
     "unist-util-visit": "^5.2.0",
     "vfile": "^6.0.3"
   }
