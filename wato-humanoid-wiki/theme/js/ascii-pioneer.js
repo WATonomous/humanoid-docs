@@ -1,7 +1,7 @@
 // Pioneer, our humanoid, rendered live in 3D and drawn as ASCII with a glowing aura.
 // The model and its joint layout come from the WATonomous website (pioneer.glb + kinematics).
 //
-// <canvas data-ascii-pioneer data-mode="hero|background"> anywhere on a page turns into one.
+// <canvas data-ascii-pioneer data-mode="background"> anywhere on a page turns into one.
 
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -87,7 +87,7 @@ async function loadPioneer() {
 class AsciiPioneer {
   constructor(canvas, robot) {
     this.canvas = canvas;
-    this.mode = canvas.dataset.mode || 'hero';
+    this.mode = canvas.dataset.mode || 'background';
     this.ctx = canvas.getContext('2d');
     this.robot = robot;
     this.scene = new THREE.Scene();

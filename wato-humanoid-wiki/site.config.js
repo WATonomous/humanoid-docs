@@ -83,9 +83,8 @@ export default {
     wordsPerMinute: 200,
   },
 
-  // ASCII Pioneer (theme/js/ascii-pioneer.js): hero on the docs home page, and optionally a
-  // faint copy behind every other page.
-  pioneer: {hero: true, frame: 'full', background: false},
+  // ASCII Pioneer (theme/js/ascii-pioneer.js): a faint, slowly turning Pioneer behind every page.
+  pioneer: {background: true},
 
   code: {
     // Shiki theme names: https://shiki.style/themes

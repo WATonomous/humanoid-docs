@@ -72,6 +72,9 @@ const themeScript = `(function(){try{var c=localStorage.getItem('theme');var d=c
 
 export function page(ctx, {route, title, description, section, body, ogType = 'website', extraHead = '', needs = {}}) {
   const c = ctx.config;
+  // ASCII Pioneer: a faint copy behind every page (site.config.js).
+  const pioneerBg = !!c.pioneer?.background;
+  const pioneerJs = pioneerBg;
   const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
   const canonical = ctx.absUrl(route);
@@ -104,15 +107,15 @@ ${needs.math ? `<link rel="stylesheet" href="${ctx.asset('assets/katex/katex.min
 <script>${themeScript}</script>
 <script type="application/ld+json">${JSON.stringify(c.jsonLd).replace(/</g, '\\u003c')}</script>
 ${extraHead}
-${needs.pioneer ? `<script type="importmap">${JSON.stringify({imports: {three: ctx.asset('assets/vendor/three/build/three.module.js'), 'three/addons/': ctx.asset('assets/vendor/three/examples/jsm/')}})}</script>
+${pioneerJs ? `<script type="importmap">${JSON.stringify({imports: {three: ctx.asset('assets/vendor/three/build/three.module.js'), 'three/addons/': ctx.asset('assets/vendor/three/examples/jsm/')}})}</script>
 <script type="module" src="${ctx.asset(ctx.assets.pioneer)}"></script>` : ''}
 <script defer src="${ctx.asset(ctx.assets.js)}" data-base="${c.baseUrl}" data-mermaid="${ctx.asset(ctx.assets.mermaid)}"></script>
 ${ctx.dev ? `<script>new EventSource('/__reload').onmessage=()=>location.reload()</script>` : ''}
 </head>
-<body class="section-${section || 'page'}${needs.pioneerBg ? ' has-pioneer-bg' : ''}">
+<body class="section-${section || 'page'}${pioneerBg ? ' has-pioneer-bg' : ''}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${navbar(ctx, section)}
-${needs.pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
+${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
 ${body}
 ${footer(ctx)}
@@ -196,29 +199,9 @@ function editLink(ctx, relPath) {
   return `<a class="edit-link" href="${esc(ctx.config.editUrl + relPath)}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 40 40" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></svg>Edit this page</a>`;
 }
 
-function pioneerHero(ctx) {
-  return `
-<section class="pioneer-hero">
-  <div class="pioneer-hero-inner">
-    <div class="pioneer-hero-text">
-      <div class="pioneer-hero-kicker">WATonomous · University of Waterloo</div>
-      <h1 class="pioneer-hero-title">Pioneer</h1>
-      <p class="pioneer-hero-sub">UWaterloo's first humanoid robot. 160 cm, two arms, two legs, 22-DOF tendon hands, built by undergrads.</p>
-      <div class="pioneer-hero-actions">
-        <a class="button button--primary button--lg" href="${ctx.url('/mechanical')}">Explore the docs</a>
-        <a class="button button--lg pioneer-hero-ghost" href="${ctx.url('/blog')}">Read the blog</a>
-      </div>
-    </div>
-    <canvas class="pioneer-hero-canvas" data-ascii-pioneer data-mode="hero" data-frame="${ctx.config.pioneer.frame || 'full'}" aria-label="Pioneer, drawn in ASCII"></canvas>
-  </div>
-</section>`;
-}
-
 export function docPage(ctx, {doc, sidebar: sidebarTree, rendered}) {
   const showTitle = !rendered.h1;
-  const hero = doc.route === '/' && ctx.config.pioneer?.hero;
-  const bg = !hero && ctx.config.pioneer?.background;
-  const body = `${hero ? pioneerHero(ctx) : ''}
+  const body = `
 <div class="layout layout-docs">
   ${sidebar(ctx, sidebarTree, doc.route)}
   <main class="main" id="main">
@@ -243,7 +226,7 @@ export function docPage(ctx, {doc, sidebar: sidebarTree, rendered}) {
     description: doc.description || rendered.firstParagraph,
     section: 'docs',
     body,
-    needs: {...rendered.needs, pioneer: hero || bg, pioneerBg: bg},
+    needs: rendered.needs,
   });
 }
 
