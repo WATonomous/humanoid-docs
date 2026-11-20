@@ -56,7 +56,6 @@
     // rocket pose: climbs slowly up the canvas and loops; the TVC gimbal makes it wobble
     const cycle = (t * 0.035) % 1;
     const cx = W * 0.6 + Math.sin(t * 0.7) * W * 0.012;
-    const len = H * 0.34;
     // The nose cone sits just below the "On this page" box (wherever that box ends), never behind it.
     const toc = document.querySelector('.toc-inner');
     let noseMin = H * 0.04;
@@ -64,8 +63,13 @@
       const below = toc.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top + 14;
       noseMin = Math.max(noseMin, (below * H) / h);
     }
-    const top = noseMin + len * 0.18 + H * 0.06 * (1 - cycle); // drifts up to the box, never into it
-    const bw = Math.max(8, W * 0.1);
+    // Size the rocket to the space left under the box, so nose cone to flame tip always fits on screen
+    // (a long table of contents leaves less room).
+    const room = H - noseMin - H * 0.03;
+    const len = Math.min(H * 0.34, room / 2.55);
+    const drift = len * 0.15 * (1 - cycle); // drifts up to the box, never into it
+    const top = noseMin + len * 0.18 + drift;
+    const bw = Math.max(6, W * 0.1 * (len / (H * 0.34)));
     const tilt = Math.sin(t * 1.3) * 0.05;
     const nozzle = {x: cx - Math.sin(tilt) * len, y: top + Math.cos(tilt) * len};
 
@@ -96,7 +100,7 @@
 
     // flame plume: layered teardrops, white-hot core to red edge, flickering
     const flick = 0.85 + 0.15 * Math.sin(t * 31) * Math.sin(t * 17);
-    const plume = H * 0.4 * flick;
+    const plume = len * 1.2 * flick;
     const layers = [
       [1.0, 2.6, '255,40,90'],
       [0.9, 2.1, '255,70,20'],
