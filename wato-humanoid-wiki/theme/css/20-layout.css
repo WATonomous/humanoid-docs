@@ -89,6 +89,10 @@ html:not([data-theme-choice]) .theme-toggle .i-system { display: block; }
 .toc-list a:hover { color: var(--c-primary); text-decoration: none; }
 .toc-list a.active { color: var(--c-primary); font-weight: 600; }
 .toc-list code { font-size: 0.9em; }
+.toc-edit { margin-top: 0.9rem; padding-top: 0.75rem; border-top: 1px solid var(--c-border); font-size: 0.8rem; }
+.toc-edit .edit-link { font-size: 0.8rem; gap: 0.35rem; color: var(--c-emph-700); }
+.toc-edit .edit-link:hover { color: var(--c-primary); }
+.toc-edit svg { width: 13px; height: 13px; }
 .toc-mobile { display: none; margin: 0 0 1.5rem; border: 1px solid var(--c-border); border-radius: var(--radius); background: var(--c-emph-100); }
 .toc-mobile summary { padding: 0.5rem 1rem; cursor: pointer; font-weight: 600; }
 .toc-mobile .toc-list { padding: 0 1rem 0.75rem; }
