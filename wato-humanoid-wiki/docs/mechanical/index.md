@@ -16,8 +16,8 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 | Joint / Assembly | Motor | Rated Torque | Peak Torque |
 | --- | --- | --- | --- |
-| Shoulder | AK10-9 V3.0 | 18Nm  | 53Nm  |
-| Elbow | AK80-9 V3.0 | 9Nm | 22Nm |
+| Shoulder (1-2) | AK10-9 V3.0 | 18Nm  | 53Nm  |
+| Elbow (3-4-5) | AK80-9 V3.0 | 9Nm | 22Nm |
 | Wrist yaw | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
 | Wrist pitch | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
 | Parallel Gripper | AK45-10 V3.0 | 2.5 Nm | 7 Nm |
