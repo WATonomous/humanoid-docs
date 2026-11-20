@@ -56,8 +56,15 @@
     // rocket pose: climbs slowly up the canvas and loops; the TVC gimbal makes it wobble
     const cycle = (t * 0.035) % 1;
     const cx = W * 0.6 + Math.sin(t * 0.7) * W * 0.012;
-    const top = H * (0.47 - cycle * 0.06); // below the "On this page" box so the nose cone shows
     const len = H * 0.34;
+    // The nose cone sits just below the "On this page" box (wherever that box ends), never behind it.
+    const toc = document.querySelector('.toc-inner');
+    let noseMin = H * 0.04;
+    if (toc) {
+      const below = toc.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top + 14;
+      noseMin = Math.max(noseMin, (below * H) / h);
+    }
+    const top = noseMin + len * 0.18 + H * 0.06 * (1 - cycle); // drifts up to the box, never into it
     const bw = Math.max(8, W * 0.1);
     const tilt = Math.sin(t * 1.3) * 0.05;
     const nozzle = {x: cx - Math.sin(tilt) * len, y: top + Math.cos(tilt) * len};

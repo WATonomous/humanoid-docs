@@ -56,6 +56,12 @@
 [data-theme='dark'] .rocket-bg { --ascii-opacity: 0.9; }
 
 /* ASCII art past the footer (site.config.js footerArt): a screen of it, fading in on scroll */
-.footer-art { height: 100vh; background: #07080c; position: relative; z-index: 1; }
+.footer-art { --footer-bg: #303846; height: 100vh; background: var(--footer-bg); position: relative; z-index: 1; overflow: hidden; }
+[data-theme='dark'] .footer-art { --footer-bg: #242526; }
 .footer-art-img { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0; }
+/* no hard edge under the footer: the art starts in the footer's colour and blends into the picture */
+.footer-art::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 45%; pointer-events: none;
+  background: linear-gradient(to bottom, var(--footer-bg) 0%, color-mix(in srgb, var(--footer-bg) 70%, transparent) 30%, transparent 100%);
+}
 @media (prefers-reduced-motion: reduce) { .footer-art-img { opacity: 1 !important; } }
