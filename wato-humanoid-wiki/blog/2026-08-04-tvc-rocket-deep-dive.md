@@ -1,5 +1,5 @@
 ---
-slug: tvc-rocket-deep-dive
+slug: tvc-rocket
 title: "How we built a Thrust Vector Control (TVC) Rocket"
 authors: [wilson, senna]
 tags: [rocketry, tvc]
