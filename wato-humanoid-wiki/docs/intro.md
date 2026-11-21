@@ -1,6 +1,6 @@
 ---
 id: intro
-title: WATonomous Humanoid Team - University of Waterloo
+title: "Pioneer Humanoid – Canada's First Undergrad Humanoid | WATonomous"
 sidebar_label: "Pioneer - UWaterloo's First Humanoid Robot"
 description: WATonomous Humanoid is the University of Waterloo humanoid robotics team, building UWaterloo's first humanoid robot — covering mechanical, electrical, firmware, and ML/software.
 slug: /
