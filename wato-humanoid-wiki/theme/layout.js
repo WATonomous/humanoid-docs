@@ -33,10 +33,10 @@ function navLink(ctx, item, extraClass = '') {
   return `<a class="nav-link ${extraClass}" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(item.label)}${ext ? icon.external : ''}</a>`;
 }
 
-function navbar(ctx, section) {
+function navbar(ctx, section, overDark = false) {
   const {navbar: nav} = ctx.config;
   return `
-<header class="navbar">
+<header class="navbar${overDark ? ' over-dark' : ''}">
   <div class="navbar-inner">
     <button class="navbar-toggle" type="button" aria-label="Open navigation" data-drawer-open>${icon.menu}</button>
     <a class="brand" href="${ctx.url('/')}"><span class="brand-text">${esc(nav.title)}</span></a>
@@ -84,7 +84,8 @@ export function page(ctx, {route, title, description, section, body, ogType = 'w
   // `hero: <footerArt key>` in front matter: that art full-screen at the top, and behind the footer's links
   const heroArt = needs.hero && c.footerArt?.[needs.hero];
   const heroTitle = needs.hero && c.footerArtTitle?.[needs.hero];
-  const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
+  // The homepage's title is written whole (it is the search result); other pages get the site name.
+  const fullTitle = route === '/' && title ? title : title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
   const canonical = ctx.absUrl(route);
   const image = ctx.absUrl('/' + c.socialImage, {file: true});
@@ -124,7 +125,7 @@ ${ctx.dev ? `<script>new EventSource('/__reload').onmessage=()=>location.reload(
 </head>
 <body class="section-${section || 'page'}${pioneerBg || rocketBg ? ' has-pioneer-bg' : ''}${heroArt ? ' has-hero' : ''}">
 <a class="skip-link" href="#main">Skip to content</a>
-${navbar(ctx, section)}
+${navbar(ctx, section, !!heroArt) /* dark from the first paint over a hero, not after site.js runs */}
 ${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden="true"></canvas><script defer src="${ctx.asset(ctx.assets.rocket)}"></script>` : ''}${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
 ${heroArt ? `<section class="hero" aria-label="${esc(c.title)}"><div class="hero-img" style="background-image:url('${ctx.asset(heroArt)}')"></div>${heroTitle ? `<h1 class="hero-title"><span>${esc(heroTitle[0])}</span> <span>${esc(heroTitle[1] || '')}</span></h1>` : ''}<a class="hero-cue" href="#main" aria-label="Scroll to content"></a></section>` : ''}
