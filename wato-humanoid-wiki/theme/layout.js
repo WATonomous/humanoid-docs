@@ -84,7 +84,8 @@ export function page(ctx, {route, title, description, section, body, ogType = 'w
   // `hero: <footerArt key>` in front matter: that art full-screen at the top, and behind the footer's links
   const heroArt = needs.hero && c.footerArt?.[needs.hero];
   const heroTitle = needs.hero && c.footerArtTitle?.[needs.hero];
-  const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
+  // The homepage's title is written whole (it is the search result); other pages get the site name.
+  const fullTitle = route === '/' && title ? title : title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
   const canonical = ctx.absUrl(route);
   const image = ctx.absUrl('/' + c.socialImage, {file: true});
