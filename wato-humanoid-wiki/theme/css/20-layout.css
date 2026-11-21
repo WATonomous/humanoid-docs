@@ -7,6 +7,35 @@
   background: color-mix(in srgb, var(--c-surface) 92%, transparent);
   backdrop-filter: saturate(180%) blur(8px);
   box-shadow: var(--c-shadow);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+/* dark-glass look while the ASCII art behind the footer is scrolled up underneath it */
+.navbar.over-dark {
+  background: color-mix(in srgb, #0b0c10 72%, transparent);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.navbar.over-dark .brand,
+.navbar.over-dark .nav-link,
+.navbar.over-dark .theme-toggle,
+.navbar.over-dark .navbar-toggle {
+  color: #e8eaef;
+}
+.navbar.over-dark .nav-link:hover,
+.navbar.over-dark .nav-link.active {
+  color: #5b9bd5;
+}
+.navbar.over-dark .theme-toggle:hover,
+.navbar.over-dark .navbar-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.navbar.over-dark .search-button {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #b7bcc4;
+}
+.navbar.over-dark .search-button:hover {
+  border-color: #5b9bd5;
+  color: #e8eaef;
 }
 .navbar-inner { display: flex; align-items: center; gap: 0.25rem; height: 100%; padding: 0 1rem; }
 .brand { display: flex; align-items: center; margin-right: 1rem; color: var(--c-text); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
