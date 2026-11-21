@@ -12,6 +12,8 @@
 .markdown ul, .markdown ol { padding-left: 2rem; }
 .markdown li + li, .markdown li > ul, .markdown li > ol { margin-top: 0.25rem; }
 .markdown li > p { margin: 0; }
+/* An equation (or second paragraph) under a list item's text needs a little air. */
+.markdown li > p + p { margin: 0.75rem 0 1.25rem; }
 .markdown img { height: auto; }
 .markdown hr { border: 0; border-top: 1px solid var(--c-border); margin: 2rem 0; }
 .markdown blockquote { padding: 0 1rem; border-left: 0.25rem solid var(--c-emph-300); color: var(--c-emph-800); }

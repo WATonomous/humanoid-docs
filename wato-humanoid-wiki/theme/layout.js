@@ -130,7 +130,7 @@ ${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden
 ${heroArt ? `<section class="hero" aria-label="${esc(c.title)}"><div class="hero-img" style="background-image:url('${ctx.asset(heroArt)}')"></div>${heroTitle ? `<h1 class="hero-title"><span>${esc(heroTitle[0])}</span> <span>${esc(heroTitle[1] || '')}</span></h1>` : ''}<a class="hero-cue" href="#main" aria-label="Scroll to content"></a></section>` : ''}
 ${body}
 ${footerArt
-  ? `<div class="footer-zone">${footer(ctx, ctx.asset(heroArt || footerArt))}<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div>${footerArtTitle ? `<div class="footer-art-title"><span>${esc(footerArtTitle[0])}</span><span>${esc(footerArtTitle[1] || '')}</span></div>` : ''}</div></div>`
+  ? `<div class="footer-zone">${footer(ctx, ctx.asset(heroArt || c.footerBackdrop?.[needs.ascii] || footerArt))}<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div>${footerArtTitle ? `<div class="footer-art-title"><span>${esc(footerArtTitle[0])}</span><span>${esc(footerArtTitle[1] || '')}</span></div>` : ''}</div></div>`
   : footer(ctx)}
 <div class="search-modal" data-search-modal hidden>
   <div class="search-backdrop" data-search-close></div>

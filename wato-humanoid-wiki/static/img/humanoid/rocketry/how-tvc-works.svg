@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1b1a16"/>
+    </marker>
+    <marker id="ahRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d6402b"/>
+    </marker>
+    <marker id="ahBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f6feb"/>
+    </marker>
+  </defs>
+  <rect width="760" height="400" rx="14" fill="#ffffff"/>
+
+  <!-- upright reference -->
+  <line x1="190" y1="14" x2="190" y2="336" stroke="#a29f95" stroke-dasharray="5 5"/>
+  <text x="140" y="26" font-size="12" fill="#6b6862">upright</text>
+
+  <!-- rocket, tilted 14° to the right about its centre of gravity -->
+  <g transform="rotate(14 190 170)">
+    <line x1="190" y1="0" x2="190" y2="330" stroke="#1f6feb" stroke-dasharray="3 4" opacity=".6"/>
+    <path d="M172,60 L190,18 L208,60 z" fill="#3b4a5e"/>
+    <rect x="172" y="60" width="36" height="220" rx="3" fill="#5b6f88"/>
+    <rect x="172" y="250" width="36" height="30" fill="#3b4a5e"/>
+    <!-- motor nozzle, gimballed 8° against the body -->
+    <g transform="rotate(8 190 280)">
+      <path d="M180,280 L200,280 L206,302 L174,302 z" fill="#d6402b"/>
+    </g>
+    <circle cx="190" cy="170" r="9" fill="#ffd54a" stroke="#1b1a16" stroke-width="1.5"/>
+    <path d="M190,161 A9,9 0 0 1 199,170 L190,170 z M190,179 A9,9 0 0 1 181,170 L190,170 z" fill="#1b1a16"/>
+  </g>
+  <text x="102" y="176" font-size="12" fill="#1b1a16">centre of</text>
+  <text x="102" y="190" font-size="12" fill="#1b1a16">gravity</text>
+  <text x="246" y="44" font-size="12" fill="#1f6feb">rocket tilts</text>
+
+  <!-- corrective torque about the CG -->
+  <path d="M232,140 A52,52 0 0 0 150,132" fill="none" stroke="#d6402b" stroke-width="2.5" marker-end="url(#ahRed)"/>
+  <text x="236" y="150" font-size="13" font-weight="600" fill="#d6402b">corrective</text>
+  <text x="236" y="166" font-size="13" font-weight="600" fill="#d6402b">torque</text>
+
+  <!-- thrust and its components -->
+  <line x1="132" y1="378" x2="158" y2="312" stroke="#1b1a16" stroke-width="3" marker-end="url(#ah)"/>
+  <line x1="132" y1="378" x2="132" y2="314" stroke="#6b6862" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+  <line x1="132" y1="378" x2="160" y2="378" stroke="#d6402b" stroke-width="2.5" marker-end="url(#ahRed)"/>
+  <text x="58" y="340" font-size="12" fill="#1b1a16">thrust</text>
+  <text x="168" y="383" font-size="12" fill="#d6402b">horizontal component</text>
+  <text x="48" y="384" font-size="12" fill="#6b6862">vertical</text>
+
+  <!-- the control loop -->
+  <text x="420" y="30" font-size="14" font-weight="700" fill="#1b1a16">The control loop</text>
+  <g font-size="13" fill="#1b1a16">
+    <rect x="420" y="46" width="304" height="50" rx="9" fill="#eef3fb" stroke="#1f6feb"/>
+    <text x="436" y="68" font-weight="600">1 · IMU senses the tilt</text>
+    <text x="436" y="86" font-size="12" fill="#6b6862">angle and rate away from upright</text>
+
+    <rect x="420" y="126" width="304" height="50" rx="9" fill="#f4f3ef" stroke="#a29f95"/>
+    <text x="436" y="148" font-weight="600">2 · Controller computes the gimbal angle</text>
+    <text x="436" y="166" font-size="12" fill="#6b6862">PID on the tilt error</text>
+
+    <rect x="420" y="206" width="304" height="50" rx="9" fill="#f4f3ef" stroke="#a29f95"/>
+    <text x="436" y="228" font-weight="600">3 · Servos gimbal the motor</text>
+    <text x="436" y="246" font-size="12" fill="#6b6862">the thrust now points off the body axis</text>
+
+    <rect x="420" y="286" width="304" height="50" rx="9" fill="#fbeeec" stroke="#d6402b"/>
+    <text x="436" y="308" font-weight="600">4 · Horizontal thrust makes a torque</text>
+    <text x="436" y="326" font-size="12" fill="#6b6862">about the CG, rotating the rocket upright</text>
+  </g>
+  <g stroke="#1b1a16" stroke-width="1.5" fill="none">
+    <line x1="565" y1="96" x2="565" y2="124" marker-end="url(#ah)"/>
+    <line x1="565" y1="176" x2="565" y2="204" marker-end="url(#ah)"/>
+    <line x1="565" y1="256" x2="565" y2="284" marker-end="url(#ah)"/>
+    <path d="M724,311 H746 V71 H726" stroke="#1f6feb" marker-end="url(#ahBlue)"/>
+  </g>
+  <text x="420" y="366" font-size="12" fill="#6b6862">Repeats continuously, so any new tilt is corrected.</text>
+</svg>
