@@ -35,7 +35,8 @@
     const navH = navbar ? navbar.offsetHeight : 0;
     const update = () => {
       const top = zone.getBoundingClientRect().top;
-      const k = Math.min(1, Math.max(0, (innerHeight - top) / (innerHeight * 0.9)));
+      // full brightness by the time you hit the bottom, even when the art is shorter than the window
+      const k = Math.min(1, Math.max(0, (innerHeight - top) / Math.min(innerHeight * 0.9, zone.offsetHeight)));
       zone.style.setProperty('--k', k.toFixed(3));
       // once the dark art has scrolled up under the sticky navbar, give the navbar a matching
       // dark-glass look instead of the light bar clashing with the art behind it

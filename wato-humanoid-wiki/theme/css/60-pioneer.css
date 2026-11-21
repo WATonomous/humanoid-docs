@@ -65,6 +65,9 @@
   background: linear-gradient(to bottom, var(--footer-bg) 0%, color-mix(in srgb, var(--footer-bg) 70%, transparent) 30%, transparent 100%);
 }
 @media (prefers-reduced-motion: reduce) { .footer-art { --k: 1 !important; } }
+/* the arts are 16:9: in a window narrower than that, a full-height box would crop away the sides
+   (the humanoid, the rocket), so size the box to the picture and show all of it */
+@media (max-aspect-ratio: 16/9) { .footer-art { height: 56.25vw; } }
 /* the title over the footer art (site.config.js footerArtTitle), in the dark sky, fading in with the art */
 .footer-art-title {
   position: absolute; left: 0; right: 0; top: 16%; z-index: 2; text-align: center; pointer-events: none;
