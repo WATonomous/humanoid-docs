@@ -7,7 +7,7 @@ ascii: rocket
 
 # TVC Rocket
 
-A spinoff project from the humanoid team — essentially the SpaceX of Waterloo Humanoid. Building a thrust-vector-controlled (TVC) rocket.
+A spinoff project from the members of the humanoid team in building a thrust-vector-controlled (TVC) rocket. You can see from the video how the rocket steers and stabilize by itself to be vertically upright.
 
 ![](/img/humanoid/videos/tvc-rocket.mp4)
 

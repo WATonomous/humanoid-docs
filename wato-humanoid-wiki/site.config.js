@@ -94,6 +94,9 @@ export default {
     ringfield: 'img/ascii/pioneer-ringfield.webp', // the homepage hero (`hero: ringfield` in docs/intro.md): Pioneer on a ring plane, a painting rather than ASCII
   },
 
+  // behind the footer's links, when it should differ from the art below the footer (same keys)
+  footerBackdrop: {rocket: 'img/ascii/pioneer-ringfield.webp'},
+
   // optional title over an art in its dark sky, per art (same keys as footerArt), shown on the hero too
   footerArtTitle: {ringfield: ['Pioneer', 'Humanoid']},
 

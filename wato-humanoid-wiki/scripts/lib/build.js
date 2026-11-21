@@ -122,8 +122,12 @@ export async function build({dev = false, outDir = r('build'), log = console.log
   write(path.join(outDir, assets.js), js);
 
   const nm = r('node_modules');
-  copyDir(path.join(nm, 'katex/dist/fonts'), path.join(outDir, 'assets/katex/fonts'));
-  fs.copyFileSync(path.join(nm, 'katex/dist/katex.min.css'), path.join(outDir, 'assets/katex/katex.min.css'));
+  // The CSS must come from the KaTeX that rendered the HTML (rehype-katex's own copy
+  // when npm nests one): a mismatched version breaks subscripts and fractions.
+  const nested = path.join(nm, 'rehype-katex/node_modules/katex');
+  const katexDir = fs.existsSync(nested) ? nested : path.join(nm, 'katex');
+  copyDir(path.join(katexDir, 'dist/fonts'), path.join(outDir, 'assets/katex/fonts'));
+  fs.copyFileSync(path.join(katexDir, 'dist/katex.min.css'), path.join(outDir, 'assets/katex/katex.min.css'));
   const mermaidSrc = path.join(nm, 'mermaid/dist');
   const mermaidOut = path.join(outDir, 'assets/vendor/mermaid');
   fs.mkdirSync(mermaidOut, {recursive: true});
