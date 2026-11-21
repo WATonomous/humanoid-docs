@@ -11,4 +11,4 @@ A spinoff project from the members of the humanoid team in building a thrust-vec
 
 ![](/img/humanoid/videos/tvc-rocket.mp4)
 
-<a class="button button--primary button--lg" href="/blog/tvc-rocket-deep-dive" style={{marginTop: '1rem'}}>Read the technical deep dive →</a>
+<a class="button button--primary button--lg" href="/blog/tvc-rocket" style={{marginTop: '1rem'}}>Read the technical deep dive →</a>
