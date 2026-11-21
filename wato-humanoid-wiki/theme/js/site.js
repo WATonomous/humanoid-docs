@@ -23,6 +23,7 @@
   // --k is set on the shared wrapper so both the footer's faint backdrop and the full-size
   // art below it ramp up together, one continuous reveal instead of a hard cut.
   const zone = $('.footer-zone');
+  const navbar = $('.navbar');
   if (zone) {
     const artEl = $('.footer-art-img', zone) || $('.footer-ascii-backdrop', zone);
     const artUrl = artEl && getComputedStyle(artEl).backgroundImage.match(/url\(["']?(.*?)["']?\)/)?.[1];
@@ -31,10 +32,14 @@
       preload.decoding = 'async';
       preload.src = artUrl;
     }
+    const navH = navbar ? navbar.offsetHeight : 0;
     const update = () => {
       const top = zone.getBoundingClientRect().top;
       const k = Math.min(1, Math.max(0, (innerHeight - top) / (innerHeight * 0.9)));
       zone.style.setProperty('--k', k.toFixed(3));
+      // once the dark art has scrolled up under the sticky navbar, give the navbar a matching
+      // dark-glass look instead of the light bar clashing with the art behind it
+      navbar?.classList.toggle('over-dark', top <= navH);
     };
     addEventListener('scroll', () => requestAnimationFrame(update), {passive: true});
     addEventListener('resize', update);
