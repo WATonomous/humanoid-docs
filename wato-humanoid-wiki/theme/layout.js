@@ -49,10 +49,11 @@ function navbar(ctx, section) {
 </header>`;
 }
 
-function footer(ctx) {
+function footer(ctx, footerArtUrl) {
   const {footer: f} = ctx.config;
   return `
 <footer class="footer">
+  ${footerArtUrl ? `<div class="footer-ascii-backdrop" style="background-image:url('${footerArtUrl}')" aria-hidden="true"></div>` : ''}
   <div class="footer-inner">
     <div class="footer-cols">
       ${f.columns
@@ -122,8 +123,9 @@ ${navbar(ctx, section)}
 ${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden="true"></canvas><script defer src="${ctx.asset(ctx.assets.rocket)}"></script>` : ''}${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
 ${body}
-${footer(ctx)}
-${footerArt ? `<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div></div>` : ''}
+${footerArt
+  ? `<div class="footer-zone">${footer(ctx, ctx.asset(footerArt))}<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div></div></div>`
+  : footer(ctx)}
 <div class="search-modal" data-search-modal hidden>
   <div class="search-backdrop" data-search-close></div>
   <div class="search-panel" role="dialog" aria-label="Search">

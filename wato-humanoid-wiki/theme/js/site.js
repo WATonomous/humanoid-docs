@@ -19,14 +19,22 @@
     }),
   );
 
-  // ---- ASCII art past the footer: fades in as it scrolls into view ----------------------
-  const art = $('.footer-art');
-  if (art) {
-    const img = $('.footer-art-img', art);
+  // ---- ASCII art past the footer: fades in as the footer zone scrolls into view ---------
+  // --k is set on the shared wrapper so both the footer's faint backdrop and the full-size
+  // art below it ramp up together, one continuous reveal instead of a hard cut.
+  const zone = $('.footer-zone');
+  if (zone) {
+    const artEl = $('.footer-art-img', zone) || $('.footer-ascii-backdrop', zone);
+    const artUrl = artEl && getComputedStyle(artEl).backgroundImage.match(/url\(["']?(.*?)["']?\)/)?.[1];
+    if (artUrl) {
+      const preload = new Image();
+      preload.decoding = 'async';
+      preload.src = artUrl;
+    }
     const update = () => {
-      const top = art.getBoundingClientRect().top;
-      const k = Math.min(1, Math.max(0, (innerHeight - top) / (innerHeight * 0.7)));
-      art.style.setProperty('--k', k.toFixed(3));
+      const top = zone.getBoundingClientRect().top;
+      const k = Math.min(1, Math.max(0, (innerHeight - top) / (innerHeight * 0.9)));
+      zone.style.setProperty('--k', k.toFixed(3));
     };
     addEventListener('scroll', () => requestAnimationFrame(update), {passive: true});
     addEventListener('resize', update);

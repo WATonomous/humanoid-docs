@@ -1,6 +1,6 @@
 {
   "label": "Firmware",
-  "position": 6,
+  "position": 4,
   "link": {
     "type": "doc",
     "id": "firmware/index"
