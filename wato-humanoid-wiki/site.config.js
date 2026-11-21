@@ -42,7 +42,7 @@ export default {
     ],
     right: [
       {label: 'WATonomous', href: 'https://www.watonomous.ca/'},
-      {label: 'GitHub', href: 'https://github.com/WATonomous/humanoid'},
+      {label: 'GitHub', href: 'https://github.com/WATonomous/pioneer_humanoid'},
     ],
   },
 
@@ -53,14 +53,14 @@ export default {
         items: [
           {label: 'Mechanical', to: '/mechanical'},
           {label: 'Electrical', to: '/electrical'},
-          {label: 'Interfacing', to: '/interfacing'},
+          {label: 'Firmware', to: '/firmware'},
           {label: 'Software & ML', to: '/software'},
         ],
       },
       {
         title: 'Project',
         items: [
-          {label: 'Humanoid Repository', href: 'https://github.com/WATonomous/humanoid'},
+          {label: 'Humanoid Repository', href: 'https://github.com/WATonomous/pioneer_humanoid'},
           {label: 'WATonomous Website', href: 'https://www.watonomous.ca/'},
           {label: 'WATonomous GitHub', href: 'https://github.com/WATonomous'},
         ],

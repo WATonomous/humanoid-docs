@@ -8,7 +8,7 @@ description: Links for the WATonomous Humanoid team, the University of Waterloo 
 
 ## Main Repository
 
-- **[WATonomous Humanoid GitHub Repository](https://github.com/WATonomous/humanoid)** - Main codebase including autonomy (ROS2), embedded firmware, and simulation
+- **[WATonomous Humanoid GitHub Repository](https://github.com/WATonomous/pioneer_humanoid)** - Main codebase including autonomy (ROS2), embedded firmware, and simulation
 
 ## Related Resources
 

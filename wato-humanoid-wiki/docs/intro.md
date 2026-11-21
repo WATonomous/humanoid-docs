@@ -34,7 +34,6 @@ Our humanoid robot will feature 2 arms + 2 legs and we are also developing a 22 
 
 - [Mechanical](/mechanical)
 - [Electrical](/electrical)
-- [Interfacing](/interfacing)
 - [Firmware](/firmware)
 - [Software & Machine Learning](/software)
 - [Gallery](/gallery)
