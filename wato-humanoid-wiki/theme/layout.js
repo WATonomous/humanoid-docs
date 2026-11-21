@@ -80,6 +80,10 @@ export function page(ctx, {route, title, description, section, body, ogType = 'w
   const pioneerBg = !!c.pioneer?.background && !rocketBg;
   const pioneerJs = pioneerBg;
   const footerArt = c.footerArt && (c.footerArt[needs.ascii] || c.footerArt.default);
+  const footerArtTitle = c.footerArtTitle?.[c.footerArt?.[needs.ascii] ? needs.ascii : 'default'];
+  // `hero: <footerArt key>` in front matter: that art full-screen at the top, and behind the footer's links
+  const heroArt = needs.hero && c.footerArt?.[needs.hero];
+  const heroTitle = needs.hero && c.footerArtTitle?.[needs.hero];
   const fullTitle = title && title !== c.title ? `${title} | ${c.title}` : c.title;
   const desc = description || c.description;
   const canonical = ctx.absUrl(route);
@@ -109,6 +113,7 @@ export function page(ctx, {route, title, description, section, body, ogType = 'w
 <link rel="alternate" type="application/atom+xml" href="${ctx.asset('blog/atom.xml')}" title="${esc(c.title)} Atom Feed">
 <link rel="stylesheet" href="${ctx.asset(ctx.assets.css)}">
 ${needs.math ? `<link rel="stylesheet" href="${ctx.asset('assets/katex/katex.min.css')}">` : ''}
+${footerArtTitle || heroTitle ? '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap">' : ''}
 <script>${themeScript}</script>
 <script type="application/ld+json">${JSON.stringify(c.jsonLd).replace(/</g, '\\u003c')}</script>
 ${extraHead}
@@ -117,14 +122,15 @@ ${pioneerJs ? `<script type="importmap">${JSON.stringify({imports: {three: ctx.a
 <script defer src="${ctx.asset(ctx.assets.js)}" data-base="${c.baseUrl}" data-mermaid="${ctx.asset(ctx.assets.mermaid)}"></script>
 ${ctx.dev ? `<script>new EventSource('/__reload').onmessage=()=>location.reload()</script>` : ''}
 </head>
-<body class="section-${section || 'page'}${pioneerBg || rocketBg ? ' has-pioneer-bg' : ''}">
+<body class="section-${section || 'page'}${pioneerBg || rocketBg ? ' has-pioneer-bg' : ''}${heroArt ? ' has-hero' : ''}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${navbar(ctx, section)}
 ${rocketBg ? `<canvas class="pioneer-bg rocket-bg" data-ascii-rocket aria-hidden="true"></canvas><script defer src="${ctx.asset(ctx.assets.rocket)}"></script>` : ''}${pioneerBg ? '<canvas class="pioneer-bg" data-ascii-pioneer data-mode="background" aria-hidden="true"></canvas>' : ''}
 <div class="drawer-backdrop" data-drawer-close></div>
+${heroArt ? `<section class="hero" aria-label="${esc(c.title)}"><div class="hero-img" style="background-image:url('${ctx.asset(heroArt)}')"></div>${heroTitle ? `<h1 class="hero-title"><span>${esc(heroTitle[0])}</span> <span>${esc(heroTitle[1] || '')}</span></h1>` : ''}<a class="hero-cue" href="#main" aria-label="Scroll to content"></a></section>` : ''}
 ${body}
 ${footerArt
-  ? `<div class="footer-zone">${footer(ctx, ctx.asset(footerArt))}<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div></div></div>`
+  ? `<div class="footer-zone">${footer(ctx, ctx.asset(heroArt || footerArt))}<div class="footer-art" aria-hidden="true"><div class="footer-art-img" style="background-image:url('${ctx.asset(footerArt)}')"></div>${footerArtTitle ? `<div class="footer-art-title"><span>${esc(footerArtTitle[0])}</span><span>${esc(footerArtTitle[1] || '')}</span></div>` : ''}</div></div>`
   : footer(ctx)}
 <div class="search-modal" data-search-modal hidden>
   <div class="search-backdrop" data-search-close></div>
@@ -236,7 +242,7 @@ export function docPage(ctx, {doc, sidebar: sidebarTree, rendered}) {
     description: doc.description || rendered.firstParagraph,
     section: 'docs',
     body,
-    needs: {...rendered.needs, ascii: doc.frontMatter.ascii},
+    needs: {...rendered.needs, ascii: doc.frontMatter.ascii, hero: doc.frontMatter.hero},
   });
 }
 
