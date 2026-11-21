@@ -46,6 +46,20 @@
     update();
   }
 
+  // the navbar goes dark glass while a hero image is still under it
+  const hero = $('.hero');
+  if (hero && navbar) {
+    const onHero = () => {
+      const b = hero.getBoundingClientRect().bottom;
+      root.style.setProperty('--hero-p', Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * 0.6))).toFixed(3));
+      root.style.setProperty('--hero-out', Math.min(1, Math.max(0, 1 - b / (innerHeight * 0.5))).toFixed(3));
+      heroNav();
+    };
+    const heroNav = () => navbar.classList.toggle('over-dark', hero.getBoundingClientRect().bottom > navbar.offsetHeight * 2 || (zone && zone.getBoundingClientRect().top <= navbar.offsetHeight));
+    addEventListener('scroll', () => requestAnimationFrame(onHero), {passive: true});
+    onHero();
+  }
+
   // ---- Mobile drawer ------------------------------------------------------
   const setDrawer = (open) => document.body.classList.toggle('drawer-open', open);
   $$('[data-drawer-open]').forEach((b) => b.addEventListener('click', () => setDrawer(true)));

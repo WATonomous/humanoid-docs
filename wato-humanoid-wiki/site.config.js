@@ -88,7 +88,14 @@ export default {
 
   // ASCII art that fades in when you scroll past the footer. Pages with `ascii: rocket` in their
   // front matter get the rocket one. Made with scripts/ascii-art.py. Set to null to turn off.
-  footerArt: {default: 'img/ascii/pioneer-earthrise.webp', rocket: 'img/ascii/pioneer-launch.webp'},
+  footerArt: {
+    default: 'img/ascii/pioneer-earthrise.webp',
+    rocket: 'img/ascii/pioneer-launch.webp',
+    ringfield: 'img/ascii/pioneer-ringfield.webp', // the homepage hero (`hero: ringfield` in docs/intro.md): Pioneer on a ring plane, a painting rather than ASCII
+  },
+
+  // optional title over an art in its dark sky, per art (same keys as footerArt), shown on the hero too
+  footerArtTitle: {ringfield: ['Pioneer', 'Humanoid']},
 
   code: {
     // Shiki theme names: https://shiki.style/themes

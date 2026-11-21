@@ -65,3 +65,35 @@
   background: linear-gradient(to bottom, var(--footer-bg) 0%, color-mix(in srgb, var(--footer-bg) 70%, transparent) 30%, transparent 100%);
 }
 @media (prefers-reduced-motion: reduce) { .footer-art { --k: 1 !important; } }
+/* the title over the footer art (site.config.js footerArtTitle), in the dark sky, fading in with the art */
+.footer-art-title {
+  position: absolute; left: 0; right: 0; top: 16%; z-index: 2; text-align: center; pointer-events: none;
+  font-family: 'Michroma', var(--font-sans); color: #eef2fb; text-transform: uppercase;
+  opacity: calc(var(--k, 0) * 0.95); transform: translateY(calc((1 - var(--k, 0)) * 18px));
+  text-shadow: 0 0 24px rgba(170, 195, 255, 0.35), 0 2px 18px rgba(4, 6, 16, 0.7);
+}
+.footer-art-title { white-space: nowrap; }
+.footer-art-title span { font-size: clamp(1.1rem, 3.4vw, 3.4rem); letter-spacing: 0.32em; line-height: 1.15; }
+.footer-art-title span:first-child { padding-left: 0.32em; }
+.footer-art-title span + span { margin-left: 0.9em; }
+/* hero (front matter `hero: true`): the page's art full-screen under the navbar, title over its sky */
+.hero { position: relative; height: calc(100svh - var(--navbar-h)); min-height: 420px; overflow: hidden; background: #05060d; }
+.hero-img { position: absolute; inset: 0; background: center 62% / cover no-repeat; animation: hero-in 1.6s ease-out both; }
+.hero { --fade: color-mix(in srgb, var(--c-bg) calc(var(--hero-p, 0) * 100%), #05060d); }
+/* the bottom fades to black at first, and to the page colour as you scroll down into the docs */
+.hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 48%; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--fade) 10%, transparent) 25%, color-mix(in srgb, var(--fade) 35%, transparent) 50%, color-mix(in srgb, var(--fade) 75%, transparent) 75%, var(--fade) 100%); }
+/* on a hero page the faint background Pioneer waits until the hero has scrolled away, then fades in */
+.has-hero .pioneer-bg.ready { opacity: var(--hero-out, 0); transition: none; }
+.hero-title {
+  position: absolute; left: 0; right: 0; top: 17%; margin: 0; text-align: center; white-space: nowrap;
+  font: 400 clamp(1.1rem, 3.6vw, 3.6rem) / 1.15 'Michroma', var(--font-sans); letter-spacing: 0.32em; padding-left: 0.32em;
+  color: #eef2fb; text-transform: uppercase; text-shadow: 0 0 24px rgba(170, 195, 255, 0.35), 0 2px 18px rgba(4, 6, 16, 0.7);
+  animation: hero-title-in 1.8s 0.3s ease-out both;
+}
+.hero-title span + span { margin-left: 0.6em; }
+.hero-cue { position: absolute; left: 50%; bottom: 7%; z-index: 1; width: 22px; height: 22px; margin-left: -11px; border-right: 1.5px solid #dfe6f5; border-bottom: 1.5px solid #dfe6f5; transform: rotate(45deg); opacity: 0.7; animation: hero-cue 2.2s ease-in-out infinite; }
+@keyframes hero-in { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+@keyframes hero-title-in { from { opacity: 0; letter-spacing: 0.5em; } to { opacity: 1; } }
+@keyframes hero-cue { 0%, 100% { translate: 0 0; opacity: 0.35; } 50% { translate: 0 8px; opacity: 0.8; } }
+@media (prefers-reduced-motion: reduce) { .hero-img, .hero-title, .hero-cue { animation: none; } }
