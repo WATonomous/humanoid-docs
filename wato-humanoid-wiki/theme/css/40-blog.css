@@ -1,9 +1,14 @@
 /* Blog */
-.blog-sidebar {
-  position: sticky; top: var(--navbar-h);
-  flex: 0 0 var(--sidebar-w); width: var(--sidebar-w);
-  height: calc(100vh - var(--navbar-h)); overflow-y: auto;
-  padding: 2rem 1rem 2rem 2.5rem; scrollbar-width: thin;
+.blog-sidebar { overflow-y: auto; scrollbar-width: thin; }
+/* Desktop only: this file loads after 20-layout.css, so unscoped it would override the
+   phone drawer there and leave an invisible 300px column squeezing the posts. */
+@media (min-width: 997px) {
+  .blog-sidebar {
+    position: sticky; top: var(--navbar-h);
+    flex: 0 0 var(--sidebar-w); width: var(--sidebar-w);
+    height: calc(100vh - var(--navbar-h));
+    padding: 2rem 1rem 2rem 2.5rem;
+  }
 }
 .blog-side-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 1rem; }
 .blog-side-year { font-weight: 700; font-size: 1.15rem; margin: 1rem 0 0.4rem; }

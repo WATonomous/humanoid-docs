@@ -168,7 +168,9 @@
 @media (max-width: 996px) {
   .navbar-toggle { display: inline-flex; }
   .nav-left, .nav-right { display: none; }
-  .search-button { min-width: 0; }
+  .search-button { min-width: 0; flex-shrink: 0; } /* the brand gives way on narrow phones, not the icon */
+  .brand { min-width: 0; margin-right: 0.5rem; }
+  .brand-text { overflow: hidden; text-overflow: ellipsis; }
   .search-button span, .search-button kbd { display: none; }
   .sidebar, .blog-sidebar {
     position: fixed; top: 0; left: 0; bottom: 0; z-index: 50;

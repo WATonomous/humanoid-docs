@@ -92,6 +92,8 @@
   animation: hero-title-in 1.8s 0.3s ease-out both;
 }
 .hero-title span + span { margin-left: 0.6em; }
+/* the 1.1rem floor is wider than a 360px phone in Michroma's spacing */
+@media (max-width: 400px) { .hero-title { font-size: 4.2vw; } }
 .hero-cue { position: absolute; left: 50%; bottom: 7%; z-index: 1; width: 22px; height: 22px; margin-left: -11px; border-right: 1.5px solid #dfe6f5; border-bottom: 1.5px solid #dfe6f5; transform: rotate(45deg); opacity: 0.7; animation: hero-cue 2.2s ease-in-out infinite; }
 @keyframes hero-in { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
 @keyframes hero-title-in { from { opacity: 0; letter-spacing: 0.5em; } to { opacity: 1; } }
