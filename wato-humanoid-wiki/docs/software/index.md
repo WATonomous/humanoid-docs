@@ -11,6 +11,7 @@ Software and machine learning for Pioneer, split by topic:
 - [Arm Kinematics & IK](./arm-kinematics) — bimanual IK, the Jacobian IK controller, DH parameters and workspace
 - [VR Teleoperation](./vr-teleoperation) — driving the arms in sim with Quest controllers and recording training data
 - [Data Collection](./data-collection) — the light-box workspace for collecting manipulation data
+- [Cloth Folding](./cloth-folding) — one Pioneer-1 policy folding pants and t-shirts, chosen by prompt
 - [Reinforcement Learning](./reinforcement-learning) — in-hand manipulation RL and task environments
 - [Locomotion](./locomotion) — RL walking, rough terrain, stairs, snow and motion imitation
 - [Simulation](./simulation) — fin ray finger bending and deformable object physics
