@@ -209,10 +209,12 @@ function linkCard({href, image, kicker, title, desc, cta}) {
 
 function pager(ctx, prev, next, {prevLabel = 'Previous', nextLabel = 'Next'} = {}) {
   if (!prev && !next) return '';
-  const card = (p, label, cls) =>
-    p
-      ? `<a class="pager-link ${cls}" href="${ctx.url(p.route)}"><span class="pager-sub">${label}</span><span class="pager-title">${esc(p.sidebarLabel ?? p.title)}</span></a>`
-      : '<span></span>';
+  const card = (p, label, cls) => {
+    if (!p) return '<span></span>';
+    const img = p.image ?? p.frontMatter?.image;
+    const thumb = img ? `<span class="pager-thumb" style="background-image:url(${esc(ctx.asset(img.replace(/^\//, '')))})"></span>` : '';
+    return `<a class="pager-link ${cls}${thumb ? ' has-thumb' : ''}" href="${ctx.url(p.route)}">${thumb}<span class="pager-body"><span class="pager-sub">${label}</span><span class="pager-title">${esc(p.sidebarLabel ?? p.title)}</span></span></a>`;
+  };
   return `<nav class="pager" aria-label="Pages">${card(prev, `← ${prevLabel}`, 'prev')}${card(next, `${nextLabel} →`, 'next')}</nav>`;
 }
 

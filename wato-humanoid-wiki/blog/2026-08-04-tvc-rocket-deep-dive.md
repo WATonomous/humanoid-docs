@@ -4,6 +4,7 @@ title: "How we built a Thrust Vector Control (TVC) Rocket"
 authors: [wilson, senna]
 tags: [rocketry, tvc]
 ascii: rocket
+image: /img/humanoid/rocketry/pioneer-liftoff.jpg
 ---
 
 A spinoff project from the members of the humanoid team in building a thrust-vector-controlled (TVC) rocket.

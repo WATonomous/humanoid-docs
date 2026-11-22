@@ -4,7 +4,7 @@ title: TVC Rocket
 description: TVC rocketry spinoff project from the WATonomous Humanoid team.
 ascii: rocket
 kicker: Project
-image: /img/humanoid/rocketry/pioneer-liftoff.jpg
+image: /img/humanoid/rocketry/pioneer-on-pad.jpg
 ---
 
 # TVC Rocket

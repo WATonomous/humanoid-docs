@@ -164,6 +164,15 @@ export function loadDocs(docsDir) {
   return {docs, sidebar: items, generatedPages};
 }
 
+// first photo in a post, or the poster of a video if that comes first
+function firstPhoto(md) {
+  for (const [, src, title = ''] of md.matchAll(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g)) {
+    if (/\.(jpe?g|png|webp)$/i.test(src)) return src;
+    const poster = title.match(/poster=(\S+)/)?.[1];
+    if (poster) return poster;
+  }
+}
+
 export function loadBlog(blogDir) {
   const authors = readYaml(path.join(blogDir, 'authors.yml'));
   const tagDefs = readYaml(path.join(blogDir, 'tags.yml'));
@@ -194,6 +203,8 @@ export function loadBlog(blogDir) {
         body: content,
         title: fm.title ?? content.match(/^#\s+(.+)$/m)?.[1] ?? slug,
         description: fm.description,
+        // pager thumbnail: front matter `image`, else the post's first photo or video poster
+        image: fm.image ?? firstPhoto(content),
         date,
         authors: authorKeys.map((k) => (typeof k === 'string' ? {key: k, ...(authors[k] || {name: k})} : k)),
         tags: [].concat(fm.tags ?? []).map(tagFor),
