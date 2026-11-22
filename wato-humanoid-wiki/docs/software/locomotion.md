@@ -16,3 +16,9 @@ Reinforcement learning-based locomotion training.
 ![](/img/humanoid/videos/locomotion-snow-night.mp4)
 ![](/img/humanoid/videos/motion-imitation-supermimic.mp4)
 :::
+
+## Boxing
+
+Two Pioneers sparring in the ring, trained with reinforcement learning.
+
+![](/img/humanoid/videos/humanoid-boxing-rl.mp4)
