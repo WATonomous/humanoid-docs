@@ -138,6 +138,7 @@
 .edit-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
 .pager-link { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.8rem 1.1rem; border: 1px solid var(--c-border); border-radius: 0.6rem; transition: border-color 0.15s, box-shadow 0.15s; }
+.pager-link:hover .pager-title { color: var(--c-primary); }
 .pager-link:hover { border-color: var(--c-primary); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); text-decoration: none; }
 .pager-link.next { text-align: right; }
 .pager-body { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
@@ -145,8 +146,8 @@
 .pager-link.has-thumb.next { flex-direction: row-reverse; }
 .pager-link.has-thumb .pager-body { justify-content: center; flex: 1; padding: 0.8rem 1.1rem; }
 .pager-thumb { flex: 0 0 5.5rem; min-height: 4.5rem; background: #111 center / cover no-repeat; }
-.pager-sub { font-size: 0.8rem; color: var(--c-text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
-.pager-title { font-weight: 650; font-size: 1.05rem; word-break: break-word; }
+.pager-sub { font-size: 0.8rem; color: var(--c-text-muted); font-weight: 500; }
+.pager-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-weight: 600; font-size: 0.98rem; line-height: 1.4; color: var(--c-text); transition: color 0.15s; word-break: break-word; }
 
 /* ---- Footer ------------------------------------------------------------------ */
 .footer { position: relative; background: #14151a; color: #d8dadf; padding: 2rem 1rem; overflow: hidden; }
