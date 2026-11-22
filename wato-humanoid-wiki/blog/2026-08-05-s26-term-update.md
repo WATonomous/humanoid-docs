@@ -3,12 +3,13 @@ slug: s26-term-update
 title: "Summer 2026 Progress Update"
 authors: [wilson]
 tags: [progress-update]
-image: /img/humanoid/pioneer-arm-outdoor.jpg
 ---
 
 As the term wraps up, here's where the humanoid team landed this summer — and it's been a big one.
 
 {/* truncate */}
+
+![Pioneer robot arm on its stand outside Waterloo Engineering](/img/humanoid/pioneer-arm-outdoor.jpg "width=280")
 
 ## This term
 
