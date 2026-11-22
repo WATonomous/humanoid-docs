@@ -14,6 +14,7 @@ Software and machine learning for Pioneer, split by topic:
 - [Pioneer-1 Manipulation](./pioneer-1) — a diffusion transformer that picks the object named in the prompt
 - [Cloth Folding](./cloth-folding) — one Pioneer-1 policy folding pants and t-shirts, chosen by prompt
 - [Reinforcement Learning](./reinforcement-learning) — in-hand manipulation RL and task environments
-- [Locomotion](./locomotion) — RL walking, rough terrain, stairs, snow and motion imitation
+- [Locomotion](./locomotion) — RL walking, rough terrain, stairs, snow, motion imitation and boxing
+- [Badminton](./badminton) — shuttlecock tracking on real footage and RL serve returns in sim
 - [Simulation](./simulation) — fin ray finger bending, deformable object physics and hand manipulation
 - [Geometric Fabrics PCA](./geometric-fabrics) — fabric-based hand control in a PCA synergy space
