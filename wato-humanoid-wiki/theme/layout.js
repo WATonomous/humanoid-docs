@@ -202,6 +202,11 @@ function breadcrumbs(ctx, page) {
     .join('')}<span class="crumb-sep">${icon.crumb}</span><span class="crumb-current">${esc(label)}</span></nav>`;
 }
 
+// Same card as <a class="link-card"> written in Markdown (e.g. the rocket page's blog link)
+function linkCard({href, image, kicker, title, desc, cta}) {
+  return `<a class="link-card" href="${href}">${image ? `<span class="link-card-thumb" style="background-image:url(${esc(image)})"></span>` : ''}<span class="link-card-body">${kicker ? `<span class="link-card-kicker">${esc(kicker)}</span>` : ''}<span class="link-card-title">${esc(title)}</span>${desc ? `<span class="link-card-desc">${esc(desc)}</span>` : ''}<span class="link-card-cta">${esc(cta)} <span aria-hidden="true">→</span></span></span></a>`;
+}
+
 function pager(ctx, prev, next, {prevLabel = 'Previous', nextLabel = 'Next'} = {}) {
   if (!prev && !next) return '';
   const card = (p, label, cls) =>
@@ -253,7 +258,14 @@ export function generatedIndexPage(ctx, {gen, sidebar: sidebarTree}) {
       const target = item.type === 'doc' ? item.doc : item.link?.doc ?? item.link?.generated;
       if (!target) return '';
       const desc = target.description ?? (item.type === 'category' ? `${item.items.length || 1} item${item.items.length === 1 ? '' : 's'}` : '');
-      return `<a class="card" href="${ctx.url(target.route)}"><span class="card-title">${esc(item.label)}<span class="card-arrow" aria-hidden="true">→</span></span>${desc ? `<span class="card-desc">${esc(desc)}</span>` : ''}</a>`;
+      return linkCard({
+        href: ctx.url(target.route),
+        image: target.frontMatter?.image && ctx.asset(target.frontMatter.image.replace(/^\//, '')),
+        kicker: target.frontMatter?.kicker ?? (item.type === 'category' ? 'Section' : 'Page'),
+        title: item.label,
+        desc,
+        cta: 'Open',
+      });
     })
     .join('');
   const body = `
@@ -270,6 +282,7 @@ export function generatedIndexPage(ctx, {gen, sidebar: sidebarTree}) {
         </div>
         ${pager(ctx, gen.prev, gen.next)}
       </article>
+      <div class="toc" aria-hidden="true"></div>
     </div>
   </main>
 </div>`;

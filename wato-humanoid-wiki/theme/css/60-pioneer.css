@@ -36,7 +36,7 @@
 
 /* Boxes sit on a solid page background so the figure never shows through behind their text. */
 .has-pioneer-bg .pager-link,
-.has-pioneer-bg .card,
+.has-pioneer-bg .link-card,
 .has-pioneer-bg .post-card,
 .has-pioneer-bg .toc-mobile,
 .has-pioneer-bg .markdown table,
@@ -50,7 +50,7 @@
 .has-pioneer-bg .post-card { background-color: var(--c-surface); }
 /* Cards and page links read as frosted glass over the figure instead of white blocks cut out of it */
 .has-pioneer-bg .pager-link,
-.has-pioneer-bg .card {
+.has-pioneer-bg .link-card {
   background-color: color-mix(in srgb, var(--c-bg) 72%, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
