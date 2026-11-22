@@ -48,6 +48,13 @@
   background-color: var(--c-bg);
 }
 .has-pioneer-bg .post-card { background-color: var(--c-surface); }
+/* Cards and page links read as frosted glass over the figure instead of white blocks cut out of it */
+.has-pioneer-bg .pager-link,
+.has-pioneer-bg .card {
+  background-color: color-mix(in srgb, var(--c-bg) 72%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
 /* Tinted callouts: keep the tint, but over solid page colour */
 .has-pioneer-bg .admonition { background: linear-gradient(var(--adm-bg), var(--adm-bg)), var(--c-bg); }
 

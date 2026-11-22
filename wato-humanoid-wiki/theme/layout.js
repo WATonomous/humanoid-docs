@@ -253,7 +253,7 @@ export function generatedIndexPage(ctx, {gen, sidebar: sidebarTree}) {
       const target = item.type === 'doc' ? item.doc : item.link?.doc ?? item.link?.generated;
       if (!target) return '';
       const desc = target.description ?? (item.type === 'category' ? `${item.items.length || 1} item${item.items.length === 1 ? '' : 's'}` : '');
-      return `<a class="card" href="${ctx.url(target.route)}"><span class="card-title">${item.type === 'category' && item.items.length ? '🗃️' : '📄'} ${esc(item.label)}</span>${desc ? `<span class="card-desc">${esc(desc)}</span>` : ''}</a>`;
+      return `<a class="card" href="${ctx.url(target.route)}"><span class="card-title">${esc(item.label)}<span class="card-arrow" aria-hidden="true">→</span></span>${desc ? `<span class="card-desc">${esc(desc)}</span>` : ''}</a>`;
     })
     .join('');
   const body = `

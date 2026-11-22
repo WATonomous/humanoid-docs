@@ -135,11 +135,11 @@
 .doc-footer { margin-top: 3rem; }
 .edit-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-.pager-link { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.9rem 1rem; border: 1px solid var(--c-border); border-radius: var(--radius); transition: border-color 0.15s; }
-.pager-link:hover { border-color: var(--c-primary); text-decoration: none; }
+.pager-link { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.8rem 1.1rem; border: 1px solid var(--c-border); border-radius: 0.6rem; transition: border-color 0.15s, box-shadow 0.15s; }
+.pager-link:hover { border-color: var(--c-primary); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); text-decoration: none; }
 .pager-link.next { text-align: right; }
-.pager-sub { font-size: 0.875rem; color: var(--c-text-muted); font-weight: 500; }
-.pager-title { font-weight: 700; word-break: break-word; }
+.pager-sub { font-size: 0.8rem; color: var(--c-text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.pager-title { font-weight: 650; font-size: 1.05rem; word-break: break-word; }
 
 /* ---- Footer ------------------------------------------------------------------ */
 .footer { position: relative; background: #14151a; color: #d8dadf; padding: 2rem 1rem; overflow: hidden; }
