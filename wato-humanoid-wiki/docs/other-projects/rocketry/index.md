@@ -11,4 +11,4 @@ A spinoff project from the members of the humanoid team in building a thrust-vec
 
 ![](/img/humanoid/videos/tvc-rocket.mp4)
 
-<a class="button button--primary button--lg" href="/blog/tvc-rocket" style={{marginTop: '1rem'}}>Read the technical deep dive →</a>
+<a class="post-link" href="/blog/tvc-rocket"><span class="post-link-thumb" style={{backgroundImage: "url(/humanoid-docs/img/humanoid/rocketry/pioneer-liftoff.jpg)"}}></span><span class="post-link-body"><span class="post-link-kicker">Blog</span><span class="post-link-title">How we built a Thrust Vector Control (TVC) Rocket</span><span class="post-link-cta">Read the blog <span aria-hidden="true">→</span></span></span></a>
