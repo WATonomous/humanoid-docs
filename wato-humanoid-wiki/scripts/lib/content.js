@@ -156,9 +156,16 @@ export function loadDocs(docsDir) {
     }
   }
   flatten(items, []);
+  // no prev/next between a page and its own parent category's page: the breadcrumb and the cards already link them
+  const parentPage = (p) => {
+    const cat = p?.parents?.at(-1);
+    return cat && (cat.link?.doc ?? cat.link?.generated);
+  };
   sequence.forEach((page, i) => {
-    page.prev = sequence[i - 1] || null;
-    page.next = sequence[i + 1] || null;
+    const prev = sequence[i - 1] || null;
+    const next = sequence[i + 1] || null;
+    page.prev = prev && parentPage(page) === prev ? null : prev;
+    page.next = next && parentPage(next) === page ? null : next;
   });
 
   return {docs, sidebar: items, generatedPages};

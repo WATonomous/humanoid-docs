@@ -133,6 +133,8 @@
 .crumb-sep { display: inline-flex; color: var(--c-emph-600); }
 .crumb-current { color: var(--c-primary); background: var(--c-primary-soft); padding: 0.1rem 0.55rem; border-radius: 999px; }
 .doc-footer { margin-top: 3rem; }
+/* the right-hand column already has "Edit this page"; the one under the article is for narrow windows */
+@media (min-width: 1201px) { .doc-row:has(.toc-edit) .edit-link:not(.toc-edit .edit-link) { display: none; } }
 .edit-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
 .pager-link { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.8rem 1.1rem; border: 1px solid var(--c-border); border-radius: 0.6rem; transition: border-color 0.15s, box-shadow 0.15s; }
