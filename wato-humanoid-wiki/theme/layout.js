@@ -378,7 +378,7 @@ export function blogPostPage(ctx, {post}) {
   ${tocHtml(post.rendered.toc, {mobile: true})}
   <div class="markdown">${post.rendered.html}</div>
   <footer class="post-foot">${tagList(ctx, post.tags)}${editLink(ctx, 'blog/' + post.relFile)}</footer>
-  ${pager(ctx, post.newer, post.older, {prevLabel: 'Newer post', nextLabel: 'Older post'})}
+  ${pager(ctx, post.newer, post.older)}
 </article>`;
   return page(ctx, {
     route: post.route,
