@@ -24,6 +24,12 @@ For faster progress, we will be temporarily switching to attaching a gripper ins
 
 Wrist and gripper torque ratings are per actuator, from CubeMars: [AK45-10 V3.0](https://www.cubemars.com/product/ak45-10-v3-0-kv75-robotic-actuator.html) and [AK40-10 KV170](https://www.cubemars.com/product/ak40-10-robotic-actuator.html). The AK40-10 is the standard, non-V3.0 model.
 
+## Leader Arm
+
+A wearable, bimanual leader arm for teleoperation: two arms that mirror Pioneer's joints, on a backpack frame, worn with shoulder straps. Each arm has 8 STS3215 servos, one per joint plus the gripper, with torque always off, so they only read angles. Each angle maps one-to-one onto the matching Pioneer joint, with no IK, from a shared zero: arm hanging straight down, gripper open.
+
+![The wearable leader arm, worn on a backpack frame](/img/humanoid/leader-arm-wearable.jpg "width=50%")
+
 ## 22 DOF Hand
 
 22 DOF hand (18 actuated), including 2 DOF for the wrist.

@@ -2,7 +2,7 @@
 id: cloth-folding
 title: Cloth Folding
 description: One Pioneer-1 policy that folds both pants and t-shirts in simulation, picking the task from the prompt.
-sidebar_position: 2.7
+sidebar_position: 2.8
 ---
 
 # Cloth Folding
