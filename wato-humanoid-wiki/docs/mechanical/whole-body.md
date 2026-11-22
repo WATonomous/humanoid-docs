@@ -21,6 +21,13 @@ light bar round it, a fanned rib over the crown, cheek pads and temple vents. Th
 
 ![Pioneer head, three-quarter view](/img/humanoid/pioneer-head-34.png "width=60%")
 
+The printed head prototype, with its visor fitted:
+
+:::gallery 2
+![Printed head prototype, front view](/img/humanoid/head-prototype-front.jpg)
+![Printed head prototype, three-quarter view](/img/humanoid/head-prototype-34.jpg)
+:::
+
 ## 67 Joints
 
 | Group | Joints | Count |

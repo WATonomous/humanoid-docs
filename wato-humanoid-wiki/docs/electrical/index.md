@@ -43,6 +43,13 @@ flowchart TB
 
 ### Battery pack
 
+The custom pack is built from 84 EVE 21700 Li-ion cells, seated in cell holders in two blocks of 42.
+
+:::gallery 16fr 9fr
+![84 21700 cells in holders, side view](/img/humanoid/battery-pack-cells-side.jpg)
+![84 21700 cells in holders, top view](/img/humanoid/battery-pack-cells-top.jpg)
+:::
+
 | Parameter | Value |
 | --- | --- |
 | Cells | EVE INR21700/40PL (84 in pack, 7 spare) |
