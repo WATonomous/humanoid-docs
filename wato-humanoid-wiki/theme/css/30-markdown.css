@@ -98,11 +98,8 @@
 @keyframes fade-in { from { opacity: 0; } }
 
 /* Generated-index cards */
-.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
-.card { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.25rem; border: 1px solid var(--c-border); border-radius: 0.5rem; color: var(--c-text); box-shadow: var(--c-shadow); transition: border-color 0.15s; }
-.card:hover { border-color: var(--c-primary); text-decoration: none; color: var(--c-text); }
-.card-title { font-weight: 700; font-size: 1.15rem; }
-.card-desc { font-size: 0.9rem; color: var(--c-text-muted); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 1rem; }
+.markdown .card-grid .link-card { margin: 0; max-width: none; }
 
 @media (max-width: 576px) {
   .markdown h1 { font-size: 2.1rem; }
@@ -112,3 +109,16 @@
 /* Videos written as ![alt](/img/clip.mp4) */
 .markdown video { display: block; width: 100%; height: auto; margin: 0 0 1.25rem; border-radius: 6px; background: #000; }
 .markdown p > video:only-child { margin: 0; }
+
+/* Link card: generated-index cards and <a class="link-card"> in Markdown share it */
+.markdown .link-card { display: flex; max-width: 34rem; margin: 1.5rem 0 0; border: 1px solid var(--c-border); border-radius: 0.75rem; overflow: hidden; background: var(--c-bg); color: var(--c-text); transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+.markdown .link-card:hover { border-color: var(--c-primary); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); transform: translateY(-2px); text-decoration: none; color: var(--c-text); }
+.link-card-thumb { flex: 0 0 9rem; background: #111 center / cover no-repeat; }
+.link-card-body { display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem 1.25rem; }
+.link-card-kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-primary); }
+.link-card-title { font-size: 1.1rem; font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; }
+.link-card-desc { font-size: 0.9rem; line-height: 1.5; color: var(--c-text-muted); }
+.link-card-cta { margin-top: auto; padding-top: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--c-primary); }
+.link-card-cta span { display: inline-block; transition: transform 0.15s; }
+.link-card:hover .link-card-cta span { transform: translateX(4px); }
+@media (max-width: 480px) { .link-card-thumb { flex-basis: 6.5rem; } }

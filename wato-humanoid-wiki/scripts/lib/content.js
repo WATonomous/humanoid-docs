@@ -156,12 +156,28 @@ export function loadDocs(docsDir) {
     }
   }
   flatten(items, []);
+  // no prev/next between a page and its own parent category's page: the breadcrumb and the cards already link them
+  const parentPage = (p) => {
+    const cat = p?.parents?.at(-1);
+    return cat && (cat.link?.doc ?? cat.link?.generated);
+  };
   sequence.forEach((page, i) => {
-    page.prev = sequence[i - 1] || null;
-    page.next = sequence[i + 1] || null;
+    const prev = sequence[i - 1] || null;
+    const next = sequence[i + 1] || null;
+    page.prev = prev && parentPage(page) === prev ? null : prev;
+    page.next = next && parentPage(next) === page ? null : next;
   });
 
   return {docs, sidebar: items, generatedPages};
+}
+
+// first photo in a post, or the poster of a video if that comes first
+function firstPhoto(md) {
+  for (const [, src, title = ''] of md.matchAll(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g)) {
+    if (/\.(jpe?g|png|webp)$/i.test(src)) return src;
+    const poster = title.match(/poster=(\S+)/)?.[1];
+    if (poster) return poster;
+  }
 }
 
 export function loadBlog(blogDir) {
@@ -194,6 +210,8 @@ export function loadBlog(blogDir) {
         body: content,
         title: fm.title ?? content.match(/^#\s+(.+)$/m)?.[1] ?? slug,
         description: fm.description,
+        // pager thumbnail: front matter `image`, else the post's first photo or video poster
+        image: fm.image ?? firstPhoto(content),
         date,
         authors: authorKeys.map((k) => (typeof k === 'string' ? {key: k, ...(authors[k] || {name: k})} : k)),
         tags: [].concat(fm.tags ?? []).map(tagFor),

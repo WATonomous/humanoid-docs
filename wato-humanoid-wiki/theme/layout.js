@@ -202,12 +202,19 @@ function breadcrumbs(ctx, page) {
     .join('')}<span class="crumb-sep">${icon.crumb}</span><span class="crumb-current">${esc(label)}</span></nav>`;
 }
 
+// Same card as <a class="link-card"> written in Markdown (e.g. the rocket page's blog link)
+function linkCard({href, image, kicker, title, desc, cta}) {
+  return `<a class="link-card" href="${href}">${image ? `<span class="link-card-thumb" style="background-image:url(${esc(image)})"></span>` : ''}<span class="link-card-body">${kicker ? `<span class="link-card-kicker">${esc(kicker)}</span>` : ''}<span class="link-card-title">${esc(title)}</span>${desc ? `<span class="link-card-desc">${esc(desc)}</span>` : ''}<span class="link-card-cta">${esc(cta)} <span aria-hidden="true">→</span></span></span></a>`;
+}
+
 function pager(ctx, prev, next, {prevLabel = 'Previous', nextLabel = 'Next'} = {}) {
   if (!prev && !next) return '';
-  const card = (p, label, cls) =>
-    p
-      ? `<a class="pager-link ${cls}" href="${ctx.url(p.route)}"><span class="pager-sub">${label}</span><span class="pager-title">${esc(p.sidebarLabel ?? p.title)}</span></a>`
-      : '<span></span>';
+  const card = (p, label, cls) => {
+    if (!p) return '<span></span>';
+    const img = p.image ?? p.frontMatter?.image;
+    const thumb = img ? `<span class="pager-thumb" style="background-image:url(${esc(ctx.asset(img.replace(/^\//, '')))})"></span>` : '';
+    return `<a class="pager-link ${cls}${thumb ? ' has-thumb' : ''}" href="${ctx.url(p.route)}">${thumb}<span class="pager-body"><span class="pager-sub">${label}</span><span class="pager-title">${esc(p.sidebarLabel ?? p.title)}</span></span></a>`;
+  };
   return `<nav class="pager" aria-label="Pages">${card(prev, `← ${prevLabel}`, 'prev')}${card(next, `${nextLabel} →`, 'next')}</nav>`;
 }
 
@@ -253,7 +260,14 @@ export function generatedIndexPage(ctx, {gen, sidebar: sidebarTree}) {
       const target = item.type === 'doc' ? item.doc : item.link?.doc ?? item.link?.generated;
       if (!target) return '';
       const desc = target.description ?? (item.type === 'category' ? `${item.items.length || 1} item${item.items.length === 1 ? '' : 's'}` : '');
-      return `<a class="card" href="${ctx.url(target.route)}"><span class="card-title">${item.type === 'category' && item.items.length ? '🗃️' : '📄'} ${esc(item.label)}</span>${desc ? `<span class="card-desc">${esc(desc)}</span>` : ''}</a>`;
+      return linkCard({
+        href: ctx.url(target.route),
+        image: target.frontMatter?.image && ctx.asset(target.frontMatter.image.replace(/^\//, '')),
+        kicker: target.frontMatter?.kicker ?? (item.type === 'category' ? 'Section' : 'Page'),
+        title: item.label,
+        desc,
+        cta: 'Open',
+      });
     })
     .join('');
   const body = `
@@ -270,6 +284,7 @@ export function generatedIndexPage(ctx, {gen, sidebar: sidebarTree}) {
         </div>
         ${pager(ctx, gen.prev, gen.next)}
       </article>
+      <div class="toc" aria-hidden="true"></div>
     </div>
   </main>
 </div>`;

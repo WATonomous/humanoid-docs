@@ -3,6 +3,7 @@ slug: ik-deep-dive
 title: "Inverse Kinematics: Arm & Hand"
 authors: [wilson]
 tags: [software, ik]
+image: /img/humanoid/videos/ik-bimanual-arm-poster.jpg
 ---
 
 How do you tell a robot arm "put your hand right here," or a robot hand "put your fingertip right here," and have it actually figure out the joint angles to make that happen? That's inverse kinematics, and it's what drives both the bimanual arm setup and the individual hand.
