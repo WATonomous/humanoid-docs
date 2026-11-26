@@ -107,7 +107,7 @@ def grid(cells, n, cols, gap=6):
 # ---------------------------------------------------------------- timeline
 segs = []   # (beats, maker(n) -> frames, caption, flash)
 def add(beats, mk, cap=None, flash=0.0):
-    segs.append((beats, mk, cap, flash))
+    segs.append((beats, mk, None, flash))   # no on-screen captions
 
 P = lambda name: U + name
 ph_close, ph_torso, ph_tall, ph_wide = (P('b715934d-image.jpg'), P('c588fd5c-image.jpg'),
@@ -218,6 +218,7 @@ tracked(d, (W / 2, 604), 'WATONOMOUS  ·  UNIVERSITY OF WATERLOO', font('Inter-L
         (255, 255, 255, 200), 6, 'm')
 tracked(d, (W / 2, 690), 'MUSIC: “EDM DETECTION MODE” BY KEVIN MACLEOD (INCOMPETECH.COM)  ·  CC BY 4.0',
         font('Inter-Light.otf', 10), (255, 255, 255, 110), 1.5, 'm')
+ov = Image.new('RGBA', (W, H), (0, 0, 0, 0))   # no outro text
 ova = np.asarray(ov).astype(np.float32) / 255
 for i in range(n_out):
     z = 1 + 0.035 * i / n_out
