@@ -21,4 +21,4 @@ A single policy, trained with the Pioneer-1 architecture from the humanoid repo,
 
 Even with only 26 t-shirt demos, the policy picks up the rough folding behaviour. More t-shirt demos are next.
 
-Pioneer-1 is still changing, so its details aren't written up here yet.
+How Pioneer-1 works is on the [Pioneer-1 Manipulation](./pioneer-1) page.
