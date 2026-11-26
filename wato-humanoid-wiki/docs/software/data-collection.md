@@ -28,6 +28,23 @@ A recorded take from the light box: the arm picks up the cube and drops it in th
 ![](/img/humanoid/videos/lightbox-real-arm-cube-into-bin.mp4)
 :::
 
+## Dataset format
+
+Demos are saved as [LeRobot](https://github.com/huggingface/lerobot) datasets at 25 fps. Each frame has:
+
+| Field | Content |
+|-------|---------|
+| `observation.state` | measured joint positions (rad) and gripper closure (0 open, 1 closed) |
+| `action` | commanded joint targets and gripper command |
+| `observation.images.<camera>` | 640×480 RGB: `ego`, `wrist_left`, `wrist_right` |
+| `task` | the instruction, e.g. "put the vial in the rack" |
+
+Each arm gives 8 values, left arm first: `shoulder_pitch`, `shoulder_roll`, `shoulder_yaw`, `elbow`, `forearm_roll`, `wrist_pitch`, `wrist_yaw`, `gripper`. Datasets are named `pioneer_8dof_left_arm`, `_right_arm` or `_bimanual`.
+
+Today's real arm is the old 6-DoF arm, with 7 values per arm (`elbow_pitch` and `elbow_roll` instead of `elbow` and `forearm_roll`, and no `wrist_yaw`). Its datasets are `pioneer_v1_*` and never mixed with 8-DoF data.
+
+Schemas: [`pioneer_8dof_dataset_schema.yaml`](https://github.com/WATonomous/pioneer_humanoid/blob/main/src/robot_learning/config/pioneer_8dof_dataset_schema.yaml) and [`pioneer_humanoid_dataset_schema.yaml`](https://github.com/WATonomous/pioneer_humanoid/blob/main/src/robot_learning/config/pioneer_humanoid_dataset_schema.yaml).
+
 ## UMI Gripper
 
 A second way to collect data: a handheld [UMI](https://umi-gripper.github.io/) (Universal Manipulation Interface) gripper with fin ray fingers. Demos are recorded by hand, without the robot, which makes data collection much easier to scale.
