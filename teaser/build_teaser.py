@@ -144,32 +144,30 @@ add(2, lambda n: decode(V + 'locomotion-snow-night.mp4', 6.0, 2.6, n, cover()), 
 add(2, lambda n: decode(V + 'humanoid-boxing-rl.mp4', 4.0, 2.4, n, cover()),
     ('HUMANOID BOXING', 'REINFORCEMENT LEARNING'), .35)
 
-C_MI = ('MOTION IMITATION', 'ONE POLICY  ·  RUN, DANCE, SPAR')
+C_MI = ('MOTION IMITATION', 'ONE POLICY  ·  RUN, DANCE, SPAR, HOP, SHUFFLE')
 MI = V + 'motion-imitation-supermimic.mp4'
-for i, ss in enumerate([1.0, 8.0, 18.5, 57.0]):
+for i, ss in enumerate([1.0, 8.0, 18.5, 23.5, 47.0, 57.0]):
     add(1, lambda n, ss=ss: decode(MI, ss, 1.1, n, cover()), C_MI, .9 if i == 0 else .25)
 
 rapid = [
-    ('inhand-rl-cube.mp4', 4.0, 1.4, 'IN-HAND REORIENTATION'),
-    ('tendon-hand-showcase.mp4', 2.0, 1.6, 'TENDON-DRIVEN HAND'),
-    ('tendon-hand-showcase.mp4', 36.5, 1.6, 'TENDON-DRIVEN HAND'),
     ('sim-hands-bench-vise.mp4', 12.0, 2.4, 'DEXTEROUS MANIPULATION'),
     ('sim-hands-parts-cabinet.mp4', 10.0, 2.4, 'DEXTEROUS MANIPULATION'),
     ('quest-teleop-drawer-stow.mp4', 14.0, 3.0, 'VR TELEOPERATION'),
-    ('lightbox-real-arm-cube-into-bin.mp4', 9.0, 2.6, 'REAL ARM  ·  CUBE INTO BIN'),
+    ('quest-teleop-bowling.mp4', 6.0, 3.0, 'VR TELEOPERATION'),
     ('pi05-leader-arm-teleop.mp4', 4.0, 1.6, 'LEADER-ARM DATA COLLECTION'),
+    ('deformable-object-grasp.mp4', 1.0, 3.0, 'SOFT GRIPPER  ·  DEFORMABLE GRASP'),
     ('badminton-shuttlecock-tracking.mp4', 2.0, 1.4, 'SHUTTLECOCK TRACKING'),
-    ('locomotion-rl-early-many-envs.mp4', 1.0, 1.6, 'PARALLEL RL TRAINING'),
+    ('../badminton/blog/demo.mp4', 8.0, 3.0, 'BADMINTON  ·  SIM SERVE RETURNS'),
 ]
 for i, (f, ss, dur, cap) in enumerate(rapid):
     add(1, lambda n, f=f, ss=ss, dur=dur: decode(V + f, ss, dur, n, cover()), (cap, None),
         .9 if i == 0 else .25)
 
 add(2, lambda n: grid([(V + 'locomotion-rough-terrain.mp4', 60, 4), (RTC, 22, 6),
-                       (V + 'inhand-rl-cube.mp4', 10, 3), (V + 'cloth-fold-tshirt.mp4', 4, 10),
+                       (V + 'locomotion-snow-night.mp4', 2, 3), (V + 'cloth-fold-tshirt.mp4', 4, 10),
                        (V + 'motion-imitation-supermimic.mp4', 56, 3),
                        (V + 'sim-hands-bench-vise.mp4', 14, 4),
-                       (V + 'tendon-hand-showcase.mp4', 5, 3), (V + 'humanoid-boxing-rl.mp4', 8, 3),
+                       (V + 'quest-teleop-drawer-stow.mp4', 14, 4), (V + 'humanoid-boxing-rl.mp4', 8, 3),
                        (V + 'locomotion-stairs-height-scan.mp4', 30, 4)], n, 3), None, .5)
 
 # ---------------------------------------------------------------- render
